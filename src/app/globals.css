@@ -1,6 +1,8 @@
-# Learn how to use Next.js 14 app router with Tailwind CSS and TypeScript
-# https://nextjs.org/docs/app
-# https://tailwindcss.com/docs
+/* 
+ * Learn how to use Next.js 14 app router with Tailwind CSS and TypeScript
+ * See: https://nextjs.org/docs/app
+ *        https://tailwindcss.com/docs
+ */
 
 @tailwind base;
 @tailwind components;
