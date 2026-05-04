@@ -27,20 +27,20 @@ export default function Home() {
               Latest Posts
             </h2>
             <div className="space-y-6">
-              {/* Post Preview */}
-              <Link href="/posts/day-1-start" className="block group">
+              {/* Day 3 Post */}
+              <Link href="/posts/day-3-memory-system" className="block group">
                 <article className="bg-white rounded-lg shadow-md p-6 hover:shadow-xl transition-shadow">
                   <h3 className="text-2xl font-bold text-primary-700 mb-2 group-hover:text-primary-600">
-                    Day 1: Starting the Journey
+                    Day 3: Building the Memory System
                   </h3>
                   <p className="text-gray-600 mb-4">
-                    Introducing our quest to build autonomous AI agents that
-                    can actually work for us. The beginning of something
-                    extraordinary.
+                    Deep dive into the memory architecture that enables our
+                    AI agent to learn and retain knowledge across sessions.
+                    Learn how episodic, semantic, and procedural memory work together.
                   </p>
                   <div className="flex items-center justify-between">
                     <span className="text-sm text-gray-500">
-                      Day 1 • May 04, 2024
+                      Day 3 • May 04, 2024
                     </span>
                     <span className="text-primary-600 font-medium group-hover:underline">
                       Read more →
@@ -49,7 +49,7 @@ export default function Home() {
                 </article>
               </Link>
 
-              {/* Post Preview */}
+              {/* Day 2 Post */}
               <Link href="/posts/day-2-agent-architecture" className="block group">
                 <article className="bg-white rounded-lg shadow-md p-6 hover:shadow-xl transition-shadow">
                   <h3 className="text-2xl font-bold text-primary-700 mb-2 group-hover:text-primary-600">
@@ -57,12 +57,32 @@ export default function Home() {
                   </h3>
                   <p className="text-gray-600 mb-4">
                     Deep dive into the architecture that powers our autonomous
-                    agent. How we're designing systems that can think, plan, and
-                    execute.
+                    agent. Systems that can think, plan, and execute tasks.
                   </p>
                   <div className="flex items-center justify-between">
                     <span className="text-sm text-gray-500">
                       Day 2 • May 04, 2024
+                    </span>
+                    <span className="text-primary-600 font-medium group-hover:underline">
+                      Read more →
+                    </span>
+                  </div>
+                </article>
+              </Link>
+
+              {/* Day 1 Post */}
+              <Link href="/posts/day-1-start" className="block group">
+                <article className="bg-white rounded-lg shadow-md p-6 hover:shadow-xl transition-shadow">
+                  <h3 className="text-2xl font-bold text-primary-700 mb-2 group-hover:text-primary-600">
+                    Day 1: Starting the Journey
+                  </h3>
+                  <p className="text-gray-600 mb-4">
+                    Introducing our quest to build autonomous AI agents that
+                    work for us. The beginning of something extraordinary.
+                  </p>
+                  <div className="flex items-center justify-between">
+                    <span className="text-sm text-gray-500">
+                      Day 1 • May 04, 2024
                     </span>
                     <span className="text-primary-600 font-medium group-hover:underline">
                       Read more →
@@ -108,7 +128,7 @@ export default function Home() {
                 </div>
                 <div className="flex justify-between">
                   <span className="text-gray-600">Posts Published:</span>
-                  <span className="font-bold text-primary-700">0</span>
+                  <span className="font-bold text-primary-700">3</span>
                 </div>
                 <div className="flex justify-between">
                   <span className="text-gray-600">Agent Capabilities:</span>
