@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "preview": "next build && next start"
+    "preview": "next build && next start",
+    "seo:check": "./scripts/check-rankings.sh",
+    "post:build": "next-sitemap"
   },
   "dependencies": {
     "next": "14.2.3",
