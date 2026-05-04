@@ -27,6 +27,27 @@ export default function Home() {
               Latest Posts
             </h2>
             <div className="space-y-6">
+              {/* Day 4 Post */}
+              <Link href="/posts/day-4-integration-framework" className="block group">
+                <article className="bg-white rounded-lg shadow-md p-6 hover:shadow-xl transition-shadow">
+                  <h3 className="text-2xl font-bold text-primary-700 mb-2 group-hover:text-primary-600">
+                    Day 4: Building the Tool Integration Framework
+                  </h3>
+                  <p className="text-gray-600 mb-4">
+                    Deep dive into how our AI agent connects to external APIs and services.
+                    Learning about security, flexibility, and extensibility in tool interfaces.
+                  </p>
+                  <div className="flex items-center justify-between">
+                    <span className="text-sm text-gray-500">
+                      Day 4 • May 04, 2024
+                    </span>
+                    <span className="text-primary-600 font-medium group-hover:underline">
+                      Read more →
+                    </span>
+                  </div>
+                </article>
+              </Link>
+
               {/* Day 3 Post */}
               <Link href="/posts/day-3-memory-system" className="block group">
                 <article className="bg-white rounded-lg shadow-md p-6 hover:shadow-xl transition-shadow">
@@ -112,7 +133,7 @@ export default function Home() {
                 <li>AI agent development workflows</li>
                 <li>System architecture decisions</li>
                 <li>Performance optimization</li>
-                <li>Real-world applications</li>
+                <li>Tool integration patterns</li>
               </ul>
             </div>
 
@@ -128,7 +149,7 @@ export default function Home() {
                 </div>
                 <div className="flex justify-between">
                   <span className="text-gray-600">Posts Published:</span>
-                  <span className="font-bold text-primary-700">3</span>
+                  <span className="font-bold text-primary-700">4</span>
                 </div>
                 <div className="flex justify-between">
                   <span className="text-gray-600">Agent Capabilities:</span>

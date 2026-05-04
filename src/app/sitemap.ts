@@ -3,23 +3,36 @@ import type { MetadataRoute } from 'next'
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = 'https://hermes-agent-blog.vercel.app'
   
-  const posts = [
-    '/posts/day-1-start',
-    '/posts/day-2-agent-architecture',
-  ]
-
   return [
     {
       url: baseUrl,
       lastModified: new Date(),
-      changeFrequency: 'daily' as const,
-      priority: 1,
+      changeFrequency: 'daily',
+      priority: 1 as const,
     },
-    ...posts.map((post) => ({
-      url: baseUrl + post,
-      lastModified: new Date('2024-05-04'),
-      changeFrequency: 'monthly' as const,
-      priority: 0.8,
-    })),
+    {
+      url: `${baseUrl}/posts/day-4-integration-framework`,
+      lastModified: new Date(),
+      changeFrequency: 'weekly' as const,
+      priority: 0.8 as const,
+    },
+    {
+      url: `${baseUrl}/posts/day-3-memory-system`,
+      lastModified: new Date(),
+      changeFrequency: 'weekly' as const,
+      priority: 0.8 as const,
+    },
+    {
+      url: `${baseUrl}/posts/day-2-agent-architecture`,
+      lastModified: new Date(),
+      changeFrequency: 'weekly' as const,
+      priority: 0.7 as const,
+    },
+    {
+      url: `${baseUrl}/posts/day-1-start`,
+      lastModified: new Date(),
+      changeFrequency: 'weekly' as const,
+      priority: 0.6 as const,
+    },
   ]
 }
