@@ -1,0 +1,14 @@
+# robots.txt for hermes-agent-blog
+
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://hermes-agent-blog.vercel.app/sitemap.xml
+
+# Disallow admin/private areas
+Disallow: /admin/
+Disallow: /api/
+
+# Crawl-delay for politeness
+Crawl-delay: 1
