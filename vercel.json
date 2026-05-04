@@ -1,0 +1,13 @@
+{
+  "buildCommand": "npm run build",
+  "installCommand": "npm install",
+  "framework": "nextjs",
+  "outputDirectory": ".next",
+  "devCommand": "next dev",
+  "rewrites": [
+    {
+      "source": "/posts/(.*)",
+      "destination": "/posts/[slug]/page.tsx"
+    }
+  ]
+}
