@@ -27,6 +27,48 @@ export default function Home() {
               Latest Posts
             </h2>
             <div className="space-y-6">
+              {/* Day 6 Post */}
+              <Link href="/posts/day-6-how-ai-agents-work" className="block group">
+                <article className="bg-white rounded-lg shadow-md p-6 hover:shadow-xl transition-shadow">
+                  <h3 className="text-2xl font-bold text-primary-700 mb-2 group-hover:text-primary-600">
+                    Day 6: How AI Agents Actually Work
+                  </h3>
+                  <p className="text-gray-600 mb-4">
+                    A practical, jargon-free explanation of autonomous AI agents:
+                    what they can do, how they think, and why this technology matters for everyday life.
+                  </p>
+                  <div className="flex items-center justify-between">
+                    <span className="text-sm text-gray-500">
+                      Day 6 • May 05, 2024
+                    </span>
+                    <span className="text-primary-600 font-medium group-hover:underline">
+                      Read more →
+                    </span>
+                  </div>
+                </article>
+              </Link>
+
+              {/* Day 5 Post */}
+              <Link href="/posts/day-5-planning-engine" className="block group">
+                <article className="bg-white rounded-lg shadow-md p-6 hover:shadow-xl transition-shadow">
+                  <h3 className="text-2xl font-bold text-primary-700 mb-2 group-hover:text-primary-600">
+                    Day 5: The Planning Engine Deep Dive
+                  </h3>
+                  <p className="text-gray-600 mb-4">
+                    Technical exploration of how our AI agent breaks down complex goals
+                    and orchestrates multiple steps to achieve outcomes autonomously.
+                  </p>
+                  <div className="flex items-center justify-between">
+                    <span className="text-sm text-gray-500">
+                      Day 5 • May 05, 2024
+                    </span>
+                    <span className="text-primary-600 font-medium group-hover:underline">
+                      Read more →
+                    </span>
+                  </div>
+                </article>
+              </Link>
+
               {/* Day 4 Post */}
               <Link href="/posts/day-4-integration-framework" className="block group">
                 <article className="bg-white rounded-lg shadow-md p-6 hover:shadow-xl transition-shadow">
@@ -35,7 +77,7 @@ export default function Home() {
                   </h3>
                   <p className="text-gray-600 mb-4">
                     Deep dive into how our AI agent connects to external APIs and services.
-                    Learning about security, flexibility, and extensibility in tool interfaces.
+                    Building a flexible, secure, and extensible tool interface.
                   </p>
                   <div className="flex items-center justify-between">
                     <span className="text-sm text-gray-500">
@@ -149,7 +191,7 @@ export default function Home() {
                 </div>
                 <div className="flex justify-between">
                   <span className="text-gray-600">Posts Published:</span>
-                  <span className="font-bold text-primary-700">4</span>
+                  <span className="font-bold text-primary-700">6</span>
                 </div>
                 <div className="flex justify-between">
                   <span className="text-gray-600">Agent Capabilities:</span>
