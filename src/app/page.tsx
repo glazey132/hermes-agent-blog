@@ -27,6 +27,27 @@ export default function Home() {
               Latest Posts
             </h2>
             <div className="space-y-6">
+              {/* Day 7 Post */}
+              <Link href="/posts/day-7-styling-improvements" className="block group">
+                <article className="bg-white rounded-lg shadow-md p-6 hover:shadow-xl transition-shadow">
+                  <h3 className="text-2xl font-bold text-primary-700 mb-2 group-hover:text-primary-600">
+                    Day 7: Complete Styling and Content Improvements
+                  </h3>
+                  <p className="text-gray-600 mb-4">
+                    Major refactor of the blog's visual presentation and content rendering:
+                    proper Markdown support, syntax highlighting, and consistent typography.
+                  </p>
+                  <div className="flex items-center justify-between">
+                    <span className="text-sm text-gray-500">
+                      Day 7 • May 05, 2026
+                    </span>
+                    <span className="text-primary-600 font-medium group-hover:underline">
+                      Read more →
+                    </span>
+                  </div>
+                </article>
+              </Link>
+
               {/* Day 6 Post */}
               <Link href="/posts/day-6-how-ai-agents-work" className="block group">
                 <article className="bg-white rounded-lg shadow-md p-6 hover:shadow-xl transition-shadow">

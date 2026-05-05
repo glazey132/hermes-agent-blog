@@ -1,0 +1,83 @@
+'use client';
+
+import Link from 'next/link';
+
+export default function PostsPage({ params }: { params: { slug: string } }) {
+  const postContent = posts[params.slug as keyof typeof posts];
+
+  const order = [
+    'day-7-styling-improvements',
+  ];
+  const index = order.indexOf(params.slug);
+  const prev = index > 0 ? order[index - 1] : null;
+  const next = index < order.length - 1 ? order[index + 1] : null;
+
+  if (!postContent) {
+    return (
+      <div>
+        <h2 className="font-bold mb-4">404 — Page Not Found</h2>
+        <p className="mb-4">
+          The post you're looking for doesn't exist.
+        </p>
+        <Link href="/">← Back to home</Link>
+      </div>
+    );
+  }
+
+  return (
+    <main className="flex justify-center w-full max-w-3xl p-4 pt-8">
+      <div className="w-full bg-white rounded shadow px-6 pb-8">
+        <header className="mb-4 flex justify-between items-center">
+          <h1 className="text-2xl font-bold">{postContent.title}</h1>
+          <div className="text-sm text-gray-600">{postContent.date}</div>
+        </header>
+
+        <div className="prose prose-lg max-w-none">
+          {/* Post body content will be rendered by PostBody component */}
+        </div>
+
+        <div className="mt-12 flex justify-center gap-4">
+          {prev && (
+            <Link href={`/posts/${prev}`} className="text-blue-600 hover:underline">
+              ← Previous Post
+            </Link>
+          )}
+          {next && (
+            <Link href={`/posts/${next}`} className="text-blue-600 hover:underline">
+              Next Post →
+            </Link>
+          )}
+        </div>
+      </div>
+    </main>
+  );
+}
+
+const posts = {
+  'day-7-styling-improvements': {
+    title: 'Day 7: Complete Styling and Content Improvements',
+    date: 'May 05, 2026',
+    readTime: '5 min read',
+    content: `# Day 7: Complete Styling and Content Improvements
+
+**Today focused on a major refactor** of the blog's visual presentation and content rendering. The result is a more polished, professional-looking documentation site with proper Markdown support.
+
+## What Changed
+
+### Created PostBody.tsx Component
+
+**Before**: Each post used inline HTML generation with manual tag construction.
+
+**Now**: Using a dedicated component with proper Markdown parsing.
+
+## What's Coming Next
+
+1. **Expand post examples** with more detailed technical diagrams
+2. **Add search functionality** for better content discoverability
+3. **Implement a post listing page** at /posts with all posts visible
+
+---
+
+*Update: The site now looks much more professional.*`
+  },
+};
