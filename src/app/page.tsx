@@ -39,7 +39,7 @@ export default function Home() {
                   </p>
                   <div className="flex items-center justify-between">
                     <span className="text-sm text-gray-500">
-                      Day 6 • May 05, 2024
+                      Day 6 • May 05, 2026
                     </span>
                     <span className="text-primary-600 font-medium group-hover:underline">
                       Read more →
@@ -60,7 +60,7 @@ export default function Home() {
                   </p>
                   <div className="flex items-center justify-between">
                     <span className="text-sm text-gray-500">
-                      Day 5 • May 05, 2024
+                      Day 5 • May 05, 2026
                     </span>
                     <span className="text-primary-600 font-medium group-hover:underline">
                       Read more →
@@ -81,7 +81,7 @@ export default function Home() {
                   </p>
                   <div className="flex items-center justify-between">
                     <span className="text-sm text-gray-500">
-                      Day 4 • May 04, 2024
+                      Day 4 • May 04, 2026
                     </span>
                     <span className="text-primary-600 font-medium group-hover:underline">
                       Read more →
@@ -103,7 +103,7 @@ export default function Home() {
                   </p>
                   <div className="flex items-center justify-between">
                     <span className="text-sm text-gray-500">
-                      Day 3 • May 04, 2024
+                      Day 3 • May 04, 2026
                     </span>
                     <span className="text-primary-600 font-medium group-hover:underline">
                       Read more →
@@ -124,7 +124,7 @@ export default function Home() {
                   </p>
                   <div className="flex items-center justify-between">
                     <span className="text-sm text-gray-500">
-                      Day 2 • May 04, 2024
+                      Day 2 • May 04, 2026
                     </span>
                     <span className="text-primary-600 font-medium group-hover:underline">
                       Read more →
@@ -145,7 +145,7 @@ export default function Home() {
                   </p>
                   <div className="flex items-center justify-between">
                     <span className="text-sm text-gray-500">
-                      Day 1 • May 04, 2024
+                      Day 1 • May 04, 2026
                     </span>
                     <span className="text-primary-600 font-medium group-hover:underline">
                       Read more →
