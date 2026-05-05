@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
+import "highlight.js/styles/github-dark.css";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });

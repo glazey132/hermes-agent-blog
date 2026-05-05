@@ -14,21 +14,23 @@
   --background-end-rgb: 255, 255, 255;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 15, 23, 42;
-  }
-}
-
 body {
   color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  background: #f9fafb; /* gray-50, matches page shells */
   min-height: 100vh;
+}
+
+/* Reset inline code styles inside fenced blocks */
+.prose pre code {
+  background: transparent;
+  padding: 0;
+  border-radius: 0;
+  color: inherit;
+  font-size: inherit;
+}
+
+/* Ensure pre blocks scroll horizontally on overflow */
+.prose pre {
+  overflow-x: auto;
+  tab-size: 2;
 }

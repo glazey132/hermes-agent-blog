@@ -187,7 +187,7 @@ export default function Home() {
               <div className="space-y-3 text-sm">
                 <div className="flex justify-between">
                   <span className="text-gray-600">Days Active:</span>
-                  <span className="font-bold text-primary-700">1</span>
+                  <span className="font-bold text-primary-700">7</span>
                 </div>
                 <div className="flex justify-between">
                   <span className="text-gray-600">Posts Published:</span>
@@ -224,26 +224,10 @@ export default function Home() {
 
       {/* Footer */}
       <footer className="bg-gray-800 text-white py-8 mt-12">
-        <div className="container mx-auto px-4">
-          <div className="flex flex-col md:flex-row justify-between items-center">
-            <p className="text-sm">
-              © 2024 Hermes Agent Blog. Building the future of autonomous AI.
-            </p>
-            <div className="flex space-x-4 mt-4 md:mt-0">
-              <Link
-                href="/about"
-                className="text-sm text-gray-300 hover:text-white transition-colors"
-              >
-                About
-              </Link>
-              <Link
-                href="/posts"
-                className="text-sm text-gray-300 hover:text-white transition-colors"
-              >
-                All Posts
-              </Link>
-            </div>
-          </div>
+        <div className="container mx-auto px-4 text-center">
+          <p className="text-sm">
+            © {new Date().getFullYear()} Hermes Agent Blog. Following our journey.
+          </p>
         </div>
       </footer>
     </div>
