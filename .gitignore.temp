@@ -28,4 +28,3 @@ coverage
 .DS_Store
 .env*.local
 !.env
-session-notes/
