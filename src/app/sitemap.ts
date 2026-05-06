@@ -7,8 +7,20 @@ export default function sitemap(): MetadataRoute.Sitemap {
     {
       url: baseUrl,
       lastModified: new Date(),
-      changeFrequency: 'daily',
+      changeFrequency: 'daily' as const,
       priority: 1 as const,
+    },
+    {
+      url: `${baseUrl}/posts/day-10-productivity-harness`,
+      lastModified: new Date(),
+      changeFrequency: 'weekly' as const,
+      priority: 0.7 as const,
+    },
+    {
+      url: `${baseUrl}/posts/day-9-self-reflection`,
+      lastModified: new Date(),
+      changeFrequency: 'weekly' as const,
+      priority: 0.8 as const,
     },
     {
       url: `${baseUrl}/posts/day-8-why-ai-agents-matter`,

@@ -16,6 +16,8 @@ export async function generateStaticParams() {
     { slug: "day-6-how-ai-agents-work" },
     { slug: "day-7-ai-agentic-examples" },
     { slug: "day-8-why-ai-agents-matter" },
+    { slug: "day-9-self-reflection" },
+    { slug: "day-10-productivity-harness" },
   ];
 }
 
@@ -92,7 +94,7 @@ export default function BlogPost({ params }: BlogPostProps) {
   const postContent = getPostContent(slug);
 
   const prev = slug !== 'day-1-start' ? getPreviousPostLink(slug) : null;
-  const next = slug !== 'day-8-why-ai-agents-matter' ? getNextPostLink(slug) : null;
+  const next = slug !== 'day-10-productivity-harness' ? getNextPostLink(slug) : null;
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -154,6 +156,8 @@ function getPreviousPostLink(slug: string): string {
     "day-6-how-ai-agents-work": "day-5-planning-engine",
     "day-7-ai-agentic-examples": "day-6-how-ai-agents-work",
     "day-8-why-ai-agents-matter": "day-7-ai-agentic-examples",
+    "day-9-self-reflection": "day-8-why-ai-agents-matter",
+    "day-10-productivity-harness": "day-9-self-reflection",
   };
   return map[slug] || "day-1-start";
 }
@@ -167,6 +171,8 @@ function getNextPostLink(slug: string): string {
     "day-5-planning-engine": "day-6-how-ai-agents-work",
     "day-6-how-ai-agents-work": "day-7-ai-agentic-examples",
     "day-7-ai-agentic-examples": "day-8-why-ai-agents-matter",
+    "day-8-why-ai-agents-matter": "day-9-self-reflection",
+    "day-9-self-reflection": "day-10-productivity-harness",
   };
-  return map[slug] || "day-8-why-ai-agents-matter";
+  return map[slug] || "day-10-productivity-harness";
 }
