@@ -11,6 +11,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 1 as const,
     },
     {
+      url: `${baseUrl}/posts/day-10-getting-started-ai-agents`,
+      lastModified: new Date(),
+      changeFrequency: 'weekly' as const,
+      priority: 0.7 as const,
+    },
+    {
+      url: `${baseUrl}/posts/day-9-memory-implementation`,
+      lastModified: new Date(),
+      changeFrequency: 'weekly' as const,
+      priority: 0.8 as const,
+    },
+    {
       url: `${baseUrl}/posts/day-8-why-ai-agents-matter`,
       lastModified: new Date(),
       changeFrequency: 'weekly' as const,

@@ -16,6 +16,8 @@ export async function generateStaticParams() {
     { slug: "day-6-how-ai-agents-work" },
     { slug: "day-7-ai-agentic-examples" },
     { slug: "day-8-why-ai-agents-matter" },
+    { slug: "day-9-memory-implementation" },
+    { slug: "day-10-getting-started-ai-agents" },
   ];
 }
 
@@ -154,6 +156,8 @@ function getPreviousPostLink(slug: string): string {
     "day-6-how-ai-agents-work": "day-5-planning-engine",
     "day-7-ai-agentic-examples": "day-6-how-ai-agents-work",
     "day-8-why-ai-agents-matter": "day-7-ai-agentic-examples",
+    "day-9-memory-implementation": "day-8-why-ai-agents-matter",
+    "day-10-getting-started-ai-agents": "day-9-memory-implementation",
   };
   return map[slug] || "day-1-start";
 }
@@ -167,6 +171,8 @@ function getNextPostLink(slug: string): string {
     "day-5-planning-engine": "day-6-how-ai-agents-work",
     "day-6-how-ai-agents-work": "day-7-ai-agentic-examples",
     "day-7-ai-agentic-examples": "day-8-why-ai-agents-matter",
+    "day-8-why-ai-agents-matter": "day-9-memory-implementation",
+    "day-9-memory-implementation": "day-10-getting-started-ai-agents",
   };
-  return map[slug] || "day-8-why-ai-agents-matter";
+  return map[slug] || "day-9-memory-implementation";
 }
