@@ -2,13 +2,14 @@
 
 import Link from 'next/link';
 
-export default function PostsPage({ params }: { params: { slug: string } }) {
-  const postContent = posts[params.slug as keyof typeof posts];
+export default function PostsPage() {
+  const slug = 'day-7-styling-improvements';
+  const postContent = posts[slug as keyof typeof posts];
 
   const order = [
     'day-7-styling-improvements',
   ];
-  const index = order.indexOf(params.slug);
+  const index = order.indexOf(slug);
   const prev = index > 0 ? order[index - 1] : null;
   const next = index < order.length - 1 ? order[index + 1] : null;
 

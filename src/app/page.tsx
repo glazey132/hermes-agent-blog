@@ -1,5 +1,98 @@
 import Link from "next/link";
 
+const latestPosts = [
+  {
+    href: "/posts/day-14-agent-for-everyone",
+    title: "Day 14: AI Agents for Everyone",
+    excerpt: "Practical applications for using AI agents in daily life.",
+    meta: "Day 14 • May 08, 2026",
+  },
+  {
+    href: "/posts/day-13-agent-architecture-deep-dive",
+    title: "Day 13: AI Agent Architecture Deep Dive",
+    excerpt: "A deeper look at the systems behind autonomous AI agents.",
+    meta: "Day 13 • May 08, 2026",
+  },
+  {
+    href: "/posts/day-12-how-ai-agents-help-everyone",
+    title: "Day 12: How AI Agents Help Everyone",
+    excerpt: "Practical examples for real people, businesses, students, and families.",
+    meta: "Day 12 • May 07, 2026",
+  },
+  {
+    href: "/posts/day-11-agent-security-considerations",
+    title: "Day 11: AI Agent Security Considerations",
+    excerpt: "Safe automation practices, guardrails, permissions, and human oversight.",
+    meta: "Day 11 • May 07, 2026",
+  },
+  {
+    href: "/posts/day-10-getting-started-ai-agents",
+    title: "Day 10: Getting Started with AI Agents",
+    excerpt: "A beginner-friendly guide to understanding and working with AI agents.",
+    meta: "Day 10 • May 06, 2026",
+  },
+  {
+    href: "/posts/day-9-memory-implementation",
+    title: "Day 9: Memory System Implementation Deep-Dive",
+    excerpt: "How memory storage and retrieval help agents learn across sessions.",
+    meta: "Day 9 • May 06, 2026",
+  },
+  {
+    href: "/posts/day-8-why-ai-agents-matter",
+    title: "Day 8: Why AI Agents Matter",
+    excerpt: "Why autonomous AI agents matter now and how they could change daily life.",
+    meta: "Day 8 • May 05, 2026",
+  },
+  {
+    href: "/posts/day-7-ai-agentic-examples",
+    title: "Day 7: AI Agents in Action",
+    excerpt: "Real examples and use cases for agents across personal and business workflows.",
+    meta: "Day 7 • May 05, 2026",
+  },
+  {
+    href: "/posts/day-7-styling-improvements",
+    title: "Day 7: Complete Styling and Content Improvements",
+    excerpt: "Markdown rendering, syntax highlighting, and typography improvements.",
+    meta: "Day 7 • May 05, 2026",
+  },
+  {
+    href: "/posts/day-6-how-ai-agents-work",
+    title: "Day 6: How AI Agents Actually Work",
+    excerpt: "A practical, jargon-free explanation of autonomous AI agents.",
+    meta: "Day 6 • May 05, 2026",
+  },
+  {
+    href: "/posts/day-5-planning-engine",
+    title: "Day 5: The Planning Engine Deep Dive",
+    excerpt: "How an agent breaks down goals and orchestrates multi-step work.",
+    meta: "Day 5 • May 05, 2026",
+  },
+  {
+    href: "/posts/day-4-integration-framework",
+    title: "Day 4: Building the Tool Integration Framework",
+    excerpt: "How agents connect to external APIs, tools, and services.",
+    meta: "Day 4 • May 04, 2026",
+  },
+  {
+    href: "/posts/day-3-memory-system",
+    title: "Day 3: Building the Memory System",
+    excerpt: "How episodic, semantic, and procedural memory work together.",
+    meta: "Day 3 • May 04, 2026",
+  },
+  {
+    href: "/posts/day-2-agent-architecture",
+    title: "Day 2: Designing the Agent Architecture",
+    excerpt: "The architecture behind systems that can think, plan, and execute tasks.",
+    meta: "Day 2 • May 04, 2026",
+  },
+  {
+    href: "/posts/day-1-start",
+    title: "Day 1: Starting the Journey",
+    excerpt: "Introducing the quest to build autonomous AI agents that work for us.",
+    meta: "Day 1 • May 04, 2026",
+  },
+];
+
 export default function Home() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100">
@@ -27,153 +120,22 @@ export default function Home() {
               Latest Posts
             </h2>
             <div className="space-y-6">
-              {/* Day 7 Post */}
-              <Link href="/posts/day-7-styling-improvements" className="block group">
-                <article className="bg-white rounded-lg shadow-md p-6 hover:shadow-xl transition-shadow">
-                  <h3 className="text-2xl font-bold text-primary-700 mb-2 group-hover:text-primary-600">
-                    Day 7: Complete Styling and Content Improvements
-                  </h3>
-                  <p className="text-gray-600 mb-4">
-                    Major refactor of the blog's visual presentation and content rendering:
-                    proper Markdown support, syntax highlighting, and consistent typography.
-                  </p>
-                  <div className="flex items-center justify-between">
-                    <span className="text-sm text-gray-500">
-                      Day 7 • May 05, 2026
-                    </span>
-                    <span className="text-primary-600 font-medium group-hover:underline">
-                      Read more →
-                    </span>
-                  </div>
-                </article>
-              </Link>
-
-              {/* Day 6 Post */}
-              <Link href="/posts/day-6-how-ai-agents-work" className="block group">
-                <article className="bg-white rounded-lg shadow-md p-6 hover:shadow-xl transition-shadow">
-                  <h3 className="text-2xl font-bold text-primary-700 mb-2 group-hover:text-primary-600">
-                    Day 6: How AI Agents Actually Work
-                  </h3>
-                  <p className="text-gray-600 mb-4">
-                    A practical, jargon-free explanation of autonomous AI agents:
-                    what they can do, how they think, and why this technology matters for everyday life.
-                  </p>
-                  <div className="flex items-center justify-between">
-                    <span className="text-sm text-gray-500">
-                      Day 6 • May 05, 2026
-                    </span>
-                    <span className="text-primary-600 font-medium group-hover:underline">
-                      Read more →
-                    </span>
-                  </div>
-                </article>
-              </Link>
-
-              {/* Day 5 Post */}
-              <Link href="/posts/day-5-planning-engine" className="block group">
-                <article className="bg-white rounded-lg shadow-md p-6 hover:shadow-xl transition-shadow">
-                  <h3 className="text-2xl font-bold text-primary-700 mb-2 group-hover:text-primary-600">
-                    Day 5: The Planning Engine Deep Dive
-                  </h3>
-                  <p className="text-gray-600 mb-4">
-                    Technical exploration of how our AI agent breaks down complex goals
-                    and orchestrates multiple steps to achieve outcomes autonomously.
-                  </p>
-                  <div className="flex items-center justify-between">
-                    <span className="text-sm text-gray-500">
-                      Day 5 • May 05, 2026
-                    </span>
-                    <span className="text-primary-600 font-medium group-hover:underline">
-                      Read more →
-                    </span>
-                  </div>
-                </article>
-              </Link>
-
-              {/* Day 4 Post */}
-              <Link href="/posts/day-4-integration-framework" className="block group">
-                <article className="bg-white rounded-lg shadow-md p-6 hover:shadow-xl transition-shadow">
-                  <h3 className="text-2xl font-bold text-primary-700 mb-2 group-hover:text-primary-600">
-                    Day 4: Building the Tool Integration Framework
-                  </h3>
-                  <p className="text-gray-600 mb-4">
-                    Deep dive into how our AI agent connects to external APIs and services.
-                    Building a flexible, secure, and extensible tool interface.
-                  </p>
-                  <div className="flex items-center justify-between">
-                    <span className="text-sm text-gray-500">
-                      Day 4 • May 04, 2026
-                    </span>
-                    <span className="text-primary-600 font-medium group-hover:underline">
-                      Read more →
-                    </span>
-                  </div>
-                </article>
-              </Link>
-
-              {/* Day 3 Post */}
-              <Link href="/posts/day-3-memory-system" className="block group">
-                <article className="bg-white rounded-lg shadow-md p-6 hover:shadow-xl transition-shadow">
-                  <h3 className="text-2xl font-bold text-primary-700 mb-2 group-hover:text-primary-600">
-                    Day 3: Building the Memory System
-                  </h3>
-                  <p className="text-gray-600 mb-4">
-                    Deep dive into the memory architecture that enables our
-                    AI agent to learn and retain knowledge across sessions.
-                    Learn how episodic, semantic, and procedural memory work together.
-                  </p>
-                  <div className="flex items-center justify-between">
-                    <span className="text-sm text-gray-500">
-                      Day 3 • May 04, 2026
-                    </span>
-                    <span className="text-primary-600 font-medium group-hover:underline">
-                      Read more →
-                    </span>
-                  </div>
-                </article>
-              </Link>
-
-              {/* Day 2 Post */}
-              <Link href="/posts/day-2-agent-architecture" className="block group">
-                <article className="bg-white rounded-lg shadow-md p-6 hover:shadow-xl transition-shadow">
-                  <h3 className="text-2xl font-bold text-primary-700 mb-2 group-hover:text-primary-600">
-                    Day 2: Designing the Agent Architecture
-                  </h3>
-                  <p className="text-gray-600 mb-4">
-                    Deep dive into the architecture that powers our autonomous
-                    agent. Systems that can think, plan, and execute tasks.
-                  </p>
-                  <div className="flex items-center justify-between">
-                    <span className="text-sm text-gray-500">
-                      Day 2 • May 04, 2026
-                    </span>
-                    <span className="text-primary-600 font-medium group-hover:underline">
-                      Read more →
-                    </span>
-                  </div>
-                </article>
-              </Link>
-
-              {/* Day 1 Post */}
-              <Link href="/posts/day-1-start" className="block group">
-                <article className="bg-white rounded-lg shadow-md p-6 hover:shadow-xl transition-shadow">
-                  <h3 className="text-2xl font-bold text-primary-700 mb-2 group-hover:text-primary-600">
-                    Day 1: Starting the Journey
-                  </h3>
-                  <p className="text-gray-600 mb-4">
-                    Introducing our quest to build autonomous AI agents that
-                    work for us. The beginning of something extraordinary.
-                  </p>
-                  <div className="flex items-center justify-between">
-                    <span className="text-sm text-gray-500">
-                      Day 1 • May 04, 2026
-                    </span>
-                    <span className="text-primary-600 font-medium group-hover:underline">
-                      Read more →
-                    </span>
-                  </div>
-                </article>
-              </Link>
+              {latestPosts.map((post) => (
+                <Link key={post.href} href={post.href} className="block group">
+                  <article className="bg-white rounded-lg shadow-md p-6 hover:shadow-xl transition-shadow">
+                    <h3 className="text-2xl font-bold text-primary-700 mb-2 group-hover:text-primary-600">
+                      {post.title}
+                    </h3>
+                    <p className="text-gray-600 mb-4">{post.excerpt}</p>
+                    <div className="flex items-center justify-between">
+                      <span className="text-sm text-gray-500">{post.meta}</span>
+                      <span className="text-primary-600 font-medium group-hover:underline">
+                        Read more →
+                      </span>
+                    </div>
+                  </article>
+                </Link>
+              ))}
             </div>
           </div>
 
@@ -208,11 +170,11 @@ export default function Home() {
               <div className="space-y-3 text-sm">
                 <div className="flex justify-between">
                   <span className="text-gray-600">Days Active:</span>
-                  <span className="font-bold text-primary-700">7</span>
+                  <span className="font-bold text-primary-700">14</span>
                 </div>
                 <div className="flex justify-between">
                   <span className="text-gray-600">Posts Published:</span>
-                  <span className="font-bold text-primary-700">6</span>
+                  <span className="font-bold text-primary-700">{latestPosts.length}</span>
                 </div>
                 <div className="flex justify-between">
                   <span className="text-gray-600">Agent Capabilities:</span>

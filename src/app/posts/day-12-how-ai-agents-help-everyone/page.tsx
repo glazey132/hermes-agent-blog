@@ -447,10 +447,11 @@ class SafetyGuard {
 const order: PostSlug[] = ['day-12-how-ai-agents-help-everyone', 'day-13-agent-architecture-deep-dive'];
 const allPosts: PostSlug[] = order;
 
-export default function PostsPage({ params }: { params: { slug: PostSlug } }) {
-  const postContent = posts[params.slug];
+export default function PostsPage() {
+  const slug: PostSlug = 'day-12-how-ai-agents-help-everyone';
+  const postContent = posts[slug];
 
-  const index = order.indexOf(params.slug);
+  const index = order.indexOf(slug);
   const prev = index > 0 ? order[index - 1] : null;
   const next = index < order.length - 1 ? order[index + 1] : null;
 

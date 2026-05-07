@@ -511,10 +511,11 @@ When you start using AI agents, you get:
 const order: PostSlug[] = ['day-13-agent-architecture-deep-dive', 'day-14-agent-for-everyone'];
 const allPosts: PostSlug[] = order;
 
-export default function PostsPage({ params }: { params: { slug: PostSlug } }) {
-  const postContent = posts[params.slug];
+export default function PostsPage() {
+  const slug: PostSlug = 'day-13-agent-architecture-deep-dive';
+  const postContent = posts[slug];
 
-  const index = order.indexOf(params.slug);
+  const index = order.indexOf(slug);
   const prev = index > 0 ? order[index - 1] : null;
   const next = index < order.length - 1 ? order[index + 1] : null;
 
