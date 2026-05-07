@@ -3,7 +3,7 @@
 import Link from 'next/link';
 
 type Posts = Record<PostSlug, PostContent>;
-type PostSlug = 'day-10-getting-started-ai-agents' | 'day-11-agent-security-considerations';
+type PostSlug = 'day-11-agent-security-considerations' | 'day-12-how-ai-agents-help-everyone';
 
 interface PostContent {
   title: string;
@@ -13,123 +13,6 @@ interface PostContent {
 }
 
 const posts: Posts = {
-  'day-10-getting-started-ai-agents': {
-    title: "Day 10: Getting Started with AI Agents - A Beginner's Guide",
-    date: "May 06, 2026",
-    readTime: "6 min read",
-    content: `# Day 10: Getting Started with AI Agents - A Beginner's Guide
-
-**Welcome to Day 10**! By now, you've seen how our agent is built and why AI agents matter. Today, we're making things actionable: **how can you start understanding and working with AI agents**.
-
-## What AI Agents Can Do Now
-
-✅ **Automation**: Schedule meetings, organize files, send routine emails
-✅ **Information Gathering**: Research topics, compile data from multiple sources
-✅ **Decision Support**: Present options with pros/cons, recommend next steps
-✅ **Learning Assistance**: Help with coding, explain concepts, create study plans
-
-❌ **Not Yet Ready**: Replace human judgment on complex decisions
-❌ **Not Yet Ready**: Guarantee 100% accuracy on critical information
-
-**Bottom line**: AI agents are powerful assistants, not replacements for human oversight.
-
-## Starting Point: Understanding Your Needs
-
-### Step 1: Identify Repetitive Tasks
-
-**Ask yourself**: What do you find yourself doing over and over?
-
-Common candidates:
-- **Email organization**: Sorting, categorizing, routine replies
-- **Data entry**: Copying information between systems
-- **Meeting management**: Scheduling, reminders, follow-ups
-- **Research**: Gathering information from multiple sources
-
-### Step 2: Define Success Criteria
-
-**Example: Email Triage Automation**
-
-Current state: Manually open every email, read subject, scan body, decide priority.
-
-Success criteria: All emails categorized within 5 minutes of arrival, priority emails flagged immediately.
-
-## Getting Your Foot in the Door
-
-### For Non-Technical Readers
-
-#### 1. No-Code/Low-Code Platforms
-
-**Tools that let you create automations without coding**:
-
-- **Zapier** + AI: Connect apps with AI-powered triggers
-- **Make **(Integromat): Visual automation builder with AI actions
-- **Microsoft Power Automate**: AI-driven workflow creation
-
-#### 2. AI-Collaboration Platforms
-
-**Where AI agents can help without setup**:
-
-- **Cursor IDE**: AI pair programmer with suggestions
-- **Notion AI**: Organize notes, create content
-- **Slack AI**: Summarize threads, suggest replies
-
-### For Developers
-
-#### 1. Start with Agent Frameworks
-
-**Ready-to-use frameworks**:
-
-- **LangChain**: Python/JavaScript, extensive tool integrations
-- **AutoGen**: Multi-agent collaboration, Microsoft-backed
-- **CrewAI**: Role-based agents working together
-
-#### 2. Build Your First Agent
-
-Start small, then scale:
-
-1. Define ONE clear task
-2. Pick ONE external tool to integrate
-3. Write clear instructions for the agent
-4. Add monitoring from day one
-5. Test extensively before automating
-
-## Real-World Scenarios
-
-### For Business Owners
-
-1. **Customer Support Triage** - Agents handle initial queries, 24/7 coverage
-2. **Lead Qualification** - Automatically score incoming leads
-3. **Employee Onboarding** - Welcome new hires, assign tasks
-
-### For Personal Productivity
-
-- Morning check-in with weather, calendar, and task summary
-- Expense tracking and receipt organization
-- Research assistance for articles and blog posts
-
-## Common Pitfalls to Avoid
-
-### 1. Expecting Perfection from Day One
-
-Start with narrow scope: "Build an agent that can organize my Q3 reports" instead of "manage my entire business"
-
-### 2. Insufficient Context
-
-**Too vague**: "Help me organize my files"  
-**Better**: "Organize my Downloads folder PDFs into 'receipts', 'contracts', 'others'"
-
-## Your Next Step
-
-**Pick one small task** you do regularly. Consider: could an AI agent help with this?
-
-**Remember**: AI agents aren't sci-fi fantasies—they're practical tools available **today**.
-
----
-
-*Join us for Day 11 on AI agent security considerations!*
-
-`,
-  },
   'day-11-agent-security-considerations': {
     title: "Day 11: AI Agent Security Considerations - Safe Automation Practices",
     date: "May 07, 2026",
@@ -285,7 +168,6 @@ class RateLimiter {
 ### 4. Output Filtering
 
 **Sanitize agent outputs before they reach users**:
-
 - Block malicious code in generated responses
 - Filter exposed credentials and secrets
 - Validate URLs before opening
@@ -393,15 +275,160 @@ AI agents are powerful, but their power demands responsibility. By following the
 
 ---
 
-**Next up **(Day 14) In Day 14, we'll explore **AI agents for everyone** - practical examples of how regular people can use autonomous agents to simplify their daily lives.
+**Next up **(Day 12) In Day 12, we'll explore **how AI agents help everyone** - practical examples for businesses, parents, and individuals looking to simplify their lives.
 
-*Stay tuned for practical, accessible applications of AI agents!*
+*Join us for real-world use cases and getting-started guidance!*
+
+`,
+  },
+  'day-12-how-ai-agents-help-everyone': {
+    title: "Day 12: How AI Agents Help Everyone - Practical Examples for Real People",
+    date: "May 07, 2026",
+    readTime: "8 min read",
+    content: `# Day 12: How AI Agents Help Everyone - Practical Examples for Real People
+
+**Welcome to Day 12**! If you've been following our technical deep-dives, you might be asking: **But what about regular people? What do I actually get out of this**?
+
+Today's post is **for everyone**: business owners, parents, students, and anyone who wonders how AI agents can genuinely improve their daily life.
+
+## AI Agents Aren't Just for Tech Workers
+
+Many people assume AI agents are:
+- Too technical to understand
+- Only for software engineers
+- Something that requires coding skills
+- Complex to set up and maintain
+
+**These assumptions are outdated**. Let's show you what's actually possible right now.
+
+## Real People, Real Problems, Real Solutions
+
+### Example 1: Busy Parent - Sarah, 37
+
+**Her daily challenge**: Juggling work, three kids, household management.
+
+**What a personal AI assistant agent can do**:
+
+Morning routines:
+- 6:30 AM: Meeting at 9 AM, dance recital Thursday at 4 PM
+- 7:00 AM: Weather: 72F. Pack light jackets.
+- 7:30 AM: Grocery status: Out of milk, eggs. Order now?
+- 8:00 PM: Quick recap: Kids to practice. Homework approved.
+
+**The impact**: No more mental load from remembering everything.
+
+### Example 2: Small Business Owner - Carlos, 45
+
+**His daily challenge**: Running an agency, juggling communications, billing.
+
+**What an AI agent can automate**:
+
+Business automation:
+- Client onboarding: Welcome emails, timelines
+- Weekly updates: Status reports from project data
+- Invoice reminders: Client X invoice due in 3 days
+- Social media: Captions from project screenshots
+
+**The impact**: 3-4 hours saved daily.
+
+### Example 3: College Student - Jamie, 21
+
+**His daily challenge**: Balancing coursework, part-time job, research.
+
+**Study and organization agent**:
+
+Student support:
+- Exam prep: Study plan, chapter reviews
+- Assignment tracking: Due dates, time estimates
+- Time management: Schedule homework, gym, social
+
+**The impact**: Better focus, less cramming.
+
+## What These Agents Have in Common
+
+**1. Solve ONE Thing Well**
+Start narrow. Don't try to build an agent that helps with everything.
+
+**2. Respect Human Time**
+The best AI agents save time, they don't add complexity.
+
+**3. Be Transparent**
+You should know what the agent sees and what it does.
+
+**4. Have Clear Boundaries**
+Good AI agents know when to say "I don't know" or "you should handle this yourself."
+
+## Getting Started (No Coding Required)
+
+### Step 1: Identify Repetitive Tasks
+
+What's taking up your mental bandwidth right now?
+- Email management
+- Calendar organization
+- Research
+
+### Step 2: Choose Your Entry Point
+
+**For non-technical users**:
+
+Tool options:
+- **Zapier**: Connect apps with AI (freemium, 15 min setup)
+- **Notion AI**: Notes, documents (included, 5 min setup)
+- **Power Automate**: Business automation (30 min setup)
+
+**Quick start example**:
+1. Go to zapier.com
+2. Click "Create Zap"
+3. Set trigger: "New email with subject urgent"
+4. Add AI action: "Analyze and summarize"
+5. Turn it on - done!
+
+That's it. An AI agent is now handling a task for you.
+
+## Common Questions
+
+### "What if the agent gets it wrong?"
+
+It can, just like any assistant. **AI agents work alongside you, not replace you**.
+
+### "Is this too complicated to set up?"
+
+No. Modern platforms are designed for point-and-click setup.
+
+### "Do I need to be a developer to benefit?"
+
+Absolutely not. Most automation can be done with point-and-click tools.
+
+## The Best Time to Start
+
+**The best time to start using AI agents was yesterday. The second best time is today**.
+
+**Pick one small task** you do regularly. Ask:
+- Could an AI agent help with this?
+- What would success look like?
+- What's the first step toward automation?
+
+## The Real Benefits
+
+When you reduce repetitive mental load with AI agents, you get:
+
+- **Mental bandwidth** for creative work and relationships
+- **Reduced decision fatigue** - fewer small choices to make
+- **Better consistency** - tasks get done reliably every time
+
+**That's the promise of AI agents**: better quality of life.
+
+---
+
+**Stay tuned** for our next post on architecture deep-dives back to our technical series.
+
+What task would you automate first? Share your thoughts with us.
 
 `,
   },
 };
 
-const order: PostSlug[] = ['day-10-getting-started-ai-agents', 'day-11-agent-security-considerations'];
+const order: PostSlug[] = ['day-11-agent-security-considerations', 'day-12-how-ai-agents-help-everyone'];
 const allPosts: PostSlug[] = order;
 
 export default function PostsPage({ params }: { params: { slug: PostSlug } }) {

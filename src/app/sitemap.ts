@@ -11,6 +11,36 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 1 as const,
     },
     {
+      url: `${baseUrl}/posts/day-15-scaling-agent-deployments`,
+      lastModified: new Date(),
+      changeFrequency: 'weekly' as const,
+      priority: 0.7 as const,
+    },
+    {
+      url: `${baseUrl}/posts/day-14-agent-for-everyone`,
+      lastModified: new Date(),
+      changeFrequency: 'weekly' as const,
+      priority: 0.7 as const,
+    },
+    {
+      url: `${baseUrl}/posts/day-13-agent-architecture-deep-dive`,
+      lastModified: new Date(),
+      changeFrequency: 'weekly' as const,
+      priority: 0.8 as const,
+    },
+    {
+      url: `${baseUrl}/posts/day-12-how-ai-agents-help-everyone`,
+      lastModified: new Date(),
+      changeFrequency: 'weekly' as const,
+      priority: 0.7 as const,
+    },
+    {
+      url: `${baseUrl}/posts/day-11-agent-security-considerations`,
+      lastModified: new Date(),
+      changeFrequency: 'weekly' as const,
+      priority: 0.8 as const,
+    },
+    {
       url: `${baseUrl}/posts/day-10-getting-started-ai-agents`,
       lastModified: new Date(),
       changeFrequency: 'weekly' as const,
@@ -66,6 +96,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
     {
       url: `${baseUrl}/posts/day-1-start`,
+      lastModified: new Date(),
+      changeFrequency: 'weekly' as const,
+      priority: 0.6 as const,
+    },
+    {
+      url: `${baseUrl}/posts/day-10-start`,
       lastModified: new Date(),
       changeFrequency: 'weekly' as const,
       priority: 0.6 as const,
