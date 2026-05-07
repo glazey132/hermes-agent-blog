@@ -2,6 +2,12 @@ import Link from "next/link";
 
 const latestPosts = [
   {
+    href: "/posts/day-15-scaling-agent-deployments",
+    title: "Day 15: Scaling AI Agent Deployments",
+    excerpt: "Production best practices for multi-agent systems and cost management.",
+    meta: "Day 15 • May 08, 2026",
+  },
+  {
     href: "/posts/day-14-agent-for-everyone",
     title: "Day 14: AI Agents for Everyone",
     excerpt: "Practical applications for using AI agents in daily life.",

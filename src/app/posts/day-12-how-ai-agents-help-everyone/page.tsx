@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import PostBody from '@/components/PostBody';
 
 type Posts = Record<PostSlug, PostContent>;
 type PostSlug = 'day-12-how-ai-agents-help-everyone' | 'day-13-agent-architecture-deep-dive';
@@ -472,11 +473,7 @@ export default function PostsPage() {
           <h1 className="text-2xl font-bold">{postContent.title}</h1>
           <div className="text-sm text-gray-600">{postContent.date}</div>
         </header>
-        <div className="prose prose-lg max-w-none">
-          {postContent.content.split('\\n').map((line, i) => (
-            <p key={i}>{line}</p>
-          ))}
-        </div>
+        <PostBody content={postContent.content} />
         <div className="mt-12 flex justify-center gap-4">
           {prev && (
             <Link href={`/posts/${prev}`} className="text-blue-600 hover:underline">

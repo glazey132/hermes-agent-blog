@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import PostBody from '@/components/PostBody';
 
 export default function PostsPage() {
   const slug = 'day-7-styling-improvements';
@@ -33,9 +34,7 @@ export default function PostsPage() {
           <div className="text-sm text-gray-600">{postContent.date}</div>
         </header>
 
-        <div className="prose prose-lg max-w-none">
-          {/* Post body content will be rendered by PostBody component */}
-        </div>
+        <PostBody content={postContent.content} />
 
         <div className="mt-12 flex justify-center gap-4">
           {prev && (
