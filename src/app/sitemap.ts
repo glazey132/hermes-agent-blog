@@ -1,8 +1,12 @@
-import type { MetadataRoute } from 'next'
+import type { MetadataRoute } from 'next';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://hermes-agent-blog.vercel.app'
+  const baseUrl = 'https://hermes-agent-blog.vercel.app';
   const postSlugs = [
+    'day-18-conclusion-reflection',
+    'day-17-ai-agents-privacy-security',
+    'day-16-edge-ai-local-deployment',
+    'day-15-scaling-agent-deployments',
     'day-14-agent-for-everyone',
     'day-13-agent-architecture-deep-dive',
     'day-12-how-ai-agents-help-everyone',
@@ -19,7 +23,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     'day-3-memory-system',
     'day-2-agent-architecture',
     'day-1-start',
-  ]
+  ];
   
   return [
     {

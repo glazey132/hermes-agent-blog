@@ -449,6 +449,8 @@ Scaling AI agents requires balancing **cost, reliability, and performance**. Suc
 
 *This completes our technical deep-dive series. In **Day 16**, we'll explore **edge AI and local deployment patterns** - what happens when your agents run entirely on user devices with no cloud dependency.*
 
+*See you for the edge deployment post!**
+
 `,
 };
 
@@ -466,6 +468,9 @@ export default function SlugPage() {
         <div className="mt-12 flex justify-center gap-4">
           <Link href="/posts/day-14-agent-for-everyone" className="text-blue-600 hover:underline">
             ← Previous Post
+          </Link>
+          <Link href="/posts/day-16-edge-ai-local-deployment" className="text-blue-600 hover:underline">
+            Next Post →
           </Link>
         </div>
       </div>
