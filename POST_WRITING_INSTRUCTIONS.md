@@ -201,6 +201,7 @@ Go through this list:
 - [ ] Every `content: \`...\`` block ends with a **real** closing backtick (not a solo `\`,` line that keeps the literal open)
 - [ ] If the page defines a `PostSlug` union, the `posts` type matches the actual keys or uses `Partial<Record<PostSlug, PostContent>>`
 - [ ] `npm run build` was run after the change and completed with no errors — **do not treat the post as done until the app builds**
+- [ ] Changes are committed and pushed to **`main`** so the hosting provider can deploy (automation should include this step after the build passes)
 
 If any item fails, revise before delivering.
 
@@ -249,6 +250,12 @@ Commit message format:
 ```
 content: add Day N post — [short description of what the post covers]
 ```
+
+**Push to `main` so the site goes live**
+
+Production deploys from this repo when **`main`** is updated (for example Vercel with auto-deploy on push). A cron or other automated workflow using these instructions should not stop at a local commit: after `npm run build` succeeds, **commit and push to `origin main`** (with credentials the job already has).
+
+Until the push lands on `main`, readers still see the previous deployment. Treat “published” as **build green + merged/pushed to `main`**, not only “files edited in the workspace.”
 
 ---
 
