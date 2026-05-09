@@ -42,7 +42,7 @@ AI agents typically have access to:
 **Layer 1: What the agent CAN see**
 
 | Permission | Access Level |
-|--:--|
+|:--:--|
 | Calendar | Read access |
 | Email | Subject lines only |
 | Financial accounts | No access |
@@ -60,7 +60,7 @@ AI agents typically have access to:
 **Layer 3: Where data STAYS**
 
 | Data Type | Location |
-|--:--|
+|:--:--|
 | Sensitive docs | Device only |
 | Meeting notes | Cloud sync |
 | Calendar | Your provider |
@@ -83,7 +83,7 @@ Before giving your agent access, ask:
 Begin with the least access needed:
 
 | Permission | Start With | Upgrade When |
-|--:--|
+|:--:--|
 | Calendar | Read access | You need scheduling |
 | Email | Subject lines only | Need content understanding |
 | Files | Specific folders | Need broader access |
@@ -101,21 +101,21 @@ Monthly privacy check-in questions:
 
 ## Red Flags to Watch For
 
-### 🚩 Privacy Warning Signs
+### Privacy Warning Signs
 
-**The agent asks for:**
+**The agent asks for**:
 - Access to all your files (when it doesn't need it)
 - Permission to share your data for "improvement"
 - Ability to send messages on your behalf (without confirmation)
 - Access to your financial accounts
 
-**The agent does:**
+**The agent does**:
 - Processes data you didn't ask it to
 - Stores conversations indefinitely
 - Makes calls to third-party servers you don't recognize
 - Updates without telling you about policy changes
 
-**The vendor:**
+**The vendor**:
 - Changes privacy policies without notice
 - Can't explain where your data is stored
 - Uses your data for "model training" by default
@@ -249,12 +249,11 @@ Using AI agents doesn't mean giving up privacy. You can:
 
 Remember: A good privacy-focused agent helps you be productive **without** becoming a data collector. If an agent makes you uncomfortable about your data, there are alternatives that respect your privacy while still delivering value.
 
-## Next Up: Conclusion
+## Next Up: Day 19
 
-**Day 18** will wrap up our journey with **final reflections** on what we've learned and where AI agents are heading.
+**Day 19** will explore **building your agent toolkit** - the ecosystem components and tools that make AI agents production-ready.
 
-*Stay tuned for our conclusion!*
-
+*Stay tuned for technical deep-dive!*
 `,
   },
   'day-18-conclusion-reflection': {
@@ -269,17 +268,17 @@ Remember: A good privacy-focused agent helps you be productive **without** becom
 
 ### Technical Deep-Dives (Morning Posts)
 
-**Architecture Basics (Days 1-3)**
+**Architecture Basics **(Days 1-3)
 - **Day 1**: Set the foundation with agent fundamentals
 - **Day 2**: Explored core agent architecture components
 - **Day 3**: Dug into the memory system
 
-**Core Systems (Days 4-8)**
+**Core Systems **(Days 4-8)
 - **Day 4**: Integration frameworks and tooling
 - **Day 5**: Planning engine design
 - **Day 8**: Why agents matter in the real world
 
-**Advanced Topics (Days 9-16)**
+**Advanced Topics **(Days 9-16)
 - **Day 9**: Memory implementation details
 - **Day 10**: Getting started with AI agents
 - **Day 11**: Security considerations
@@ -361,29 +360,29 @@ Remember: A good privacy-focused agent helps you be productive **without** becom
 
 ### What's Still Evolving
 
-🔄 **Complex reasoning** - Improving but not perfect  
-🔄 **True autonomy** - Still needs human oversight  
-🔄 **Context understanding** - Getting better with scale  
-🔄 **Cross-app orchestration** - Fragmented ecosystems  
-🔄 **Reliable error handling** - Needs more maturation
+🔁 **Complex reasoning** - Improving but not perfect  
+🔁 **True autonomy** - Still needs human oversight  
+🔁 **Context understanding** - Getting better with scale  
+🔁 **Cross-app orchestration** - Fragmented ecosystems  
+🔁 **Reliable error handling** - Needs more maturation
 
 ### The Road Ahead
 
-**Near future (6-12 months)**:
+**Near future **(6-12 months)
 - Better cost optimization and token efficiency
 - Improved offline/edge capabilities
 - More user-friendly no-code tools
 - Enhanced privacy features
 - Better multi-agent collaboration
 
-**Medium vision (1-2 years)**:
+**Medium vision **(1-2 years)
 - More capable reasoning engines
 - Seamless cross-platform integration
 - Personalized agent customization
 - Advanced security and compliance
 - Broader industry adoption
 
-**Long-term possibilities (3+ years)**:
+**Long-term possibilities **(3+ years)
 - Agents that learn continuously without degradation
 - Natural language programming interfaces
 - Fully autonomous business processes
@@ -478,11 +477,11 @@ Remember: A good privacy-focused agent helps you be productive **without** becom
 
 ---
 
-**To All Readers**:
+**Day 19** explores building a complete agent toolkit and ecosystem.
 
-May your automation be reliable, your privacy respected, and your agents helpful without being intrusive. The journey of building and using AI continues—**thank you for being part of it**.
+**Day 20** takes a look at the future of hybrid AI agents, our final post.
 
-`,
+*The journey continues!\n`,
   },
 };
 
@@ -496,7 +495,7 @@ const order: PostSlug[] = [
 const allPosts: PostSlug[] = order;
 
 export default function PostsPage() {
-    const slug: PostSlug = 'day-17-ai-agents-privacy-security';
+    const slug: PostSlug = 'day-20-future-of-hybrid-agents';
     const postContent = posts[slug];
   const index = order.indexOf(slug);
   const prev = index > 0 ? order[index - 1] : null;

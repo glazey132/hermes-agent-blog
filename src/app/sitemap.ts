@@ -3,6 +3,8 @@ import type { MetadataRoute } from 'next';
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = 'https://hermes-agent-blog.vercel.app';
   const postSlugs = [
+    'day-20-future-of-hybrid-agents',
+    'day-19-agent-ecosystem-tools',
     'day-18-conclusion-reflection',
     'day-17-ai-agents-privacy-security',
     'day-16-edge-ai-local-deployment',
