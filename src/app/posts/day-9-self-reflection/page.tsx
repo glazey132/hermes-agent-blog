@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import Link from "next/link";
 import PostBody from "@/components/PostBody";
+import { getAdjacentPostSlugs } from "@/lib/posts";
 
 interface Day9Props {
   params: { slug: string };
@@ -34,19 +35,32 @@ interface ReflectionEntry {
 }
 
 export default function BlogPost() {
+  const slug = "day-9-self-reflection";
+  const { prev, next } = getAdjacentPostSlugs(slug);
+
   return (
     <div className="min-h-screen bg-gray-50">
       <header className="bg-primary-700 text-white py-8">
         <div className="container mx-auto px-4">
-          <Link
-            href="/posts/day-8-why-ai-agents-matter"
-            className="text-primary-100 hover:text-white transition-colors mb-4 inline-block"
-          >
-            ← Previous Post: Day 8
-          </Link>
+          {prev ? (
+            <Link
+              href={`/posts/${prev}`}
+              className="text-primary-100 hover:text-white transition-colors mb-4 inline-block"
+            >
+              ← Previous Post
+            </Link>
+          ) : null}
+          {next ? (
+            <Link
+              href={`/posts/${next}`}
+              className="text-primary-100 hover:text-white transition-colors mb-4 ml-4 inline-block"
+            >
+              Next Post →
+            </Link>
+          ) : null}
           <Link
             href="/"
-            className="text-primary-100 hover:text-white transition-colors inline-block"
+            className="text-primary-100 hover:text-white transition-colors mb-4 ml-4 inline-block"
           >
             Back to Home
           </Link>
@@ -251,14 +265,13 @@ interface Issue {
                 harness these capabilities for real productivity gains.
               </p>
               <p>
-                That's the focus of our Day 10 post: <strong>practical strategies for building a productive 
-                AI-powered workflow</strong>.
+                That's the focus of our next post: <strong>getting started with AI agents in practice</strong>.
               </p>
               <Link
-                href="/posts/day-10-productivity-harness"
+                href="/posts/day-10-getting-started-ai-agents"
                 className="inline-block bg-primary-600 text-white px-6 py-3 rounded-lg hover:bg-primary-700 transition-colors mt-4"
               >
-                Next: Productivity Harness →
+                Next: Getting Started with AI Agents →
               </Link>
             </section>
 

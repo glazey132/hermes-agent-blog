@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import Link from "next/link";
 import PostBody from "@/components/PostBody";
+import { getAdjacentPostSlugs } from "@/lib/posts";
 
 interface BlogPostProps {
   params: { slug: string };
@@ -28,26 +29,6 @@ export function generateMetadata({ params }: BlogPostProps): Metadata {
     description: postContent.excerpt,
   };
 }
-
-const postOrder: string[] = [
-  "day-1-start",
-  "day-2-agent-architecture",
-  "day-3-memory-system",
-  "day-4-integration-framework",
-  "day-5-planning-engine",
-  "day-6-how-ai-agents-work",
-  "day-7-ai-agentic-examples",
-  "day-8-why-ai-agents-matter",
-  "day-9-memory-implementation",
-  "day-10-getting-started-ai-agents",
-  "day-11-code-generation-autonomy",
-  "day-12-testing-reliability-ai",
-  "day-11-agent-security-considerations",
-  "day-12-how-ai-agents-help-everyone",
-  "day-13-agent-architecture-deep-dive",
-  "day-14-agent-for-everyone",
-  "day-15-scaling-agent-deployments",
-];
 
 const posts: { [key: string]: { title: string; excerpt: string; date: string; content: string } } = {
   "day-1-start": {
@@ -125,8 +106,7 @@ export default function BlogPost({ params }: BlogPostProps) {
   const slug = params.slug;
   const postContent = getPostContent(slug);
 
-  const prev = getPreviousPostLink(slug);
-  const next = getNextPostLink(slug);
+  const { prev, next } = getAdjacentPostSlugs(slug);
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -177,14 +157,4 @@ export default function BlogPost({ params }: BlogPostProps) {
       </footer>
     </div>
   );
-}
-
-function getPreviousPostLink(slug: string): string | null {
-  const index = postOrder.indexOf(slug);
-  return index > 0 ? postOrder[index - 1] : null;
-}
-
-function getNextPostLink(slug: string): string | null {
-  const index = postOrder.indexOf(slug);
-  return index >= 0 && index < postOrder.length - 1 ? postOrder[index + 1] : null;
 }

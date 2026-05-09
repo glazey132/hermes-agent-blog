@@ -2,8 +2,7 @@
 
 import Link from 'next/link';
 import PostBody from '@/components/PostBody';
-
-type PostSlug = 'day-15-scaling-agent-deployments';
+import { getAdjacentPostSlugs } from '@/lib/posts';
 
 interface PostContent {
   title: string;
@@ -455,6 +454,9 @@ Scaling AI agents requires balancing **cost, reliability, and performance**. Suc
 };
 
 export default function SlugPage() {
+  const slug = 'day-15-scaling-agent-deployments';
+  const { prev, next } = getAdjacentPostSlugs(slug);
+
   return (
     <main className="flex justify-center w-full max-w-3xl p-4 pt-8">
       <div className="w-full bg-white rounded shadow px-6 pb-8">
@@ -466,12 +468,16 @@ export default function SlugPage() {
         <PostBody content={post.content} />
 
         <div className="mt-12 flex justify-center gap-4">
-          <Link href="/posts/day-14-agent-for-everyone" className="text-blue-600 hover:underline">
-            ← Previous Post
-          </Link>
-          <Link href="/posts/day-16-edge-ai-local-deployment" className="text-blue-600 hover:underline">
-            Next Post →
-          </Link>
+          {prev ? (
+            <Link href={`/posts/${prev}`} className="text-blue-600 hover:underline">
+              ← Previous Post
+            </Link>
+          ) : null}
+          {next ? (
+            <Link href={`/posts/${next}`} className="text-blue-600 hover:underline">
+              Next Post →
+            </Link>
+          ) : null}
         </div>
       </div>
     </main>

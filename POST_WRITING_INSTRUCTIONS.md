@@ -22,6 +22,24 @@ This rule exists because the value of this blog is its specificity and honesty. 
 
 ---
 
+## Publishing cadence rule
+
+**Do not create a new "Day N" post just because the agent loop is running. A new post may only be published once per calendar day, after there are session notes for that date and git history showing real work.**
+
+If this agent is running in a `/goal` loop, the loop should maintain notes and TODOs, not publish new posts. Publishing belongs in a daily cron-style workflow that runs after the day's work is done.
+
+Before creating a post:
+- Check today's date.
+- Check whether today's post already exists.
+- Check whether `session-notes/YYYY-MM-DD.md` exists and has enough substance.
+- Check the git log for changes since midnight.
+
+If today's post already exists, update that post only if the session notes show a meaningful correction or addition. Do not increment the day number. If no day has passed since the last post, stop and report that no new post should be created.
+
+The day number is a publication sequence, not an agent-run counter. Multiple agent runs on the same day must never produce Day N, Day N+1, Day N+2.
+
+---
+
 ## Required steps — do not skip any
 
 ### Step 1: Read today's session notes
@@ -55,6 +73,8 @@ Before drafting, write out — for your own working memory — the answers to th
 5. What is one thing a reader could learn from this session that they couldn't get from a generic AI blog post?
 
 If you cannot answer at least three of these five from the source material, the session notes are too sparse to write a good post. In that case, write a shorter, more honest post about the work-in-progress nature of the day rather than inflating thin material.
+
+Do not fill gaps with general AI knowledge, plausible architecture, invented benchmark numbers, imagined user workflows, or generic examples. If the source material is thin, the post must be thin.
 
 ### Step 4: Draft the post
 
@@ -120,17 +140,34 @@ const example = true;
 ```
 ````
 
+**Outer `content` template literal must actually close**
+
+The production build error `Expected ',', got '#'` (or `got '...'`) on the *next* post’s `content:` line almost always means the **previous** post’s `content` string never ended: the parser is still inside the first template literal.
+
+Common mistake: ending a paragraph, then a **new line** with only `` \`, `` (backslash + backtick + comma). That inserts a literal backtick **inside** the markdown string and **does not** terminate the template literal. You need an **unescaped** closing backtick to end `content: \`...\``.
+
+Do this instead (match existing working posts, e.g. `day-21-agent-observability/page.tsx`):
+
+- Put the terminator on the **same line** as the end of the markdown, e.g. `` ...last line of markdown.\n`, ``  
+- Or end the markdown line, then on the next line put **only** the closing backtick that ends the template literal, then a comma — **no** backslash before that backtick.
+
+After editing any large `content: \`...\`` block, skim the **boundary** before the next key in the `posts` object (`},` and the next slug). If in doubt, run `npm run build` immediately.
+
+**Standalone pages: one post per file when possible**
+
+Some files incorrectly hold a `posts` map for **multiple** days (copy-paste from another route). That duplicates huge template literals and makes closure mistakes more likely. Prefer **one slug’s** `PostContent` per standalone `page.tsx` unless the repo already uses a deliberate multi-entry pattern for that route. Navigation order comes from `src/lib/posts.ts` + `getAdjacentPostSlugs`, not from duplicating other days’ bodies in the same file.
+
 Also escape template interpolation sequences in post content:
 ```ts
 // Correct inside content: `...`
 \${value}
 ```
 
-If this rule is missed, Vercel usually fails with an error like `Expected ',', got 'Processing'` or `Expected ',', got 'typescript'` on the line after a Markdown code fence.
+If this rule is missed, Vercel usually fails with an error like `Expected ',', got 'Processing'` or `Expected ',', got 'typescript'` on the line after a Markdown code fence, or `Expected ',', got '#'` on the next post’s title when the prior `content` literal was left unclosed.
 
 **Post page typing rule:**
 
-If a standalone post page uses an `order` array or `PostSlug` union that includes adjacent posts for previous/next navigation, do not type the local `posts` object as `Record<PostSlug, PostContent>` unless it contains every slug in that union.
+If a standalone post page uses a `PostSlug` union that includes more than one slug (for example neighboring days in a shared file), do not type the local `posts` object as `Record<PostSlug, PostContent>` unless it contains every slug in that union.
 
 Use one of these safe patterns:
 ```ts
@@ -150,13 +187,20 @@ If this rule is missed, the build can pass parsing but fail type checking with `
 ### Step 5: Self-check before delivering
 
 Go through this list:
+- [ ] The post is registered in `src/lib/posts.ts` with `published: true` and correct chronological placement
+- [ ] A full calendar day has passed since the previous post, or this is an update to today's existing post
+- [ ] The day number matches the next real publication day, not the number of agent runs
+- [ ] Today's session notes exist and were read before drafting
 - [ ] Every technical claim is traceable to the session notes or git log
 - [ ] No architectural details were invented to make the post sound more complete
+- [ ] No generic examples, metrics, diagrams, tools, or code snippets were added unless they came from the session notes or git log
 - [ ] The title reflects what actually happened, not what sounds impressive
 - [ ] The excerpt is specific — a reader can tell from it whether the post is relevant to them
 - [ ] "What's next" describes a real next step, not a vague direction
 - [ ] The post body contains no raw Markdown backticks inside a TSX template literal; code fences are escaped as `\`\`\`` and inline code as `\`code\``
+- [ ] Every `content: \`...\`` block ends with a **real** closing backtick (not a solo `\`,` line that keeps the literal open)
 - [ ] If the page defines a `PostSlug` union, the `posts` type matches the actual keys or uses `Partial<Record<PostSlug, PostContent>>`
+- [ ] `npm run build` was run after the change and completed with no errors — **do not treat the post as done until the app builds**
 
 If any item fails, revise before delivering.
 
@@ -164,24 +208,42 @@ If any item fails, revise before delivering.
 
 ## What to do with the output
 
-Add the new post to the `posts` object in:
+Register the **published** post in the central metadata list:
+
 ```
-src/app/posts/[slug]/page.tsx
+src/lib/posts.ts
 ```
 
-And add a card to the home page in:
+Append a `PostMeta` entry in chronological order alongside the other posts, with `published: true`, matching the existing fields (`slug`, `day`, `title`, `excerpt`, `date`). The homepage pagination, post prev/next navigation, and sitemap are generated from this file. Do **not** add manual post lists or `order` arrays inside `page.tsx` files.
+
+Implement the actual body wherever it belongs for this project:
+
 ```
-src/app/page.tsx
+src/app/posts/[slug]/page.tsx    (legacy dynamic posts)
 ```
 
-Follow the existing patterns exactly. The post slug should follow the `day-N-short-description` convention.
+and/or a standalone route folder:
 
-After adding the post, run:
+```
+src/app/posts/day-N-short-slug/page.tsx
+```
+
+Follow the existing patterns exactly. The post slug should follow the `day-N-short-description` convention only when this is a real new publication day.
+
+If a standalone route file exists without grounded post content, do not set `published: true` in `src/lib/posts.ts` and do not add it to the registry until it is real. Fix the source of truth first.
+
+After adding or editing any post route or `content` string, run:
+
 ```bash
 npm run build
 ```
 
-Fix any errors before committing. If the build fails near a Markdown code fence, escape the backticks in the post content or regenerate the content string with `JSON.stringify(markdown)`.
+**Treat a failing build as a blocker:** do not commit, do not register `published: true`, and do not declare the task finished until this passes locally.
+
+If the build fails:
+
+- Near a Markdown code fence → escape backticks in the post body or use `JSON.stringify(markdown)` for `content`.
+- With `Expected ',', got '#'` (or similar) on a **later** post’s `content` line → the **earlier** post’s `content` template literal is probably still open; fix the closing backtick before that line (see **Outer `content` template literal must actually close** above).
 
 Commit message format:
 ```

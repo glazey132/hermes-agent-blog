@@ -2,39 +2,32 @@
 
 import Link from 'next/link';
 import PostBody from '@/components/PostBody';
+import { getAdjacentPostSlugs } from '@/lib/posts';
 
 export default function PostsPage() {
   const slug = 'day-7-styling-improvements';
   const postContent = posts[slug as keyof typeof posts];
 
-  const order = [
-    'day-7-styling-improvements',
-  ];
-  const index = order.indexOf(slug);
-  const prev = index > 0 ? order[index - 1] : null;
-  const next = index < order.length - 1 ? order[index + 1] : null;
+  const { prev, next } = getAdjacentPostSlugs(slug);
 
-  if (!postContent) {
-    return (
-      <div>
-        <h2 className="font-bold mb-4">404 — Page Not Found</h2>
-        <p className="mb-4">
-          The post you're looking for doesn't exist.
-        </p>
-        <Link href="/">← Back to home</Link>
-      </div>
-    );
-  }
+  const resolvedPostContent = postContent ?? {
+    title: 'Post not published',
+    date: 'Unpublished',
+    readTime: '0 min read',
+    content: `# Post not published
+
+This route exists, but no grounded post content is available for this slug. The blog generator should only publish posts backed by session notes and the git log.`,
+  };
 
   return (
     <main className="flex justify-center w-full max-w-3xl p-4 pt-8">
       <div className="w-full bg-white rounded shadow px-6 pb-8">
         <header className="mb-4 flex justify-between items-center">
-          <h1 className="text-2xl font-bold">{postContent.title}</h1>
-          <div className="text-sm text-gray-600">{postContent.date}</div>
+          <h1 className="text-2xl font-bold">{resolvedPostContent.title}</h1>
+          <div className="text-sm text-gray-600">{resolvedPostContent.date}</div>
         </header>
 
-        <PostBody content={postContent.content} />
+        <PostBody content={resolvedPostContent.content} />
 
         <div className="mt-12 flex justify-center gap-4">
           {prev && (

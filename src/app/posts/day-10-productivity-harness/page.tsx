@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import Link from "next/link";
 import PostBody from "@/components/PostBody";
+import { getAdjacentPostSlugs } from "@/lib/posts";
 
 interface Day10Props {
   params: { slug: string };
@@ -20,19 +21,32 @@ export function generateMetadata({ params }: Day10Props): Metadata {
 }
 
 export default function BlogPost() {
+  const slug = "day-10-productivity-harness";
+  const { prev, next } = getAdjacentPostSlugs(slug);
+
   return (
     <div className="min-h-screen bg-gray-50">
       <header className="bg-primary-700 text-white py-8">
         <div className="container mx-auto px-4">
-          <Link
-            href="/posts/day-9-self-reflection"
-            className="text-primary-100 hover:text-white transition-colors mb-4 inline-block"
-          >
-            ← Previous Post: Day 9
-          </Link>
+          {prev ? (
+            <Link
+              href={`/posts/${prev}`}
+              className="text-primary-100 hover:text-white transition-colors mb-4 inline-block"
+            >
+              ← Previous Post
+            </Link>
+          ) : null}
+          {next ? (
+            <Link
+              href={`/posts/${next}`}
+              className="text-primary-100 hover:text-white transition-colors mb-4 ml-4 inline-block"
+            >
+              Next Post →
+            </Link>
+          ) : null}
           <Link
             href="/"
-            className="text-primary-100 hover:text-white transition-colors inline-block"
+            className="text-primary-100 hover:text-white transition-colors mb-4 ml-4 inline-block"
           >
             Back to Home
           </Link>
