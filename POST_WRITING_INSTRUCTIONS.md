@@ -97,6 +97,56 @@ If you cannot answer at least three of these five from the source material, the 
 }
 ```
 
+**Critical TSX string safety rule:**
+
+Post pages store Markdown inside TypeScript/TSX string literals. Raw Markdown backticks inside those strings will break the production build because TypeScript treats them as the end of the string.
+
+Preferred approach: generate the `content` value with `JSON.stringify(markdown)` or otherwise use a normal quoted string with escaped newlines. Do not hand-paste a large Markdown post into `content: \`...\`` unless you escape every Markdown backtick.
+
+If you do use a template literal for `content`, every Markdown backtick in the post body must be escaped:
+```ts
+// Correct inside content: `...`
+\`\`\`typescript
+const example = true;
+\`\`\`
+
+Use \`inline code\` too.
+```
+
+Never leave raw code fences like this inside a TSX `content: \`...\`` string:
+````md
+```typescript
+const example = true;
+```
+````
+
+Also escape template interpolation sequences in post content:
+```ts
+// Correct inside content: `...`
+\${value}
+```
+
+If this rule is missed, Vercel usually fails with an error like `Expected ',', got 'Processing'` or `Expected ',', got 'typescript'` on the line after a Markdown code fence.
+
+**Post page typing rule:**
+
+If a standalone post page uses an `order` array or `PostSlug` union that includes adjacent posts for previous/next navigation, do not type the local `posts` object as `Record<PostSlug, PostContent>` unless it contains every slug in that union.
+
+Use one of these safe patterns:
+```ts
+// Best: local page only knows the posts it actually defines.
+type PostSlug = 'day-N-current-post';
+type Posts = Record<PostSlug, PostContent>;
+```
+
+```ts
+// Acceptable when PostSlug includes navigation neighbors.
+type PostSlug = 'day-N-current-post' | 'day-N-next-post';
+type Posts = Partial<Record<PostSlug, PostContent>>;
+```
+
+If this rule is missed, the build can pass parsing but fail type checking with `Type ... is missing the following properties from type 'Posts'`.
+
 ### Step 5: Self-check before delivering
 
 Go through this list:
@@ -105,6 +155,8 @@ Go through this list:
 - [ ] The title reflects what actually happened, not what sounds impressive
 - [ ] The excerpt is specific — a reader can tell from it whether the post is relevant to them
 - [ ] "What's next" describes a real next step, not a vague direction
+- [ ] The post body contains no raw Markdown backticks inside a TSX template literal; code fences are escaped as `\`\`\`` and inline code as `\`code\``
+- [ ] If the page defines a `PostSlug` union, the `posts` type matches the actual keys or uses `Partial<Record<PostSlug, PostContent>>`
 
 If any item fails, revise before delivering.
 
@@ -129,7 +181,9 @@ After adding the post, run:
 npm run build
 ```
 
-Fix any errors before committing. Commit message format:
+Fix any errors before committing. If the build fails near a Markdown code fence, escape the backticks in the post content or regenerate the content string with `JSON.stringify(markdown)`.
+
+Commit message format:
 ```
 content: add Day N post — [short description of what the post covers]
 ```

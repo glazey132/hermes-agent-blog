@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import PostBody from '@/components/PostBody';
 
-type Posts = Record<PostSlug, PostContent>;
+type Posts = Partial<Record<PostSlug, PostContent>>;
 type PostSlug = 'day-12-how-ai-agents-help-everyone' | 'day-13-agent-architecture-deep-dive';
 
 interface PostContent {

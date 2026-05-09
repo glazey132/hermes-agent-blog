@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import PostBody from '@/components/PostBody';
 
-type Posts = Record<PostSlug, PostContent>;
+type Posts = Partial<Record<PostSlug, PostContent>>;
 type PostSlug = 'day-17-ai-agents-privacy-security' | 'day-18-conclusion-reflection' | 'day-19-agent-ecosystem-tools' | 'day-20-future-of-hybrid-agents';
 
 interface PostContent {
@@ -142,7 +142,7 @@ Local agents give you complete control:
 ### 2. Understand Data Retention
 
 Typical data lifecycle:
-```
+\`\`\`
 Processing (real-time)
 └── Temp memory: 2-24 hours
 
@@ -155,7 +155,7 @@ Deletion
 ├── User-requested: 48 hours
 ├── Automatic: 90 days
 └── Archive: 1 year
-```
+\`\`\`
 
 **Action items**:
 - Check each agent's retention policy
@@ -179,7 +179,7 @@ Only share what's necessary:
 
 Know what your agent does:
 
-```
+\`\`\`
 Audit log should show:
 ├── When did it access data?
 │   └── [2026-05-08 10:30] Accessed calendar
@@ -189,7 +189,7 @@ Audit log should show:
 │   └── [2026-05-08 10:32] Declined meeting as low priority
 └── What actions did it take?
     └── [2026-05-08 10:33] Sent decline email
-```
+\`\`\`
 
 Set up notifications for:
 - First-time data access

@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import PostBody from '@/components/PostBody';
 
-type Posts = Record<PostSlug, PostContent>;
+type Posts = Partial<Record<PostSlug, PostContent>>;
 type PostSlug = 'day-16-edge-ai-local-deployment' | 'day-17-ai-agents-privacy-security';
 
 interface PostContent {
@@ -46,10 +46,10 @@ const posts: Posts = {
 - **Predictable performance** - No network congestion
 
 **Latency comparison**:
-```
+\`\`\`
 Cloud agent: 200-2000ms (network dependent)
 Local agent: 50-200ms (device dependent)
-```
+\`\`\`
 
 ## Edge AI Architecture
 
@@ -62,7 +62,7 @@ Different models balance:
 - **Speed**: Faster = smaller, less capable
 - **Memory**: Lower = less accurate, broader compatibility
 
-```typescript
+\`\`\`typescript
 interface EdgeModelSpec {
   // Model size in MB
   sizeMB: number;
@@ -103,13 +103,13 @@ const models: EdgeModelSpec[] = [
     accuracyScore: 0.95
   }
 ];
-```
+\`\`\`
 
 ### Deployment Strategies
 
 **Strategy 1: Hybrid Processing**
 
-```typescript
+\`\`\`typescript
 class HybridEdgeProcessor {
   private readonly cacheSize = 100;
   private readonly localCache: Record<string, string> = {};
@@ -136,7 +136,7 @@ class HybridEdgeProcessor {
     return await this.executeInCloud(request);
   }
 }
-```
+\`\`\`
 
 **Strategy 2: Model Quantization**
 
@@ -145,7 +145,7 @@ Quantization reduces model precision to improve:
 - Memory footprint (lower precision = smaller size)
 - Power consumption
 
-```typescript
+\`\`\`typescript
 class QuantizedModelProcessor {
   private model: QuantizedModel;
   
@@ -171,11 +171,11 @@ class QuantizedModelProcessor {
     });
   }
 }
-```
+\`\`\`
 
 **Strategy 3: Speculative Execution**
 
-```typescript
+\`\`\`typescript
 class SpeculativeEdgeProcessor {
   private readonly smallModel: SmallModel;
   private readonly largeModel: LargeModel;
@@ -196,7 +196,7 @@ class SpeculativeEdgeProcessor {
     return await this.largeModel.generate(original);
   }
 }
-```
+\`\`\`
 
 ## Offline-First Patterns
 
@@ -204,7 +204,7 @@ class SpeculativeEdgeProcessor {
 
 **Conflict Resolution Strategy**:
 
-```typescript
+\`\`\`typescript
 class OfflineSyncManager {
   private pendingChanges: PendingOperation[] = [];
   private lastSyncTimestamp: string = '';
@@ -255,13 +255,13 @@ class OfflineSyncManager {
     return conflicts;
   }
 }
-```
+\`\`\`
 
 ### Local Storage Strategies
 
 **IndexedDB for Browser-Based Agents**:
 
-```typescript
+\`\`\`typescript
 class IndexedDBStorage {
   private db: IDBDatabase | null = null;
   
@@ -323,7 +323,7 @@ class IndexedDBStorage {
     return results;
   }
 }
-```
+\`\`\`
 
 ## Hardware Considerations
 
@@ -331,7 +331,7 @@ class IndexedDBStorage {
 
 **Web Workers for Browser Agents**:
 
-```typescript
+\`\`\`typescript
 // Main thread
 const agentWorker = new Worker('agent-worker.js', { type: 'module' });
 
@@ -356,11 +356,11 @@ agentWorker.onmessage = (event) => {
       break;
   }
 };
-```
+\`\`\`
 
 **WASM-Based Inference**:
 
-```typescript
+\`\`\`typescript
 // Load WASM-optimized model
 export class WASMAgentEngine {
   private module: any;
@@ -389,13 +389,13 @@ export class WASMAgentEngine {
     return result.output;
   }
 }
-```
+\`\`\`
 
 ### Performance Optimization
 
 **Memory Management**:
 
-```typescript
+\`\`\`typescript
 class EdgeMemoryManager {
   private readonly maxContextTokens = 4096;
   private contextWindow: ContextToken[] = [];
@@ -424,7 +424,7 @@ class EdgeMemoryManager {
     return this.tokenizer.encode(text);
   }
 }
-```
+\`\`\`
 
 ## Security for Edge Deployment
 
@@ -432,7 +432,7 @@ class EdgeMemoryManager {
 
 **Model Integrity Verification**:
 
-```typescript
+\`\`\`typescript
 class ModelSecurityVerifier {
   private readonly modelHash: string;
   private readonly publicSigningKey: Uint8Array;
@@ -466,11 +466,11 @@ class ModelSecurityVerifier {
     return valid;
   }
 }
-```
+\`\`\`
 
 **Inference Security**:
 
-```typescript
+\`\`\`typescript
 class SecureInference {
   private readonly executionEnvironment: 'trusted' | 'untrusted';
   
@@ -500,24 +500,24 @@ class SecureInference {
     return safeRequest;
   }
 }
-```
+\`\`\`
 
 ## Development Tools
 
 ### Local Development Setup
 
-```typescript
+\`\`\`typescript
 // Example .env.local configuration
 NEXT_PUBLIC_AGENT_HOST='http://localhost:3000'
 NEXT_PUBLIC_AGENT_PORT=8080
 NEXT_PUBLIC_EDGEMODEL='qwen2.5-0.5b'
 NEXT_PUBLIC_MAX_CONTEXT=4096
 NEXT_PUBLIC_ENABLE_SECURITY_LOGGING=true
-```
+\`\`\`
 
 ### Testing Local Agents
 
-```typescript
+\`\`\`typescript
 describe('EdgeAgentLocal', () => {
   let agent: EdgeAgentLocal;
   let testStorage: LocalStorageMock;
@@ -553,7 +553,7 @@ describe('EdgeAgentLocal', () => {
     expect(syncResult.conflicts).toBe(0);
   });
 });
-```
+\`\`\`
 
 ## Best Practices Summary
 
@@ -628,7 +628,7 @@ AI agents typically have access to:
 
 **Layer 1: What the agent CAN see**
 
-```
+\`\`\`
 ┌─────────────────────────────────┐
 │  User decides this               │
 ├─────────────────────────────────┤
@@ -638,11 +638,11 @@ AI agents typically have access to:
 │  Photos: Read-only, not saved  │
 │  Location history: MINIMAL      │
 └─────────────────────────────────┘
-```
+\`\`\`
 
 **Layer 2: What the agent DOES with it**
 
-```
+\`\`\`
 ┌─────────────────────────────────┐
 │  Agent operations:               │
 ├─────────────────────────────────┤
@@ -652,11 +652,11 @@ AI agents typically have access to:
 │  - Share data: NO              │
 │  - Train on your data: NO      │
 └─────────────────────────────────┘
-```
+\`\`\`
 
 **Layer 3: Where data STAYS**
 
-```
+\`\`\`
 ┌─────────────────────────────────┐
 │  Data locations:                 │
 ├─────────────────────────────────┤
@@ -666,7 +666,7 @@ AI agents typically have access to:
 │  - Financial: Local processing  │
 │  - Conversation logs: Deleted   │
 └─────────────────────────────────┘
-```
+\`\`\`
 
 ## Setting Up Your Privacy Controls
 
@@ -696,14 +696,14 @@ AI agents typically have access to:
 
 **Monthly privacy check-in**:
 
-```
+\`\`\`
 Questions to ask:
 1. Has the agent's behavior changed?
 2. Do I still need all the access it has?
 3. Did it process any unexpected data?
 4. Are there new privacy settings to configure?
 5. Has the developer changed their privacy policy?
-```
+\`\`\`
 
 ## Red Flags to Watch For
 
@@ -733,7 +733,7 @@ Questions to ask:
 
 **Local = Your control**
 
-```
+\`\`\`
 Cloud-based agents:
 ├── Your data leaves device
 ├── Vendor processes it
@@ -745,13 +745,13 @@ Local agents:
 ├── You process it
 ├── Storage on your device
 └── Privacy depends on you (but it's yours)
-```
+\`\`\`
 
 ### 2. Understand Data Retention
 
 **Know what gets stored and for how long**:
 
-```
+\`\`\`
 Typical data lifecycle:
 │
 ├── Processing (real-time)
@@ -766,7 +766,7 @@ Typical data lifecycle:
     ├── User-requested: 48 hours
     ├── Automatic: 90 days
     └── Archive: 1 year
-```
+\`\`\`
 
 **Action items**:
 - Check each agent's retention policy
@@ -777,7 +777,7 @@ Typical data lifecycle:
 
 **Only share what's necessary**:
 
-```
+\`\`\`
 Instead of: "Read all my emails and organize everything"
 Try: "Read emails from my boss about next week's meetings and create an agenda"
 
@@ -786,13 +786,13 @@ Try: "Read from my Documents folder for the project report"
 
 Instead of: "Remember everything about me"
 Try: "Remember my meeting preferences and weekly schedule"
-```
+\`\`\`
 
 ### 4. Enable Audit Logging
 
 **Know what your agent does**:
 
-```
+\`\`\`
 Audit log should show:
 ├── When did it access data? 
 │   └── [2026-05-08 10:30] Accessed calendar
@@ -802,7 +802,7 @@ Audit log should show:
 │   └── [2026-05-08 10:32] Declined meeting as low priority
 └── What actions did it take?
     └── [2026-05-08 10:33] Sent decline email
-```
+\`\`\`
 
 **Set up notifications for**:
 - First-time data access
@@ -830,7 +830,7 @@ Audit log should show:
 
 **Scenario**: Agent that helps manage your calendar
 
-```
+\`\`\`
 SAFE setup:
 ├── Access: Calendar read/write ✓
 ├── Emails: Read meeting requests only ✓
@@ -842,13 +842,13 @@ RISKY setup:
 ├── Emails: Read all emails, keep forever ✗
 ├── Storage: Cloud sync, never deleted ✗
 └── Sharing: For "improvement purposes" ✗
-```
+\`\`\`
 
 ### Financial Assistant
 
 **Scenario**: Agent for budget tracking
 
-```
+\`\`\`
 SAFE setup:
 ├── Bank data: Read-only connection ✓
 ├── Storage: Local, encrypted ✓
@@ -860,13 +860,13 @@ RISKY setup:
 ├── Storage: Cloud, unencrypted ✗
 ├── Processing: Sent to third-party servers ✗
 └── Sharing: With financial partners ✗
-```
+\`\`\`
 
 ### Health Agent
 
 **Scenario**: Fitness and health tracking
 
-```
+\`\`\`
 SAFE setup:
 ├── Health data: Device-only sync ✓
 ├── Storage: End-to-end encrypted ✓
@@ -878,7 +878,7 @@ RISKY setup:
 ├── Storage: Vendor's servers ✗
 ├── Processing: Used for model training ✗
 └── Sharing: Third-party health companies ✗
-```
+\`\`\`
 
 ## Developer Best Practices
 
@@ -886,18 +886,18 @@ If you're building an AI agent, these principles make your product more trustwor
 
 ### 1. Default to Privacy
 
-```
+\`\`\`
 Privacy-first defaults:
 ├── Local processing when possible
 ├── Minimal data collection always
 ├── No training on user data by default
 ├── Easy deletion for all data
 └── Clear, plain-language policies
-```
+\`\`\`
 
 ### 2. Transparency
 
-```
+\`\`\`
 What users want to know:
 ├── What data the agent needs
 ├── Why it needs that data
@@ -905,18 +905,18 @@ What users want to know:
 ├── How long it's kept
 ├── Who has access to it
 └── How to delete it
-```
+\`\`\`
 
 ### 3. User Control
 
-```
+\`\`\`
 Essential controls:
 ├── Granular permissions (not all-or-nothing)
 ├── Easy privacy settings
 ├── Data export functionality
 ├── Simple deletion process
 └── Clear opt-out mechanisms
-```
+\`\`\`
 
 ## The Bottom Line
 
