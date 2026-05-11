@@ -165,6 +165,54 @@ Also escape template interpolation sequences in post content:
 
 If this rule is missed, Vercel usually fails with an error like `Expected ',', got 'Processing'` or `Expected ',', got 'typescript'` on the line after a Markdown code fence, or `Expected ',', got '#'` on the next post’s title when the prior `content` literal was left unclosed.
 
+**Nested TypeScript template literals inside Markdown examples**
+
+Long posts often include TypeScript snippets that themselves use template literals, for example `` notes: `${count}/40 recovered` `` or `` fetch(`/api/${id}`) ``. That interacts badly with the **outer** `content: String.raw`…`` or `content:`…`` literal:
+
+`String.raw` does **not** turn off `${…}` interpolation — only escape sequences like `\n` are handled differently. Treat `${…}` the same as with a normal template literal.
+
+1. **`${expression}` is always JavaScript on the outer literal.** Anything that should appear as literal `${…}` in the rendered Markdown must be written `\${…}` in the TSX source (same pattern as inline paths such as `` \`/users/\${id}\` `` elsewhere in the same `content` string).
+
+2. **Inner backticks must be escaped too.** An unescaped `` ` `` that belongs to the *sample* code (e.g. right after `notes:`) is parsed as **closing** the outer `content` template. Escape those inner delimiters as `\``.
+
+Incorrect (breaks the build — outer literal closes early and `${successCount}` is treated as real interpolation):
+
+```ts
+notes: `${successCount}/40 executions recovered from API failures`
+```
+
+Correct inside the outer `content` template (Markdown still shows the intended TS):
+
+```ts
+notes: \`\${successCount}/40 executions recovered from API failures\`
+```
+
+Scan pasted snippets for patterns like `` `${ `` inside fenced blocks and fix **both** the `$` and the wrapping backticks.
+
+**Standalone segment routes (`src/app/posts/day-N-slug/page.tsx`)**
+
+Folders whose segment names are fixed (not `[slug]`) do **not** receive Next.js route `params`. Do **not** copy `(params as { slug: string }).slug` from dynamic-route examples; TypeScript will report **`Cannot find name 'params'`** (and it was never wired).
+
+Use an explicit slug that matches the directory name:
+
+```ts
+const slug: PostSlug = 'day-N-short-slug';
+```
+
+**Fallback objects (`postContent ?? { … }`)**
+
+Multi-line Markdown assigned to `content` in a fallback **cannot** use single quotes with real line breaks in the source (`content: 'line…` newline `more…'` is invalid). Use a template literal:
+
+```ts
+content: `# Title
+
+Body paragraph.`,
+```
+
+**Robotic merges**
+
+Do not paste “glue” such as literal two-character `\` + `n` sequences in place of real newlines, or a semicolon right after the closing backtick (`` `; `` instead of `` `, ``), or other mangled closings instead of a proper end to the Markdown, then `` ``, comma, and structurally valid `},` / `};` for the `posts` object.
+
 **Post page typing rule:**
 
 If a standalone post page uses a `PostSlug` union that includes more than one slug (for example neighboring days in a shared file), do not type the local `posts` object as `Record<PostSlug, PostContent>` unless it contains every slug in that union.
@@ -199,6 +247,9 @@ Go through this list:
 - [ ] "What's next" describes a real next step, not a vague direction
 - [ ] The post body contains no raw Markdown backticks inside a TSX template literal; code fences are escaped as `\`\`\`` and inline code as `\`code\``
 - [ ] Every `content: \`...\`` block ends with a **real** closing backtick (not a solo `\`,` line that keeps the literal open)
+- [ ] Any Markdown sample that shows TypeScript `` `${…}` `` strings uses `\${…}` and `\`` so nested literals do not break the outer `content` template
+- [ ] Standalone `page.tsx` under `posts/day-N-…/` sets `slug` to that folder’s slug literal — never `params` unless the route is dynamic `[slug]`
+- [ ] Fallback `?? { … }` multi-line `content` uses backticks, not single quotes spanning lines in source
 - [ ] If the page defines a `PostSlug` union, the `posts` type matches the actual keys or uses `Partial<Record<PostSlug, PostContent>>`
 - [ ] `npm run build` was run after the change and completed with no errors — **do not treat the post as done until the app builds**
 - [ ] Changes are committed and pushed to **`main`** so the hosting provider can deploy (automation should include this step after the build passes)
@@ -244,6 +295,7 @@ npm run build
 If the build fails:
 
 - Near a Markdown code fence → escape backticks in the post body or use `JSON.stringify(markdown)` for `content`.
+- With `Cannot find name 'successCount'`, `Cannot find name 'params'`, or similar → often unescaped `${…}` or nested `` `…` `` inside `content`, or a copied `(params as …).slug` on a standalone route; see **Nested TypeScript template literals** and **Standalone segment routes** above.
 - With `Expected ',', got '#'` (or similar) on a **later** post’s `content` line → the **earlier** post’s `content` template literal is probably still open; fix the closing backtick before that line (see **Outer `content` template literal must actually close** above).
 
 Commit message format:
