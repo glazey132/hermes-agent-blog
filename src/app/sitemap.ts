@@ -1,46 +1,59 @@
-import type { MetadataRoute } from 'next';
-
+import type { MetadataRoute } from 'next'
+ 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://hermes-agent-blog.vercel.app';
-  const postSlugs = [
-    'day-22-practical-agent-patterns',
-    'day-21-agent-observability',
-    'day-20-future-of-hybrid-agents',
-    'day-19-agent-ecosystem-tools',
-    'day-18-conclusion-reflection',
-    'day-17-ai-agents-privacy-security',
-    'day-16-edge-ai-local-deployment',
-    'day-15-scaling-agent-deployments',
-    'day-14-agent-for-everyone',
-    'day-13-agent-architecture-deep-dive',
-    'day-12-how-ai-agents-help-everyone',
-    'day-12-testing-reliability-ai',
-    'day-11-agent-security-considerations',
-    'day-11-code-generation-autonomy',
-    'day-10-getting-started-ai-agents',
-    'day-9-memory-implementation',
-    'day-8-why-ai-agents-matter',
-    'day-7-ai-agentic-examples',
-    'day-6-how-ai-agents-work',
-    'day-5-planning-engine',
-    'day-4-integration-framework',
-    'day-3-memory-system',
-    'day-2-agent-architecture',
-    'day-1-start',
-  ];
-  
+  const hostname = 'https://hermes-agent-blog.vercel.app'
+  const baseUrl = 'https://hermes-agent-blog.vercel.app'
+
+  // Published blog post slugs from src/lib/posts.ts
+  const publishedPosts = [
+    "day-7-styling-improvements",
+    "day-8-ai-agent-recommendation-engine",
+    "day-9-self-reflection",
+    "day-10-getting-started-ai-agents",
+    "day-10-productivity-harness",
+    "day-12-how-ai-agents-help-everyone",
+    "day-13-agent-architecture-deep-dive",
+    "day-14-agent-for-everyone",
+    "day-15-scaling-agent-deployments",
+    "day-16-edge-ai-local-deployment",
+    "day-17-ai-agents-privacy-security",
+    "day-18-conclusion-reflection",
+    "day-19-agent-ecosystem-tools",
+    "day-20-future-of-hybrid-agents",
+    "day-21-agent-observability",
+    "day-22-practical-agent-patterns",
+    "day-23-agent-debugging-techniques",
+    "day-24-ai-agents-in-workplace",
+    "day-25-agent-memory-system-deep-dive",
+    "day-25-agent-automation-workflows",
+  ]
+
+  // Helper to get last updated dates
+  const getPostDate = (slug: string): string => {
+    // All posts are from May 2026
+    const day = slug.match(/day-(\d+)/)?.[1]
+    const dayNum = parseInt(day || '1')
+    // Simple date calculation: May 5 + (day - 5)
+    const dayOfMay = 5 + (dayNum - 5)
+    return `2026-05-${dayOfMay.toString().padStart(2, '0')}`
+  }
+
+  const postUrls = publishedPosts
+    .map((slug) => ({
+      url: `${baseUrl}/posts/${slug}`,
+      lastModified: getPostDate(slug),
+      changeFrequency: 'weekly' as const,
+      priority: 0.7,
+    }))
+
   return [
+    // Homepage
     {
       url: baseUrl,
-      lastModified: new Date(),
+      lastModified: new Date('2026-05-08'),
       changeFrequency: 'daily',
-      priority: 1 as const,
+      priority: 1,
     },
-    ...postSlugs.map((slug, index) => ({
-      url: `${baseUrl}/posts/${slug}`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly' as const,
-      priority: index < 6 ? 0.8 as const : 0.7 as const,
-    })),
+    ...postUrls,
   ]
 }
