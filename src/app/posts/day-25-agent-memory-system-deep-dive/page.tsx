@@ -43,7 +43,7 @@ Without memory, AI agents are stuck in the eternal now:
 
 ### The Three-Tier Memory Model
 
-```
+\`\`\`
 ┌────────────────────────────────────────────────────────┐
 │           AGENT MEMORY SYSTEM                          │
 │  ┌─────────────────────────────────┐                  │
@@ -68,7 +68,7 @@ Without memory, AI agents are stuck in the eternal now:
 │  │  - Recent actions                 │                  │
 │  └─────────────────────────────────┘                  │
 └────────────────────────────────────────────────────────┘
-```
+\`\`\`
 
 ---
 
@@ -81,7 +81,7 @@ Without memory, AI agents are stuck in the eternal now:
 - Historical facts and knowledge
 
 **Storage mechanism**:
-```typescript
+\`\`\`typescript
 interface LongTermMemory {
   // Core identity
   identity: {
@@ -111,7 +111,7 @@ interface UserRelationship {
     outcome: 'success' | 'challenge' | 'learning';
   }>;
 }
-```
+\`\`\`
 
 **Why it matters**:
 - Enables personalization
@@ -130,7 +130,7 @@ interface UserRelationship {
 - Problem-solution pairs
 
 **Implementation**:
-```typescript
+\`\`\`typescript
 class SemanticMemory {
   private vectorStore: VectorStore; // e.g., Pinecone, Weaviate, pgvector
   
@@ -164,7 +164,7 @@ class SemanticMemory {
     });
   }
 }
-```
+\`\`\`
 
 **Key insights**:
 - Allows retrieval of relevant past interactions
@@ -183,7 +183,7 @@ class SemanticMemory {
 - Recent actions (last N steps)
 
 **Implementation**:
-```typescript
+\`\`\`typescript
 interface EphemeralMemory {
   currentGoal: string | null;
   activeSubgoals: Array<{
@@ -220,7 +220,7 @@ function updateContextWindow(
   
   return context;
 }
-```
+\`\`\`
 
 ---
 
@@ -230,7 +230,7 @@ function updateContextWindow(
 
 Search for relevant past interactions based on intent:
 
-```typescript
+\`\`\`typescript
 function findRelevantPastInteractions(
   semanticMemory: SemanticMemory,
   currentContext: string,
@@ -247,7 +247,7 @@ function generateSearchQuery(context: string): string {
   const concepts = extractConcepts(context);
   return concepts.join(' ') + ' solution outcome';
 }
-```
+\`\`\`
 
 **Example**:
 Current: "Help me optimize database queries"
@@ -260,7 +260,7 @@ Found: "Similar issue last month - used index optimization, improved query time 
 
 Identify recurring patterns across sessions:
 
-```typescript
+\`\`\`typescript
 function identifyPatterns(
   userInteractions: AgentInteraction[],
   timeWindow: number // milliseconds
@@ -285,7 +285,7 @@ function identifyPatterns(
   
   return patterns;
 }
-```
+\`\`\`
 
 **Use case**: Agent notices user frequently asks about database optimization → proactively suggest optimization tips
 
@@ -295,7 +295,7 @@ function identifyPatterns(
 
 Learn user preferences from interactions:
 
-```typescript
+\`\`\`typescript
 function extractPreferences(
   interactionHistory: AgentInteraction[]
 ): UserPreferences {
@@ -316,7 +316,7 @@ function extractPreferences(
   
   return preferences;
 }
-```
+\`\`\`
 
 **Example learned preference**:
 User prefers concise responses, avoids verbose explanations, works 9am-5pm, prefers code examples over theory.
@@ -329,7 +329,7 @@ User prefers concise responses, avoids verbose explanations, works 9am-5pm, pref
 
 Not every interaction needs permanent storage. Use these rules:
 
-```typescript
+\`\`\`typescript
 function shouldPersistToLongTerm(interaction: AgentInteraction): boolean {
   // High-value interactions
   if (interaction.outcome === 'success' && interaction.complexity > 5) {
@@ -353,7 +353,7 @@ function shouldPersistToLongTerm(interaction: AgentInteraction): boolean {
   
   return false;
 }
-```
+\`\`\`
 
 **Key insight**: Quality over quantity. Better to have a rich, curated long-term memory than one filled with everything.
 
@@ -361,7 +361,7 @@ function shouldPersistToLongTerm(interaction: AgentInteraction): boolean {
 
 ### Memory Cleanup and Maintenance
 
-```typescript
+\`\`\`typescript
 async function maintainMemory(memory: LongTermMemory): Promise<void> {
   // Remove outdated preferences
   memory.learnedPreferences = trimOldPreferences(
@@ -375,7 +375,7 @@ async function maintainMemory(memory: LongTermMemory): Promise<void> {
   // Archive very old interactions
   await archiveOldInteractions(memory, { olderThan: '1 year' });
 }
-```
+\`\`\`
 
 **Why maintenance matters**:
 - Keeps memory relevant
@@ -391,23 +391,23 @@ async function maintainMemory(memory: LongTermMemory): Promise<void> {
 
 Compress old conversations into summaries:
 
-```typescript
+\`\`\`typescript
 async function summarizeConversation(conversation: string[]): Promise<string> {
   const summary = await llm.generate({
-    prompt: `Summarize the key points, decisions, and outcomes from this conversation:
-${conversation.join('\n')}
+    prompt: \`Summarize the key points, decisions, and outcomes from this conversation:
+\${conversation.join('\\n')}
 
 Provide a concise summary that captures:
 1. Main objective
 2. Key decisions made  
 3. Outcomes achieved
-4. Open questions`,
+4. Open questions\`,
     temperature: 0.3
   });
   
   return summary;
 }
-```
+\`\`\`
 
 **Benefit**: Maintains context while reducing token usage.
 
@@ -417,14 +417,14 @@ Provide a concise summary that captures:
 
 Extract memorable facts from interactions:
 
-```typescript
+\`\`\`typescript
 function extractActionableInsights(memory: EphemeralMemory): string[] {
   return memory.recentActions
     .filter(action => action.result && action.result.success)
-    .map(action => `${action.action} → ${formatSuccess(action.result)}`)
+    .map(action => \`\${action.action} → \${formatSuccess(action.result)}\`)
     .slice(0, 5); // Keep top 5 most recent
 }
-```
+\`\`\`
 
 ---
 
@@ -432,7 +432,7 @@ function extractActionableInsights(memory: EphemeralMemory): string[] {
 
 Smart context handling:
 
-```typescript
+\`\`\`typescript
 function optimizeContext(
   contextWindow: Message[],
   maxTokens: number
@@ -453,7 +453,7 @@ function optimizeContext(
     totalTokens: countTokens(recentMessages, olderSummary, systemInstructions)
   };
 }
-```
+\`\`\`
 
 ---
 
@@ -461,7 +461,7 @@ function optimizeContext(
 
 ### Memory System Class
 
-```typescript
+\`\`\`typescript
 class AgentMemorySystem {
   private semanticMemory: SemanticMemory;
   private longTermMemory: LongTermMemory;
@@ -499,15 +499,15 @@ class AgentMemorySystem {
     const preferences = this.getLongTermPreference(this.currentUserId);
     
     // Compose context
-    return `
-User preferences: ${preferences}
-Recent relevant interactions: ${relevantPast.join('\n')}
+    return \`
+User preferences: \${preferences}
+Recent relevant interactions: \${relevantPast.join('\\n')}
 
-Current context: ${currentInteraction}
-`;
+Current context: \${currentInteraction}
+\`;
   }
 }
-```
+\`\`\`
 
 ---
 
@@ -516,7 +516,7 @@ Current context: ${currentInteraction}
 ### Test Case 1: Pattern Recognition
 **Goal**: Verify agent can identify recurring patterns
 
-```typescript
+\`\`\`typescript
 describe('Memory System - Pattern Recognition', () => {
   it('should identify repeated user preferences', async () => {
     const memorySystem = new AgentMemorySystem();
@@ -535,12 +535,12 @@ describe('Memory System - Pattern Recognition', () => {
     expect(preferences.conciseResponses).toBe(true);
   });
 });
-```
+\`\`\`
 
 ### Test Case 2: Context Retrieval
 **Goal**: Ensure relevant past information is found
 
-```typescript
+\`\`\`typescript
 describe('Memory System - Context Retrieval', () => {
   it('should retrieve relevant past interactions', async () => {
     const memorySystem = new AgentMemorySystem();
@@ -562,7 +562,7 @@ describe('Memory System - Context Retrieval', () => {
     expect(context).toContain('performance improvement');
   });
 });
-```
+\`\`\`
 
 ---
 
@@ -573,7 +573,7 @@ describe('Memory System - Context Retrieval', () => {
 **Symptoms**: Agent repeatedly asks for information it should remember
 
 **Diagnosis**:
-```typescript
+\`\`\`typescript
 function diagnoseMemoryIssues(memory: AgentMemorySystem): string[] {
   const issues: string[] = [];
   
@@ -595,7 +595,7 @@ function diagnoseMemoryIssues(memory: AgentMemorySystem): string[] {
   
   return issues;
 }
-```
+\`\`\`
 
 **Fix**: Increase context window size, improve retrieval algorithm
 
@@ -606,7 +606,7 @@ function diagnoseMemoryIssues(memory: AgentMemorySystem): string[] {
 **Symptoms**: Agent remembers old preferences that are no longer valid
 
 **Diagnosis**:
-```typescript
+\`\`\`typescript
 function detectStaleMemory(memory: AgentMemorySystem): boolean {
   const staleEntries = memory.getOldPreferences({
     olderThan: '3 months',
@@ -615,7 +615,7 @@ function detectStaleMemory(memory: AgentMemorySystem): boolean {
   
   return staleEntries.length > STALE_THRESHOLD;
 }
-```
+\`\`\`
 
 **Fix**: Implement preference expiration, update on new behavior patterns
 
@@ -626,7 +626,7 @@ function detectStaleMemory(memory: AgentMemorySystem): boolean {
 **Symptoms**: Agent responses slow, retrieval becomes less accurate
 
 **Diagnosis**:
-```typescript
+\`\`\`typescript
 function checkMemoryHealth(memory: AgentMemorySystem): HealthStatus {
   const metrics = {
     totalEntries: memory.getTotalEntries(),
@@ -637,7 +637,7 @@ function checkMemoryHealth(memory: AgentMemorySystem): HealthStatus {
   
   return calculateHealthScore(metrics);
 }
-```
+\`\`\`
 
 **Fix**: Implement memory summarization, cleanup routines, storage optimization
 
@@ -657,7 +657,7 @@ function checkMemoryHealth(memory: AgentMemorySystem): HealthStatus {
 
 *Coming up next*: **Day 26 will explore practical automation workflows** - how to combine these memory systems with agent tools to create truly autonomous assistants that get the job done.
 
-*The key insight*: Memory isn't just about storage - it's about **evolution**. Agents with good memory become better with every interaction, learning your preferences, improving their approach, and building a partnership over time.`;
+*The key insight*: Memory isn't just about storage - it's about **evolution**. Agents with good memory become better with every interaction, learning your preferences, improving their approach, and building a partnership over time.`,
   },
   'day-25-agent-automation-workflows': {
     title: "Day 25: Practical Agent Automation - Building Autonomous Workflows",
@@ -717,16 +717,16 @@ Not every task can be fully automated. Here's what matters:
 **Best for**: Linear processes with clear dependencies.
 
 **Example**: Report generation
-```
+\`\`\`
 1. Fetch data from database
 2. Transform data to report format
 3. Generate PDF
 4. Email to stakeholders
 5. Create audit trail
-```
+\`\`\`
 
 **Implementation**:
-```typescript
+\`\`\`typescript
 interface WorkflowStep {
   name: string;
   tool: string;
@@ -763,7 +763,7 @@ const reportGenerationWorkflow: WorkflowStep[] = [
   },
   // ... more steps
 ];
-```
+\`\`\`
 
 ---
 
@@ -772,7 +772,7 @@ const reportGenerationWorkflow: WorkflowStep[] = [
 **Best for**: Processes with decision points.
 
 **Example**: Support email handling
-```
+\`\`\`
 1. Receive email
 2. Classify type (billing, technical, questions)
 3. Route based on type:
@@ -780,10 +780,10 @@ const reportGenerationWorkflow: WorkflowStep[] = [
    - If technical → route to technical support
    - If questions → provide automated response
 4. Escalate if unanswered for >24 hours
-```
+\`\`\`
 
 **Implementation**:
-```typescript
+\`\`\`typescript
 async function handleSupportEmail(email: EmailMessage): Promise<void> {
   // Classify the email
   const classification = await classifyEmail(email.content);
@@ -807,7 +807,7 @@ async function handleSupportEmail(email: EmailMessage): Promise<void> {
     action: escalateToHuman
   });
 }
-```
+\`\`\`
 
 ---
 
@@ -816,17 +816,17 @@ async function handleSupportEmail(email: EmailMessage): Promise<void> {
 **Best for**: Independent tasks that can run in parallel.
 
 **Example**: Content publishing
-```
+\`\`\`
 1. Validate content quality
 2. Generate social media posts
 3. Update CMS
 4. Send notifications
 5. Track analytics
 (2, 3, 4 can run concurrently)
-```
+\`\`\`
 
 **Implementation**:
-```typescript
+\`\`\`typescript
 async function publishContent(content: Content): Promise<void> {
   // Run independent steps in parallel
   const [socialPosts, cmsUpdate, notifications] = await Promise.all([
@@ -846,7 +846,7 @@ async function publishContent(content: Content): Promise<void> {
   // Then track analytics (depends on completion)
   await trackPublishingAnalytics(result);
 }
-```
+\`\`\`
 
 ---
 
@@ -855,16 +855,16 @@ async function publishContent(content: Content): Promise<void> {
 **Best for**: High-stakes actions requiring approval.
 
 **Example**: Code deployment
-```
+\`\`\`
 1. Agent completes development
 2. Agent creates deployment plan
 3. Human reviews and approves
 4. Agent executes deployment
 5. Human verifies success
-```
+\`\`\`
 
 **Implementation**:
-```typescript
+\`\`\`typescript
 async function deployCode(deploymentPlan: DeploymentPlan): Promise<void> {
   // Create deployment request
   const approvalRequired = {
@@ -894,7 +894,7 @@ async function deployCode(deploymentPlan: DeploymentPlan): Promise<void> {
     await logApprovalDecision(approvalStatus.reason);
   }
 }
-```
+\`\`\`
 
 ---
 
@@ -910,7 +910,7 @@ async function deployCode(deploymentPlan: DeploymentPlan): Promise<void> {
 5. Maintain audit trail
 
 **Implementation**:
-```typescript
+\`\`\`typescript
 interface ErrorHandlingOptions {
   retry: {
     maxAttempts: number;
@@ -953,14 +953,14 @@ async function executeStep(
   
   throw new Error('Unexpected state - should have failed earlier');
 }
-```
+\`\`\`
 
 ---
 
 ### Progress Tracking
 
 **Monitor workflow progress**:
-```typescript
+\`\`\`typescript
 class WorkflowMonitor {
   private workflowState: Map<string, WorkflowStepState>;
   
@@ -980,14 +980,14 @@ class WorkflowMonitor {
     };
   }
 }
-```
+\`\`\`
 
 ---
 
 ### Audit Trail
 
 **Track every action**:
-```typescript
+\`\`\`typescript
 interface AuditEntry {
   timestamp: string;
   action: string;
@@ -1019,7 +1019,7 @@ class AuditTrail {
     return this.entries.filter(e => e.workflowId === workflowId);
   }
 }
-```
+\`\`\`
 
 ---
 
@@ -1030,7 +1030,7 @@ class AuditTrail {
 **Problem**: Manually schedule and publish content across platforms.
 
 **Automated Workflow**:
-```typescript
+\`\`\`typescript
 const contentCalendarWorkflow = [
   // Step 1: Analyze current calendar
   {
@@ -1074,7 +1074,7 @@ const contentCalendarWorkflow = [
     tools: ['analytics-api', 'reporting-api']
   }
 ];
-```
+\`\`\`
 
 **Time saved**: 5-8 hours per week
 
@@ -1084,7 +1084,7 @@ const contentCalendarWorkflow = [
 
 **Problem**: Support tickets need quick initial handling.
 
-```typescript
+\`\`\`typescript
 const supportTriageWorkflow = [
   // Step 1: Process incoming ticket
   async function ingestTicket(ticket: Ticket) {
@@ -1118,7 +1118,7 @@ const supportTriageWorkflow = [
     });
   }
 ];
-```
+\`\`\`
 
 **Results**:
 - Faster initial response times
@@ -1132,7 +1132,7 @@ const supportTriageWorkflow = [
 
 **Problem**: Developers waste time on routine tasks.
 
-```typescript
+\`\`\`typescript
 const devWorkflowAssistant = {
   'create-feature-branch': {
     triggers: ['git-create-feature', 'issue-created'],
@@ -1168,7 +1168,7 @@ const devWorkflowAssistant = {
     ]
   }
 };
-```
+\`\`\`
 
 **Time saved**: 3-4 hours per developer per week
 
@@ -1186,7 +1186,7 @@ const devWorkflowAssistant = {
 
 ### Improvement Loop
 
-```typescript
+\`\`\`typescript
 interface WorkflowMetrics {
   successRate: number;
   averageDuration: number;
@@ -1230,7 +1230,7 @@ async function analyzeWorkflowPerformance(
   
   return recommendations;
 }
-```
+\`\`\`
 
 ---
 
@@ -1300,12 +1300,12 @@ async function analyzeWorkflowPerformance(
 
 **Come back tomorrow** as we begin **Day 26** - a reflection on the entire journey.
 
-**The combination**: Strong memory systems + well-designed workflows = truly autonomous agents that **learn, adapt, and deliver**.`;
+**The combination**: Strong memory systems + well-designed workflows = truly autonomous agents that **learn, adapt, and deliver**.`,
   },
 };
 
 export default function PostsPage() {
-  const slug: PostSlug = (params as { slug: string }).slug as PostSlug;
+  const slug: PostSlug = 'day-25-agent-memory-system-deep-dive';
   const postContent = posts[slug];
 
   const { prev, next } = getAdjacentPostSlugs(slug);

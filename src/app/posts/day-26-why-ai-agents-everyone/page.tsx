@@ -276,7 +276,7 @@ When using AI agents, **protect yourself**:\n\n### 1. Read Permissions Carefully
 - What needs approval ("send emails only if I confirm")
 - What time window ("only schedule meetings during business hours")
 
-**Example boundary**:\n```
+**Example boundary**:\n\`\`\`
 ✅ Agent can:
 - Draft emails for my review
 - Schedule meetings in my calendar
@@ -287,7 +287,7 @@ When using AI agents, **protect yourself**:\n\n### 1. Read Permissions Carefully
 - Access my financial accounts
 - Delete any files
 - Share my data with third parties
-```
+\`\`\`
 
 ---
 
@@ -353,10 +353,12 @@ AI agents **aren't magic**. They're **practical tools** that work best when:\n1.
 
 **Thanks for following along** on this journey through AI agents. What would you like to read about next? The comment section on the blog is open for your feedback and suggestions for future topics.
 
-`;\n  },\n},\n};
+`,
+  },
+};
 
 export default function PostsPage() {
-  const slug: PostSlug = (params as { slug: string }).slug as PostSlug;
+  const slug: PostSlug = 'day-26-why-ai-agents-everyone';
   const postContent = posts[slug];
 
   const { prev, next } = getAdjacentPostSlugs(slug);
@@ -365,9 +367,9 @@ export default function PostsPage() {
     title: 'Post not published',
     date: 'Unpublished',
     readTime: '0 min read',
-    content: '# Post not published
+    content: `# Post not published
 
-This route exists, but no grounded post content is available for this slug.',
+This route exists, but no grounded post content is available for this slug.`,
   };
 
   return (

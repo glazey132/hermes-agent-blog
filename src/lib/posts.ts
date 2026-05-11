@@ -193,6 +193,24 @@ export const postRegistry: PostMeta[] = [
     date: "May 11, 2026",
     published: true,
   },
+  {
+    slug: "day-26-building-resilient-ai-agents",
+    day: 26,
+    title: "Day 26: Building Resilient AI Agents - Error Handling and Recovery Strategies",
+    excerpt:
+      "Technical deep-dive into building resilient AI agents: error classification, retry strategies, circuit breakers, checkpointing, and production-ready reliability patterns.",
+    date: "May 12, 2026",
+    published: true,
+  },
+  {
+    slug: "day-26-why-ai-agents-everyone",
+    day: 26,
+    title: "Day 26: Why AI Agents Are for Everyone - Simple Tools for Everyday Life",
+    excerpt:
+      "Discover how AI agents can transform everyday tasks for non-technical users: email management, research assistance, budgeting, learning, family organization, and personal productivity without coding.",
+    date: "May 12, 2026",
+    published: true,
+  },
 ];
 
 export const publishedPosts = postRegistry.filter((post) => post.published);
@@ -254,6 +272,29 @@ export function buildDescription(slug: string): string {
 export function getPostBySlug(slug: string): PostMeta | undefined {
   const post = postRegistry.find((p) => p.slug === slug);
   return post && post.published ? post : undefined;
+}
+
+/**
+ * Paginated homepage cards (newest posts first; page size matches DEFAULT_HOME_PAGE_SIZE).
+ */
+export function getPaginationForHomepage(
+  pageParam: string | string[] | undefined
+): { cards: HomePostCard[]; page: number; totalPages: number } {
+  const newestFirst = [...publishedPosts].reverse();
+  const raw = Array.isArray(pageParam) ? pageParam[0] : pageParam;
+  const parsed = raw ? parseInt(String(raw), 10) : 1;
+  const requestedPage = Number.isFinite(parsed) && parsed >= 1 ? parsed : 1;
+  const totalPages = Math.max(1, Math.ceil(newestFirst.length / DEFAULT_HOME_PAGE_SIZE));
+  const page = Math.min(requestedPage, totalPages);
+  const start = (page - 1) * DEFAULT_HOME_PAGE_SIZE;
+  const slice = newestFirst.slice(start, start + DEFAULT_HOME_PAGE_SIZE);
+  const cards: HomePostCard[] = slice.map((post) => ({
+    href: `/posts/${post.slug}`,
+    title: post.title,
+    excerpt: post.excerpt,
+    meta: formatCardMeta(post),
+  }));
+  return { cards, page, totalPages };
 }
 
 /**

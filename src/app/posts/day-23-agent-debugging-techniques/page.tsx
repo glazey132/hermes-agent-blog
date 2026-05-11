@@ -118,12 +118,12 @@ Benefits:
 ---
 
 *Next up *(Day 23): We'll dive deep into **debugging AI agents** - how do you know what's going wrong when your agent makes a mistake?*
-`;
+`,
   },
 };
 
 export default function PostsPage() {
-  const slug: PostSlug = (params as { slug: string }).slug as PostSlug;
+  const slug: PostSlug = 'day-23-agent-debugging-techniques';
   const postContent = posts[slug];
 
   const { prev, next } = getAdjacentPostSlugs(slug);
@@ -132,9 +132,9 @@ export default function PostsPage() {
     title: 'Post not published',
     date: 'Unpublished',
     readTime: '0 min read',
-    content: '# Post not published
+    content: `# Post not published
 
-This route exists, but no grounded post content is available for this slug.',
+This route exists, but no grounded post content is available for this slug.`,
   };
 
   return (

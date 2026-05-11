@@ -2,6 +2,8 @@
 
 This file is for the agent writing blog posts. Read it fully before doing anything else.
 
+**Mechanical guardrails (same priority as voice and grounding):** Broken TSX in post bodies or missing exports in `src/lib/posts.ts` will fail `npm run build` and block deploy. Follow **Critical TSX string safety**, **Comma after `content`**, and **`src/lib/posts.ts` vs homepage** below — do not treat a post as finished until `npm run build` passes locally.
+
 ---
 
 ## What this blog is
@@ -211,7 +213,46 @@ Body paragraph.`,
 
 **Robotic merges**
 
-Do not paste “glue” such as literal two-character `\` + `n` sequences in place of real newlines, or a semicolon right after the closing backtick (`` `; `` instead of `` `, ``), or other mangled closings instead of a proper end to the Markdown, then `` ``, comma, and structurally valid `},` / `};` for the `posts` object.
+Do not paste “glue” such as literal two-character `\` + `n` sequences in place of real newlines, or other mangled closings instead of a proper end to the Markdown, then `` ``, comma, and structurally valid `},` / `};` for the `posts` object.
+
+**Comma after `content`, never semicolon (`Expected ',', got ';'`)**
+
+Inside `const posts: Posts = { ... }`, each `content: String.raw\`…\`` / `content: \`…\`` property must end with **comma** after the closing backtick whenever another key still follows at the same level (another slug, or you are not yet done closing the object).
+
+A common bad paste ends the markdown with **semicolon**:
+
+```ts
+// Wrong — `;` after the closing backtick (breaks build)
+…last line of markdown…`;
+  },
+  'day-25-agent-automation-workflows': {
+```
+
+Correct:
+
+```ts
+…last line of markdown…`,
+  },
+  'day-25-agent-automation-workflows': {
+```
+
+SWC often reports **`Expected ',', got ';'`** on the **last line of markdown** or on the **next** slug’s `title:` — the parser thinks `content` never terminated correctly.
+
+Rules of thumb:
+
+- After `` ` `` that closes `content`, use **``,`** — never **`;`** — before the inner `}` that closes that slug’s object (repeat for every slug in a multi-entry file).
+- **Multi-slug files** (two bodies in one `page.tsx`): the **first** post’s `content` block **must** end with `` `, `` before the second `'slug': {`. Double-check both boundaries.
+
+**Route folder vs `posts` keys**
+
+The URL is `/posts/<folder-name>`. The component must resolve content for **that** slug:
+
+```ts
+const slug: PostSlug = 'day-23-agent-debugging-techniques'; // must match folder name
+const postContent = posts[slug];
+```
+
+If `posts` only defines a different slug (e.g. yesterday’s post copied in but the key was never renamed), the page **builds** but shows **“Post not published”** — fix the key or split into one slug per file.
 
 **Post page typing rule:**
 
@@ -250,6 +291,9 @@ Go through this list:
 - [ ] Any Markdown sample that shows TypeScript `` `${…}` `` strings uses `\${…}` and `\`` so nested literals do not break the outer `content` template
 - [ ] Standalone `page.tsx` under `posts/day-N-…/` sets `slug` to that folder’s slug literal — never `params` unless the route is dynamic `[slug]`
 - [ ] Fallback `?? { … }` multi-line `content` uses backticks, not single quotes spanning lines in source
+- [ ] After every `content:\`…\`` / `String.raw\`…\``, the punctuation after the closing backtick is a **comma** (``,``) when more properties or another slug follow — **never** semicolon (``;``) inside `posts` (see **Comma after `content`**)
+- [ ] The `'slug-string'` keys in `posts` include the slug for **this** route folder; `const slug = '…'` matches that folder name
+- [ ] Homepage imports from `@/lib/posts` are still exported from `src/lib/posts.ts`
 - [ ] If the page defines a `PostSlug` union, the `posts` type matches the actual keys or uses `Partial<Record<PostSlug, PostContent>>`
 - [ ] `npm run build` was run after the change and completed with no errors — **do not treat the post as done until the app builds**
 - [ ] Changes are committed and pushed to **`main`** so the hosting provider can deploy (automation should include this step after the build passes)
@@ -267,6 +311,10 @@ src/lib/posts.ts
 ```
 
 Append a `PostMeta` entry in chronological order alongside the other posts, with `published: true`, matching the existing fields (`slug`, `day`, `title`, `excerpt`, `date`). The homepage pagination, post prev/next navigation, and sitemap are generated from this file. Do **not** add manual post lists or `order` arrays inside `page.tsx` files.
+
+**`src/lib/posts.ts` must export anything the homepage imports**
+
+`src/app/page.tsx` imports from `@/lib/posts` (for example `getPaginationForHomepage`, `publishedPosts`). If you change imports on the homepage or add new helpers, **implement and export** them from `src/lib/posts.ts`. Missing exports fail at **“Linting and checking validity of types”** even when webpack compiled with warnings. Always run **`npm run build`** after touching either file.
 
 Implement the actual body wherever it belongs for this project:
 
@@ -296,7 +344,9 @@ If the build fails:
 
 - Near a Markdown code fence → escape backticks in the post body or use `JSON.stringify(markdown)` for `content`.
 - With `Cannot find name 'successCount'`, `Cannot find name 'params'`, or similar → often unescaped `${…}` or nested `` `…` `` inside `content`, or a copied `(params as …).slug` on a standalone route; see **Nested TypeScript template literals** and **Standalone segment routes** above.
-- With `Expected ',', got '#'` (or similar) on a **later** post’s `content` line → the **earlier** post’s `content` template literal is probably still open; fix the closing backtick before that line (see **Outer `content` template literal must actually close** above).
+- With **`Expected ',', got ';'`** pointing at the last line of Markdown or the next slug → you almost certainly used **`` `; ``** after `content` instead of **`` `, ``** (see **Comma after `content`**).
+- With **`Expected ',', got '#'`** (or similar) on a **later** post’s `content` line → the **earlier** post’s `content` template literal is probably still open; fix the closing backtick before that line (see **Outer `content` template literal must actually close** above).
+- After **`Module '"@/lib/posts"' has no exported member '…'`** → add the export to `src/lib/posts.ts` or fix the import in `src/app/page.tsx`.
 
 Commit message format:
 ```

@@ -314,12 +314,12 @@ When humans and AI agents work together complementarily: **better work quality a
 **That wraps up our Day 24 post**! We've journeyed from **technical deep-dives** on agent architecture and debugging to **practical workplace applications** of AI agents.
 
 **Thank you for following along on this journey**! Come back for our final posts on reflection and lessons learned.
-`;
+`,
   },
 };
 
 export default function PostsPage() {
-  const slug: PostSlug = (params as { slug: string }).slug as PostSlug;
+  const slug: PostSlug = 'day-24-ai-agents-in-workplace';
   const postContent = posts[slug];
 
   const { prev, next } = getAdjacentPostSlugs(slug);
@@ -328,9 +328,9 @@ export default function PostsPage() {
     title: 'Post not published',
     date: 'Unpublished',
     readTime: '0 min read',
-    content: '# Post not published
+    content: `# Post not published
 
-This route exists, but no grounded post content is available for this slug.',
+This route exists, but no grounded post content is available for this slug.`,
   };
 
   return (

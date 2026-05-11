@@ -1,0 +1,16 @@
+---
+description: Hermes blog — post TSX, registry, and homepage must stay build-green
+globs: src/app/posts/**/*.tsx,src/lib/posts.ts,src/app/page.tsx
+alwaysApply: false
+---
+
+When adding or editing standalone post routes, combined `posts` maps, or `@/lib/posts` / homepage wiring: read **[POST_WRITING_INSTRUCTIONS.md](POST_WRITING_INSTRUCTIONS.md)** at the repo root end-to-end.
+
+Non-negotiables:
+
+- Escape Markdown fences as `\`\`\`` (and nested TS `` ` `` / `${…}` as `\`` / `\${…}`) inside `content: String.raw`…`` / template literals.
+- After `content`, use **comma** (``,``) before the next slug or closing brace — **never** semicolon (``;``) (`Expected ',', got ';'`).
+- Standalone folders under `src/app/posts/day-N-slug/` use `const slug = 'day-N-slug'` — not `params`.
+- Anything `src/app/page.tsx` imports from `@/lib/posts` must be exported from `src/lib/posts.ts`.
+
+Finish with **`npm run build`** (full success, including typecheck) before considering the task done.
