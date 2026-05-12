@@ -211,6 +211,24 @@ export const postRegistry: PostMeta[] = [
     date: "May 12, 2026",
     published: true,
   },
+  {
+    slug: "day-27-agent-security-robustness",
+    day: 27,
+    title: "Day 27: Agent Security and Robustness - Building Resilient Systems for Production",
+    excerpt:
+      "Technical deep-dive into securing AI agents for production: input sanitization, access control, sandboxed execution, circuit breakers, checkpoint recovery, audit logging, and compliance frameworks for safe autonomous agents.",
+    date: "May 13, 2026",
+    published: true,
+  },
+  {
+    slug: "day-27-ai-agents-practical-usecases",
+    day: 27,
+    title: "Day 27: AI Agents for Personal Productivity - Real-World Use Cases for Every Day",
+    excerpt:
+      "Practical examples of AI agents enhancing daily life: smart email management, meeting coordination, travel planning, learning companions, budget tracking, meal planning, health monitoring, and family logistics - all without coding.",
+    date: "May 13, 2026",
+    published: true,
+  },
 ];
 
 export const publishedPosts = postRegistry.filter((post) => post.published);

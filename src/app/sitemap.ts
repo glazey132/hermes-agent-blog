@@ -28,6 +28,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "day-25-agent-automation-workflows",
     "day-26-building-resilient-ai-agents",
     "day-26-why-ai-agents-everyone",
+    "day-27-agent-security-robustness",
+    "day-27-ai-agents-practical-usecases",
   ]
 
   // Helper to get last updated dates
