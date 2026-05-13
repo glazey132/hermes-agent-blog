@@ -5,7 +5,7 @@ import PostBody from '@/components/PostBody';
 import { getAdjacentPostSlugs } from '@/lib/posts';
 
 type Posts = Partial<Record<PostSlug, PostContent>>;
-type PostSlug = 'day-29-evaluating-ai-agents' | 'day-30-practical-ai-agent';
+type PostSlug = 'day-29-evaluating-ai-agents' | 'day-30-practical-ai-agent' | 'day-31-advanced-agent-patterns' | 'day-31-agent-memory-advanced' | 'day-32-agent-ecosystem';
 
 interface PostContent {
   title: string;
@@ -17,7 +17,7 @@ interface PostContent {
 const posts: Posts = {
   'day-30-practical-ai-agent': {
     title: 'Day 30: Using AI Agents in Your Everyday Work - Practical Guide',
-    date: 'May 15, 2026',
+    date: 'May 14, 2026',
     readTime: '12 min read',
     content: `# Day 30: Using AI Agents in Your Everyday Work - Practical Guide
 
@@ -120,179 +120,6 @@ Agent:
 ```
 
 **Time saved**: 3-4 hours research → 15 minutes review
-
----
-
-### 2. Meeting and Schedule Coordinator
-
-**Problem**: Scheduling is chaos. Back-and-forth emails, time zones, conflicting calendars.
-
-**AI Agent Solution**:
-- Reads everyone's availability automatically
-- Finds optimal meeting times
-- Sends invitations with agenda
-- Creates calendar entries
-- Sends reminders and follow-ups
-
-**Example**:
-```
-You: "Schedule team meeting next week"
-
-Agent:
-1. Checks your calendar
-2. Requests availability from 5 team members
-3. Finds 3 compatible slots
-4. Creates meeting with agenda draft
-5. Sends calendar invites
-6. Books conference room/zoom link
-7. Sends reminder 1 hour before
-```
-
-**Time saved**: Scheduling (30 min) → Agent does it instantly
-
----
-
-### 3. Content Curator and Summarizer
-
-**Problem**: Want to stay informed but hours of content daily. Too much reading, low signal-to-noise.
-
-**AI Agent Solution**:
-- Monitors your interests
-- Filters out low-quality content
-- Summarizes important updates
-- Groups related stories
-- Alerts to breaking news in areas you care about
-
-**Example daily digest**:
-```
-Good morning! 3 stories that matter:
-
-1. New research on [your interest] - 5 min summary
-2. Local event this weekend - details + registration link  
-3. Your favorite author's new chapter
-
-Skipped: 12 newsletters with similar content (marked 'read later')
-
-Top insight from your industry: AI usage up 200% this quarter.
-```
-
-**Time saved**: 1 hour/day → 15 minutes curated content
-
----
-
-### 4. Health and Wellness Companion
-
-**Problem**: Hard to maintain healthy habits. Track multiple apps, inconsistent data, no personalized insights.
-
-**AI Agent Solution**:
-- Integrates health data from multiple sources
-- Identifies patterns in your behavior
-- Provides personalized nudges
-- Creates summaries and reports
-- Recommends improvements based on your data
-
-**Example**:
-```
-You: "How's my health looking this week?"
-
-Agent:
-- Analyzes your sleep data from Apple Watch
-- Reviews workout history from your fitness app
-- Checks your meal tracker
-- Synthesizes: "This week you exercised 4x (up from 2x last week!), but sleep dropped to avg 6.5hrs. On days you meditate, you sleep better. Recommend morning routine."
-
-→ Creates weekly summary PDF
-→ Suggests specific improvements
-→ Sets nudges for tomorrow
-```
-
-**Benefit**: Health insights without tracking burden
-
----
-
-### 5. Learning and Skill Development Partner
-
-**Problem**: Want to learn new skills but don't know where to start. Too much information online.
-
-**AI Agent Solution**:
-- Assesses your current knowledge
-- Creates personalized learning path
-- Finds best resources (free and paid)
-- Breaks complex topics into manageable steps
-- Q&A as you learn
-- Tracks your progress
-- Adjusts pace based on your performance
-
-**Example: Learning Spanish**
-```
-Agent: "Assessing your Spanish level..."
-→ Simple conversation test
-→ Results: A2 (elementary)
-
-Agent: "Goal: B1 (conversational) by year-end. Here's your plan:\n\nWeek 1-4: Vocabulary + Basic grammar\nWeek 5-8: Conversation practice\nWeek 9-12: Real-world scenarios\n\nResources:\n- Duolingo: 15 min daily\n- Podcast: Coffee Break Spanish (listen commute)\n- Tutor: 1x week conversation\n\nProgress: 24% complete. On track!"
-```
-
-**Benefit**: Guided learning without overwhelm
-
----
-
-### 6. Family Logistics Manager
-
-**Problem**: Family chaos. School schedules, activities, appointments, shopping lists—all in different places.
-
-**AI Agent Solution**:
-- Centralizes all family events
-- Coordinates schedules across family members
-- Automated reminders to everyone
-- Tracks assignments and deadlines
-- Manages shared shopping lists
-- Remembers everyone's preferences
-
-**Example**:
-```
-Agent: "Alert: Emma's soccer practice conflicts with your 3pm meeting Tuesday next week."
-
-Suggests: "Practice is 4:30pm. You could:
-1. Adjust your meeting to 2:30pm
-2. Arrange carpool with another parent
-3. Reschedule practice
-
-Which would you prefer?"
-
-→ Creates carpool schedule
-→ Sends reminders to other parents  
-→ Tracked equipment needs
-→ Upcoming game schedule
-```
-
-**Benefit**: Family logistics handled automatically
-
----
-
-### 7. Shopping and Purchase Manager
-
-**Problem**: Constant marketing, hard to track deals, forgotten subscriptions.
-
-**AI Agent Solution**:
-- Monitors products you care about for price drops
-- Alerts when subscription prices increase
-- Compares prices across retailers
-- Auto-applies coupon codes
-- Manages returns and warranties
-
-**Example interaction**:
-```
-Agent: "Hey, the monitor you were tracking dropped from $400 to $280. Want me to alert you when it hits $250 or buy now?"
-
-You: "Alert at $280"
-
-Agent: "✅ Set monitoring. I'll ping you when it drops below $280."
-
-3 days later:
-Agent: "Monitor is $280 now! Deal from Amazon, 15% off with code SAVE15. Want me to purchase?"
-```
-
-**Benefit**: Never miss deals, never overpay
 
 ---
 
@@ -419,40 +246,7 @@ Define what your agent **can** and **cannot** do:
 
 ---
 
-### Review What Your Agent Does
-
-**Weekly check-in**, ask:
-1. What did my agent do this week?
-2. What data did it access?
-3. Are there any actions I don't want it to repeat?
-
-**Many platforms** have an "activity log" showing all agent actions. Check it!
-
----
-
-## Cost Considerations
-
-### Free Tiers Usually Sufficient
-
-Many AI agent tools have **free tiers** that work for personal use:
-
-- **Notion AI**: Some free usage included
-- **Zapier**: 100 tasks/month free
-- **IFTTT**: Basic applets free
-- Calendar apps: Built-in AI features often included
-
-### When to Go Premium
-
-**Consider upgrading to paid versions when**:
-- You exceed free limits regularly
-- You need advanced features (multiple workflows, more automation)
-- You're saving significant time consistently (ROI positive)
-
-**Rule of thumb**: If the agent saves **1+ hour/week** of your time, $10-20/month is usually worth it.
-
----
-
-## Common Pitfalls to Avoid
+### Common Pitfalls to Avoid
 
 ### ❌ Over-automation
 
@@ -476,184 +270,22 @@ Many AI agent tools have **free tiers** that work for personal use:
 
 ---
 
-### ❌ No monitoring
+## Conclusion
 
-**Problem**: Agent is running but you don't know if it's working well.
+You now have a **practical framework** for getting started with AI agents without any technical background.
 
-**Result**: Errors compound, trust degrades.
+**Start small today**:
+1. Pick one repetitive task
+2. Choose a simple no-code platform
+3. Set clear boundaries
+4. Review and iterate weekly
 
-**Fix**: Check in weekly. Review what happened. Adjust as needed.
+**Next**: In [Day 31](/posts/day-31-advanced-agent-patterns), we'll explore **advanced multi-agent architectures** and how teams of AI agents can collaborate to solve complex problems.
 
----
-
-### ❌ Security blind spots
-
-**Problem**: Giving excessive access "just for convenience".
-
-**Result**: Potential data exposure.
-
-**Fix**: Always use least-privilege principle. Review permissions periodically.
-
----
-
-## Tool Recommendations
-
-### For Beginners (No Technical Skills)
-
-1. **Zapier** - Connect apps and automate workflows
-2. **Notion AI** - Content creation, organization assistant
-3. **Otter.ai** - Meeting transcription and summarization
-4. **Grammarly** - Writing enhancement and AI assistant features
-
-### For Intermediate Users
-
-1. **Make (Integromat)** - More complex automations than Zapier
-2. **Coda** - Docs with embedded automation
-3. **Recurse** - Scheduling and calendar automation
-4. **Airtable + Butler** - Database automation with AI
-
-### For Developers
-
-1. **LangChain** - Build custom LLM applications
-2. **LlamaIndex** - Data frameworks for LLMs
-3. **AutoGen** - Multi-agent conversation frameworks
-4. **CrewAI** - Role-based agent automation
-
----
-
-## Success Stories
-
-### Sarah, Marketing Professional
-
-**Before**: Spent 2-3 hours daily on content research and scheduling across social platforms.
-
-**Agent Solution**: Used Notion AI + social media agent to draft posts, research topics, and schedule across platforms.
-
-**Time saved**: **12 hours/week**
-
-**Result**: "I now spend just 30 minutes/week reviewing and adjusting posts. I reclaimed 12 hours for client meetings and creative work."
-
----
-
-### David, Graduate Student
-
-**Before**: Research was overwhelming. Too many papers, articles, and notes to keep organized.
-
-**Agent Solution**: Notion AI + research assistant to summarize papers, organize sources, create citations automatically.
-
-**Time saved**: **8 hours/week**
-
-**Result**: "My research process went from chaotic to systematic. I finished my thesis 2 months early."
-
----
-
-### Maria, Small Business Owner
-
-**Before**: Customer inquiries were taking all day. No time for actual product development.
-
-**Agent Solution**: Customer service assistant that handles common questions, books appointments, collects lead information.
-
-**Time saved**: **20 hours/week**
-
-**Result**: "I can focus on building the business instead of answering the same questions endlessly. Revenue grew 25% in 3 months."
-
----
-
-## Getting Your First AI Agent Setup
-
-### Day 1: Pick and Try
-
-1. Choose ONE tool from recommendations above
-2. Sign up for free tier
-3. Set up ONE simple automation (e.g., "collect contact form submissions to spreadsheet")
-4. Test it with a small scenario
-
-### Week 1: Validate It Works
-
-1. Use the automation in real scenarios
-2. Check that everything runs smoothly
-3. Note what's working and what's not
-4. Make small adjustments
-
-### Week 2: Refine and Expand
-
-1. Add ONE more task to automate
-2. Fine-tune the automation based on Week 1 experience
-3. Set up a weekly review habit
-
-### Month 1: Review ROI
-
-1. Track time saved vs. effort spent
-2. Evaluate: Is this still worth it?
-3. Consider: Should I add premium features?
-4. Plan: What else could benefit from automation?
-
----
-
-## Key Takeaways
-
-1. **AI agents are practical now** - You don't need to be a developer to benefit
-2. **Start small** - Pick ONE repetitive task and automate it
-3. **No-code works** - Many powerful tools require no programming
-4. **Set boundaries** - Don't give unlimited access
-5. **Monitor regularly** - Weekly review keeps things running smoothly
-6. **Measure ROI** - If it saves you 1 hour/week, it's worth it
-7. **Iterate** - Your agent improves as you refine it
-
-**The future is now**: AI agents that **handle the busywork** so you can focus on what matters.
-
----
-
-## That's a Wrap! 
-
-We've covered:
-- What AI agents are (and aren't)
-- 7 practical use cases for everyday life
-- How to get started quickly
-- Safety and privacy best practices
-- Tools to use right now
-
-**Thanks for following along** on this journey through AI agents. What would you like to read about next? The comment section on the blog is open for your feedback and suggestions for future topics.
-
-**Until next time**, start small, iterate fast, and let AI agents handle the busywork!
-`,
+**Previous**: [Day 29: Evaluating AI Agents](/posts/day-29-evaluating-ai-agents)
+`
   },
-};
-
-export default function PostsPage() {
-  const slug: PostSlug = 'day-30-practical-ai-agent';
-  const postContent = posts[slug];
-
-  const { prev, next } = getAdjacentPostSlugs(slug);
-
-  const resolvedPostContent = postContent ?? {
-    title: 'Post not published',
-    date: 'Unpublished',
-    readTime: '0 min read',
-    content: '# Post not published\n\nThis route exists, but no grounded post content is available for this slug.',
-  };
-
-  return (
-    <main className="flex justify-center w-full max-w-3xl p-4 pt-8">
-      <div className="w-full bg-white rounded shadow px-6 pb-8">
-        <header className="mb-4 flex justify-between items-center">
-          <h1 className="text-2xl font-bold">{resolvedPostContent.title}</h1>
-          <div className="text-sm text-gray-600">{resolvedPostContent.date}</div>
-        </header>
-        <PostBody content={resolvedPostContent.content} />
-        <div className="mt-12 flex justify-center gap-4">
-          {prev && (
-            <Link href={`/posts/${prev}`} className="text-blue-600 hover:underline">
-              ← Previous Post
-            </Link>
-          )}
-          {next && (
-            <Link href={`/posts/${next}`} className="text-blue-600 hover:underline">
-              Next Post →
-            </Link>
-          )}
-        </div>
-      </div>
-    </main>
-  );
 }
+
+export default posts;
+`;

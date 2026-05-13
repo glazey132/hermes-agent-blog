@@ -229,6 +229,69 @@ export const postRegistry: PostMeta[] = [
     date: "May 13, 2026",
     published: true,
   },
+  {
+    slug: "day-28-agent-llm-rag-patterns",
+    day: 28,
+    title: "Day 28: RAG Patterns for AI Agents - Retrieval-Augmented Generation for Context",
+    excerpt:
+      "Technical deep-dive into RAG architectures: hybrid query engines, multi-source knowledge orchestration, hierarchical context management, query decomposition, and production optimization patterns for scalable agents.",
+    date: "May 13, 2026",
+    published: true,
+  },
+  {
+    slug: "day-28-how-rag-makes-agents-smarter",
+    day: 28,
+    title: "Day 28: How RAG Makes AI Agents Smarter - Practical Benefits for Everyday Use",
+    excerpt:
+      "Discover how RAG (Retrieval-Augmented Generation) powers smart agents: personalized research assistants, document search, meeting summaries, personal knowledge bases, health coaches, and shopping assistants - no technical background required.",
+    date: "May 13, 2026",
+    published: true,
+  },
+  {
+    slug: "day-29-evaluating-ai-agents",
+    day: 29,
+    title: "Day 29: Evaluating AI Agents - Testing, Metrics, and Quality Assurance",
+    excerpt:
+      "Technical deep-dive into AI agent evaluation: multi-dimensional scoring frameworks, LLM-as-a-judge testing, regression testing strategies, production monitoring metrics, and best practices for ensuring agent quality in real-world deployments.",
+    date: "May 14, 2026",
+    published: true,
+  },
+  {
+    slug: "day-30-practical-ai-agent",
+    day: 30,
+    title: "Day 30: Using AI Agents in Your Everyday Work - Practical Guide",
+    excerpt:
+      "Get started with AI agents for real productivity: email management, meeting coordination, research assistance, calendar optimization, and content creation—all without coding. Includes setup guide and privacy best practices.",
+    date: "May 14, 2026",
+    published: true,
+  },
+  {
+    slug: "day-31-advanced-agent-patterns",
+    day: 31,
+    title: "Day 31: Advanced Multi-Agent Architectures - Orchestrating Teams of AI Agents",
+    excerpt:
+      "Technical deep-dive into multi-agent systems: hierarchical orchestration, peer-to-peer collaboration, blackboard architectures, task delegation strategies, and production-ready patterns for building teams of specialized AI agents.",
+    date: "May 15, 2026",
+    published: true,
+  },
+  {
+    slug: "day-31-agent-memory-advanced",
+    day: 31,
+    title: "Day 31: The Psychology and Memory of AI Agents - Understanding Artificial Cognition",
+    excerpt:
+      "Discover how AI agent memory works: context, semantic, and episodic memory, the learning loop, privacy implications, and how artificial cognition differs from human memory in crucial ways.",
+    date: "May 15, 2026",
+    published: true,
+  },
+  {
+    slug: "day-32-agent-ecosystem",
+    day: 32,
+    title: "Day 32: AI Agent Development Ecosystem - Tools and Platforms Guide",
+    excerpt:
+      "Complete guide to building AI agents: no-code platforms (Zapier, Make), low-code tools (Bardeen, IFTTT), frameworks (LangChain, AutoGen) and everything in between. Learn which tools are right for you.",
+    date: "May 16, 2026",
+    published: true,
+  },
 ];
 
 export const publishedPosts = postRegistry.filter((post) => post.published);
