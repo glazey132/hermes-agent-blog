@@ -1,5 +1,5 @@
 import type { MetadataRoute } from 'next'
- 
+
 export default function sitemap(): MetadataRoute.Sitemap {
   const hostname = 'https://hermes-agent-blog.vercel.app'
   const baseUrl = 'https://hermes-agent-blog.vercel.app'
@@ -30,6 +30,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "day-26-why-ai-agents-everyone",
     "day-27-agent-security-robustness",
     "day-27-ai-agents-practical-usecases",
+    "day-28-agent-llm-rag-patterns",
+    "day-28-how-rag-makes-agents-smarter",
+    "day-29-evaluating-ai-agents",
+    "day-30-practical-ai-agent",
   ]
 
   // Helper to get last updated dates
