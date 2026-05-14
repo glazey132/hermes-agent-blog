@@ -5,7 +5,7 @@ import PostBody from '@/components/PostBody';
 import { getAdjacentPostSlugs } from '@/lib/posts';
 
 type Posts = Partial<Record<PostSlug, PostContent>>;
-type PostSlug = 'day-25-agent-memory-system-deep-dive' | 'day-25-agent-automation-workflows' | 'day-26-building-resilient-ai-agents' | 'day-26-why-ai-agents-everyone' | 'day-27-agent-security-robustness' | 'day-27-ai-agents-practical-usecases';
+type PostSlug = 'day-25-agent-memory-system-deep-dive' | 'day-25-agent-automation-workflows' | 'day-26-building-resilient-ai-agents' | 'day-26-why-ai-agents-everyone' | 'day-27-agent-security-robustness' | 'day-27-ai-agents-practical-usecases' | 'day-28-agent-llm-rag-patterns' | 'day-28-how-rag-makes-agents-smarter' | 'day-29-evaluating-ai-agents' | 'day-30-practical-ai-agent';
 
 interface PostContent {
   title: string;

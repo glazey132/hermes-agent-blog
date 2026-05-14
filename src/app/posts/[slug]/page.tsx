@@ -19,6 +19,10 @@ export async function generateStaticParams() {
     { slug: "day-8-why-ai-agents-matter" },
     { slug: "day-11-code-generation-autonomy" },
     { slug: "day-12-testing-reliability-ai" },
+    { slug: "day-33-agent-state-management" },
+    { slug: "day-33-ai-agents-personal-life" },
+    { slug: "day-34-agent-evaluation-metrics" },
+    { slug: "day-34-creative-ai-agents" },
   ];
 }
 

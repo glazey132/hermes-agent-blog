@@ -5,7 +5,7 @@ import PostBody from '@/components/PostBody';
 import { getAdjacentPostSlugs } from '@/lib/posts';
 
 type Posts = Partial<Record<PostSlug, PostContent>>;
-type PostSlug = 'day-27-agent-security-robustness' | 'day-27-ai-agents-practical-usecases' | 'day-28-agent-llm-rag-patterns' | 'day-28-how-rag-makes-agents-smarter' | 'day-29-evaluating-ai-agents' | 'day-30-practical-ai-agent' | 'day-31-advanced-agent-patterns' | 'day-31-agent-memory-advanced';
+type PostSlug = 'day-27-agent-security-robustness' | 'day-27-ai-agents-practical-usecases' | 'day-28-agent-llm-rag-patterns' | 'day-28-how-rag-makes-agents-smarter' | 'day-29-evaluating-ai-agents' | 'day-30-practical-ai-agent' | 'day-31-advanced-agent-patterns' | 'day-31-agent-memory-advanced' | 'day-32-agent-ecosystem' | 'day-33-agent-state-management' | 'day-33-ai-agents-personal-life';
 
 interface PostContent {
   title: string;
@@ -1706,12 +1706,11 @@ The key insight: **Start where you are and grow from there**. You don't need to 
 - Deployment and cost strategies
 - Learning resources and next steps
 
-**In our next posts** we'll dive into **security considerations** for AI agents in production systems.
+**In our next posts** we'll dive into **state management for AI agents** and **practical AI agent applications in personal life**.
 
 **Previous**: [Day 31: The Psychology and Memory of AI Agents](/posts/day-31-agent-memory-advanced)
 
-**Continue to**: [Day 33: AI Agent Security - Protecting Yourself and Your Data](/posts/day-33-agent-security-fundamentals)
-`
+**Continue to**: [Day 33: Agent State Management - Building Robust Systems](/posts/day-33-agent-state-management)
   },
 }
 

@@ -292,6 +292,42 @@ export const postRegistry: PostMeta[] = [
     date: "May 16, 2026",
     published: true,
   },
+  {
+    slug: "day-33-agent-state-management",
+    day: 33,
+    title: "Day 33: Agent State Management - Building Robust Multi-State Systems",
+    excerpt:
+      "Technical deep-dive into state machines, checkpointing, recovery strategies, and production-ready state management for AI agents handling complex workflows.",
+    date: "May 16, 2026",
+    published: true,
+  },
+  {
+    slug: "day-33-ai-agents-personal-life",
+    day: 33,
+    title: "Day 33: AI Agents in Your Personal Life - Practical Use Cases for Everyone",
+    excerpt:
+      "Discover how AI agents can help you manage your personal life: email management, meeting coordination, budget tracking, meal planning, and more - no coding required.",
+    date: "May 16, 2026",
+    published: true,
+  },
+  {
+    slug: "day-34-agent-evaluation-metrics",
+    day: 34,
+    title: "Day 34: Evaluating AI Agents - Metrics That Actually Matter for Production Systems",
+    excerpt:
+      "Technical deep-dive into agent evaluation frameworks: multi-dimensional scoring, LLM-as-judge testing, performance baselines, and monitoring for reliable AI agents.",
+    date: "May 17, 2026",
+    published: true,
+  },
+  {
+    slug: "day-34-creative-ai-agents",
+    day: 34,
+    title: "Day 34: Creative AI Agents - Unlocking Human Creativity with Technology",
+    excerpt:
+      "Discover how AI agents enhance human creativity: writing assistants, design tools, content creation support, and creative collaboration partners for creators.",
+    date: "May 17, 2026",
+    published: true,
+  },
 ];
 
 export const publishedPosts = postRegistry.filter((post) => post.published);
