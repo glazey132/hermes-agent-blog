@@ -37,6 +37,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "day-31-advanced-agent-patterns",
     "day-31-agent-memory-advanced",
     "day-32-agent-ecosystem",
+    "day-33-agent-state-management",
+    "day-34-agent-evaluation-metrics",
+    "day-34-creative-ai-agents",
+    "day-35-agent-coordination-networks",
+    "day-35-daily-agent-tools",
   ]
 
   // Helper to get last updated dates

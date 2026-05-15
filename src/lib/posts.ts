@@ -328,6 +328,24 @@ export const postRegistry: PostMeta[] = [
     date: "May 17, 2026",
     published: true,
   },
+  {
+    slug: "day-35-agent-coordination-networks",
+    day: 35,
+    title: "Day 35: Orchestrating Teams of AI Agents - Multi-Agent Coordination Patterns",
+    excerpt:
+      "Technical deep-dive into multi-agent orchestration: hierarchical, peer-to-peer, and blackboard architectures for coordinating teams of AI agents at scale.",
+    date: "May 17, 2026",
+    published: true,
+  },
+  {
+    slug: "day-35-daily-agent-tools",
+    day: 35,
+    title: "Day 35: AI Agents for Daily Life - Practical Tools for Modern Challenges",
+    excerpt:
+      "Practical guide to AI agents in everyday life: email management, budgeting, productivity tools, fitness tracking, and creative support - all without coding required.",
+    date: "May 17, 2026",
+    published: true,
+  },
 ];
 
 export const publishedPosts = postRegistry.filter((post) => post.published);
