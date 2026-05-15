@@ -346,6 +346,24 @@ export const postRegistry: PostMeta[] = [
     date: "May 17, 2026",
     published: true,
   },
+  {
+    slug: "day-36-agent-collaboration-patterns",
+    day: 36,
+    title: "Day 36: Agent Collaboration Patterns - Emergent Intelligence and Group Behavior",
+    excerpt:
+      "Technical deep-dive into emergent behavior in multi-agent systems: swarm intelligence, consensus mechanisms, distributed decision making, and self-organizing agent networks that produce results greater than the sum of their parts.",
+    date: "May 18, 2026",
+    published: true,
+  },
+  {
+    slug: "day-36-ai-agents-learning-education",
+    day: 36,
+    title: "Day 36: AI Agents for Learning and Education - Your Personal Tutor, Anytime",
+    excerpt:
+      "How AI agents transform personalized learning: adaptive explanations, unlimited practice problems, 24/7 study companions, subject-specific support, and learning pathways that adapt to your pace and style - no coding required.",
+    date: "May 18, 2026",
+    published: true,
+  },
 ];
 
 export const publishedPosts = postRegistry.filter((post) => post.published);

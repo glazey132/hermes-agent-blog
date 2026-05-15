@@ -42,6 +42,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "day-34-creative-ai-agents",
     "day-35-agent-coordination-networks",
     "day-35-daily-agent-tools",
+    "day-36-agent-collaboration-patterns",
+    "day-36-ai-agents-learning-education",
   ]
 
   // Helper to get last updated dates
