@@ -11,7 +11,9 @@ type PostSlug =
   | 'day-34-agent-evaluation-metrics' 
   | 'day-34-creative-ai-agents' 
   | 'day-35-agent-coordination-networks'
-  | 'day-35-daily-agent-tools';
+  | 'day-35-daily-agent-tools'
+  | 'day-36-agent-collaboration-patterns'
+  | 'day-36-ai-agents-learning-education';
 
 interface PostContent {
   title: string;
@@ -60,7 +62,7 @@ const posts: Posts = {
   },
 };
 
-export type PostSlug = 'day-33-agent-state-management' | 'day-33-ai-agents-personal-life' | 'day-34-agent-evaluation-metrics' | 'day-34-creative-ai-agents' | 'day-35-agent-coordination-networks' | 'day-35-daily-agent-tools';
+export type PostSlug = 'day-33-agent-state-management' | 'day-33-ai-agents-personal-life' | 'day-34-agent-evaluation-metrics' | 'day-34-creative-ai-agents' | 'day-35-agent-coordination-networks' | 'day-35-daily-agent-tools' | 'day-36-agent-collaboration-patterns' | 'day-36-ai-agents-learning-education';
 
 export function getAllPostSlugs(): PostSlug[] {
   return Object.keys(posts) as PostSlug[];
