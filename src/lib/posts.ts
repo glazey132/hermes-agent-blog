@@ -364,6 +364,39 @@ export const postRegistry: PostMeta[] = [
     date: "May 18, 2026",
     published: true,
   },
+  {
+    slug: "day-37-ai-agent-system-design",
+    day: 37,
+    title: "Day 37: AI Agent System Design - Building Production-Ready Autonomous Systems",
+    excerpt:
+      "Technical deep-dive into production AI agent architecture: system design principles, async processing, horizontal scaling, observability, security patterns, reliability patterns (graceful degradation, circuit breakers), testing strategies, deployment considerations, and best practices for building scalable, reliable AI agent systems in production.",
+    date: "May 19, 2026",
+    published: true,
+  },
+  {
+    slug: "day-37-how-ai-agents-will-change-work",
+    day: 37,
+    title: "Day 37: How AI Agents Will Change Work - Practical Impact for Professionals",
+    excerpt: "Discover how AI agents will practically change the workplace: task execution becomes management, role-specific transformations across engineering, product, design, data, marketing, and customer success, new work patterns (asynchronous, human-in-the-loop), the learning curve from adaptation to transformation, and career preparation strategies for the AI-augmented workplace.",
+    date: "May 19, 2026",
+    published: true,
+  },
+  {
+    slug: "day-38-agent-future-autonomous-systems",
+    day: 38,
+    title: "Day 38: The Future of Autonomous AI Systems - From Assistants to Partners",
+    excerpt: "Exploring the transition from AI assistants to autonomous AI collaborators: goal decomposition, multi-agent coordination, context-aware decision making, real-world scenarios, gradual implementation roadmap, and the evolving human-AI partnership model for the next generation of AI systems.",
+    date: "May 20, 2026",
+    published: true,
+  },
+  {
+    slug: "day-38-ai-agents-daily-life-smarter",
+    day: 38,
+    title: "Day 38: 10 Simple Ways AI Agents Make Your Daily Life Smarter — No Coding Required",
+    excerpt: "Discover 10 practical ways AI agents simplify everyday life without technical skills: smart email management, automatic meeting scheduling, research assistance, budget tracking, calendar organization, personalized learning, meal planning, health coaching, travel planning, and document organization - all accessible to non-technical users.",
+    date: "May 20, 2026",
+    published: true,
+  },
 ];
 
 export const publishedPosts = postRegistry.filter((post) => post.published);
