@@ -49,6 +49,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "day-37-how-ai-agents-will-change-work",
     "day-38-agent-future-autonomous-systems",
     "day-38-ai-agents-daily-life-smarter",
+    "day-39-agent-security-safe-production",
+    "day-39-ai-agents-family-life-organization",
   ]
 
   // Helper to get last updated dates
@@ -73,7 +75,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     // Homepage
     {
       url: baseUrl,
-      lastModified: new Date('2026-05-08'),
+      lastModified: new Date('2026-05-21'),
       changeFrequency: 'daily',
       priority: 1,
     },

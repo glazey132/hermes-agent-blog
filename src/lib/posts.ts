@@ -397,6 +397,22 @@ export const postRegistry: PostMeta[] = [
     date: "May 20, 2026",
     published: true,
   },
+  {
+    slug: "day-39-agent-security-safe-production",
+    day: 39,
+    title: "Day 39: Agent Security Deep Dive - Production-Ready Safety Patterns for Autonomous AI",
+    excerpt: "Technical deep-dive into security and safety for production AI agents: input sanitization, prompt injection detection, least privilege access control, sandboxed tool execution, circuit breakers, audit logging, checkpoint recovery, and comprehensive security frameworks for building trustworthy autonomous AI systems.",
+    date: "May 21, 2026",
+    published: true,
+  },
+  {
+    slug: "day-39-ai-agents-family-life-organization",
+    day: 39,
+    title: "Day 39: Organize Your Family Life with AI Agents - Simple Tools No One Talks About (But Should)",
+    excerpt: "Practical guide to using AI agents for family organization: calendar coordination, household inventory management, meal planning automation, school communication centralization, budget tracking, chore systems, birthday gift coordination, home maintenance scheduling, and medical tracking - all without spreadsheets or tech expertise.",
+    date: "May 21, 2026",
+    published: true,
+  },
 ];
 
 export const publishedPosts = postRegistry.filter((post) => post.published);
