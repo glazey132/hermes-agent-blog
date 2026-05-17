@@ -519,6 +519,40 @@ AI agents in creative work are about **collaboration, not replacement**. They're
   },
 };
 
-export default posts;
+export default function PostsPage() {
+  const slug: PostSlug = 'day-34-creative-ai-agents';
+  const postContent = posts[slug];
 
-`,
+  const { prev, next } = getAdjacentPostSlugs(slug);
+
+  const resolvedPostContent = postContent ?? {
+    title: 'Post not published',
+    date: 'Unpublished',
+    readTime: '0 min read',
+    content: '# Post not published\n\nThis route exists, but no grounded post content is available for this slug.',
+  };
+
+  return (
+    <main className="flex justify-center w-full max-w-3xl p-4 pt-8">
+      <div className="w-full bg-white rounded shadow px-6 pb-8">
+        <header className="mb-4 flex justify-between items-center">
+          <h1 className="text-2xl font-bold">{resolvedPostContent.title}</h1>
+          <div className="text-sm text-gray-600">{resolvedPostContent.date}</div>
+        </header>
+        <PostBody content={resolvedPostContent.content} />
+        <div className="mt-12 flex justify-center gap-4">
+          {prev && (
+            <Link href={`/posts/${prev}`} className="text-blue-600 hover:underline">
+              ← Previous Post
+            </Link>
+          )}
+          {next && (
+            <Link href={`/posts/${next}`} className="text-blue-600 hover:underline">
+              Next Post →
+            </Link>
+          )}
+        </div>
+      </div>
+    </main>
+  );
+}

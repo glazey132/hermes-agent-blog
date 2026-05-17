@@ -50,7 +50,7 @@ AI agents differ from traditional software in fundamental ways:
 
 Evaluate agents across **multiple dimensions** simultaneously:
 
-```typescript
+\`\`\`typescript
 interface AgentEvaluation {
   dimension: 'task-completion' | 'relevance' | 'safety' | 'speed' | 'cost';
   score: number;  // 0-100
@@ -66,7 +66,7 @@ interface EvaluationResult {
   breakdown: AgentEvaluation[];
   flaggedIssues: string[];
 }
-```
+\`\`\`
 
 **Key insight**: No single metric tells the whole story.
 
@@ -76,7 +76,7 @@ interface EvaluationResult {
 
 Create a **test suite** with known-good input/output pairs:
 
-```typescript
+\`\`\`typescript
 interface GoldenTest {
   id: string;
   description: string;
@@ -130,7 +130,7 @@ class GoldenTestRunner {
     return results;
   }
 }
-```
+\`\`\`
 
 **Best practice**: Update golden tests whenever you discover edge cases.
 
@@ -142,7 +142,7 @@ class GoldenTestRunner {
 
 **What it measures**: Did the agent successfully complete the intended task?
 
-```typescript
+\`\`\`typescript
 interface TaskCompletionMetric {
   totalTasks: number;
   completedTasks: number;
@@ -162,7 +162,7 @@ function calculateCompletion(taskHistory: TaskRecord[]): TaskCompletionMetric {
     failureReasons: groupBy(taskHistory.filter(t => t.status === 'failed'), 'failureReason')
   };
 }
-```
+\`\`\`
 
 **Target**: >90% for routine tasks, >80% for complex tasks.
 
@@ -174,7 +174,7 @@ function calculateCompletion(taskHistory: TaskRecord[]): TaskCompletionMetric {
 
 Use **multi-factor scoring**:
 
-```typescript
+\`\`\`typescript
 interface QualityDimensions {
   relevance: {
     score: number;
@@ -215,7 +215,7 @@ function evaluateQuality(
   
   return llmJudge(llmJudgePrompt);
 }
-```
+\`\`\`
 
 **Automation tip**: Run LLM judgment on sampled batches, not every request.
 
@@ -225,7 +225,7 @@ function evaluateQuality(
 
 **Critical for production**. Measures how well the agent avoids unsafe behavior:
 
-```typescript
+\`\`\`typescript
 interface SafetyMetrics {
   harmfulContentDetected: number;
   policyViolations: number;
@@ -256,7 +256,7 @@ class SafetyEvaluator {
     };
   }
 }
-```
+\`\`\`
 
 **Non-negotiable**: Zero tolerance for unsafe content in production.
 
@@ -266,7 +266,7 @@ class SafetyEvaluator {
 
 Look at **what types of tasks** succeed or fail:
 
-```typescript
+\`\`\`typescript
 class TaskPatternAnalyzer {
   async analyzeSuccessPatterns(taskHistory: TaskRecord[]): Promise<PatternInsights> {
     // Group by task type
@@ -291,7 +291,7 @@ class TaskPatternAnalyzer {
     };
   }
 }
-```
+\`\`\`
 
 **Insight**: If one tool consistently fails, either fix the tool or redesign the agent's workflow.
 
@@ -301,7 +301,7 @@ class TaskPatternAnalyzer {
 
 ### CI/CD Integration
 
-```yaml
+\`\`\`yaml
 # GitHub Actions workflow for automated agent testing
 # .github/workflows/agent-testing.yml
 
@@ -342,7 +342,7 @@ jobs:
         with:
           name: evaluation-results
           path: evaluation-report.json
-```
+\`\`\`
 
 **Key principle**: No deployment without passing evaluation suite.
 
@@ -352,7 +352,7 @@ jobs:
 
 ### Real-Time Metrics Dashboard
 
-```typescript
+\`\`\`typescript
 interface MonitoringConfig {
   alertThresholds: {
     errorRate: { target: number; max: number; };
@@ -385,7 +385,7 @@ class AgentMonitor {
     await this.auditLog.log(task);
   }
 }
-```
+\`\`\`
 
 ---
 
@@ -397,7 +397,7 @@ Automated tests are necessary but **not sufficient**. Include human review:
 
 **Every week**, manually review a sample of agent interactions:
 
-```typescript
+\`\`\`typescript
 interface HumanReviewConfig {
   sampleSize: number;
   reviewDimensions: string[];
@@ -416,13 +416,13 @@ const WEEKLY_REVIEW: HumanReviewConfig = {
     recommendChange: 'yes/no/maybe'
   }
 };
-```
+\`\`\`
 
 ### 2. User Feedback Integration
 
 Capture explicit user feedback:
 
-```typescript
+\`\`\`typescript
 interface UserFeedback {
   taskId: string;
   rating: 1 | 2 | 3 | 4 | 5;
@@ -443,7 +443,7 @@ async function processFeedback(feedback: UserFeedback): Promise<void> {
     });
   }
 }
-```
+\`\`\`
 
 ---
 
@@ -451,7 +451,7 @@ async function processFeedback(feedback: UserFeedback): Promise<void> {
 
 ### Evaluation → Learning → Improvement
 
-```typescript
+\`\`\`typescript
 class EvaluationToImprovement {
   async processEvaluationResults(
     evalResults: EvaluationResults,
@@ -478,7 +478,7 @@ class EvaluationToImprovement {
     });
   }
 }
-```
+\`\`\`
 
 ---
 
@@ -555,7 +555,7 @@ Every agent should have:
 **Next**: A consumer-facing post on practical AI agent use cases for everyday productivity.
 
 **Tomorrow**: We'll explore how non-technical users can leverage agents for personal productivity.
-`;
+`,
   },
 };
 

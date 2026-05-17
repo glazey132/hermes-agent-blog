@@ -2,19 +2,68 @@
 
 import Link from 'next/link';
 import PostBody from '@/components/PostBody';
+import { getAdjacentPostSlugs } from '@/lib/posts';
 
-type PostContent = {
+type Posts = Partial<Record<PostSlug, PostContent>>;
+type PostSlug = 'day-36-ai-agents-learning-education';
+
+interface PostContent {
   title: string;
   date: string;
   readTime: string;
   content: string;
-};
+}
 
-const post: PostContent = {
+const posts: Posts = {
+  'day-36-ai-agents-learning-education': {
   title: 'Day 36: AI Agents for Learning and Education - Your Personal Tutor, Anytime',
   date: 'May 18, 2026',
   readTime: '12 min read',
   content: '# Day 36: AI Agents for Learning and Education - Your Personal Tutor, Anytime\n\n**Last posts explored advanced multi-agent systems** — emergent behaviors, complex orchestration patterns, sophisticated collaboration. That was the deep technical stuff.\n\nToday: How AI agents **make learning better** for anyone at any skill level. No jargon, just practical benefits.\n\n---\n\n## The Learning Revolution\n\nAI agents aren\'t replacing teachers — they\'re **amplifying** education by providing:\n- **Personalized pacing**: Learn at your own speed\n- **24/7 availability**: Questions answered anytime\n- **Adaptive explanations**: Explanations adjust to your understanding\n- **Practice generation**: Unlimited practice problems tailored to you\n- **Progress tracking**: See your improvement over time\n\n---\n\n## Study Companion Features\n\n### Concept Explanation on Demand\n\n**Problem**: You\'re stuck on a concept. Professor\'s office hours don\'t work with your schedule. Classmate\'s explanation wasn\'t clear.\n\n**AI Agent Solution**:\n- Explains concepts in **multiple ways** (stories, analogies, examples)\n- Adapts to your **prior knowledge** (asks what you know first)\n- Checks **understanding** with quick questions\n- Provides **visual aids** and diagrams when helpful\n- Builds on what you **already understand**\n\n**Example**: Learning about photosynthesis\n- **Starts**: "What do you know about plants and sunlight?"\n- **Adapts**: "Let\'s compare it to a solar panel factory in your garden"\n- **Verifies**: "Can you explain this back to me in your own words?"\n\n---\n\n### Personal Practice Problems\n\n**Problem**: Same practice problems every time. Some feel too easy, others impossibly hard.\n\n**AI Agent Solution**:\n- Generates **custom practice problems** for your level\n- Adjusts **difficulty** based on your performance\n- Provides **hints** when you\'re stuck\n- Explains **wrong answers** to show where you went off track\n- **Spaced repetition**: Reviews concepts at optimal intervals\n\n**Result**: Stop wasting time on what you know. Focus on what you need.\n\n---\n\n## Subject-Specific Benefits\n\n### Math and Science\n\n**AI Agent Features**:\n- Step-by-step problem solving explanations\n- Visualizations of abstract concepts\n- Alternative strategies when your approach isn\'t working\n- Error detection and correction guidance\n- Practice problem generation with variations\n\n**Tools to try**:\n- **Photomath**: Solve problems by taking photos\n- **Wolfram Alpha**: Advanced math computation and explanations\n- **Brilliant**: Interactive math and science courses\n- **Khan Academy AI**: Personalized learning paths\n\n---\n\n### Language Learning\n\n**AI Agent Features**:\n- **Conversation practice**: Speak and get instant corrections\n- **Vocabulary building**: Tailored to your level and interests\n- **Grammar explanations**: Clear, contextualized rules\n- **Pronunciation help**: Compare your speech to native speakers\n- **Cultural context**: Learn the language as it\'s actually used\n\n**Tools to try**:\n- **Duolingo Max**: AI-powered conversation practice\n- **Babbel**: Personalized lessons and reviews\n- **Rosetta Stone**: Immersive language learning with AI\n- **HelloTalk**: Practice with native speakers (with AI assistance)\n\n---\n\n### Programming and Tech Skills\n\n**AI Agent Features**:\n- **Code review**: Explain your code and suggest improvements\n- **Bug fixing**: Help diagnose and fix errors in your programs\n- **Project ideas**: Suggest projects at your skill level\n- **Best practices**: Teach industry standards and patterns\n- **Learning pathways**: Guide your skill development\n\n**Tools to try**:\n- **GitHub Copilot**: Real-time coding assistance\n- **Replit AI**: AI development environment\n- **DeepCode**: Static code analysis\n- **Codecademy Pro**: Interactive learning with AI feedback\n\n---\n\n### Test Preparation\n\n**AI Agent Features**:\n- **Practice exams**: Full-length tests with explanations\n- **Weakness identification**: Highlights areas needing work\n- **Study plans**: Custom schedules based on available time\n- **Focus on weak points**: More practice where you struggle\n- **Exam tips**: Strategies and approaches\n\n**Tools to try**:\n- **Quizlet**: AI-powered study sets and flashcards\n- **Memrise**: Vocabulary and language test prep\n- **Khan Academy**: Free SAT and other test prep content\n- **Anki**: Spaced repetition flashcards with AI generation\n\n---\n\n## How AI Agents Adapt to You\n\n### Personalization Without Creepiness\n\n**The AI learns**:\n- Your **learning pace** (do you need more time or can you move fast?)\n- Your **preferred learning style** (visual, textual, example-based)\n- What **confuses you** (re-explains certain concepts differently)\n- Your **interests** (uses topics you care about as examples)\n- Your **current level** (challenges you appropriately)\n\n**The AI adapts**:\n- If you struggle with analogies → uses direct explanations\n- If you need motivation → provides encouragement and celebrates progress\n- If you prefer examples → shows more before diving into theory\n- If you grasp quickly → increases difficulty automatically\n\n**Privacy note**: All personalization happens locally or is encrypted. Your learning data is yours.\n\n---\n\n## Real Learning Transformations\n\n### Case 1: Sarah, College Student\n\n**Challenge**: Struggling with organic chemistry during finals week.\n\n**AI Agent Impact**:\n- Identified specific conceptual gaps (not just "I don\'t get it")\n- Created custom examples related to cooking (her hobby)\n- Provided 50+ practice problems with explanations\n- Scheduled review sessions at optimal times\n- Reduced study time by 40% while improving grades\n\n**Result**: Went from C- to A- in two months.\n\n---\n\n### Case 2: Marcus, Career Changer\n\n**Challenge**: Learning programming while working full-time.\n\n**AI Agent Impact**:\n- Generated learning projects aligned with his background\n- Explained concepts using his existing knowledge (project management)\n- Adapted to his irregular schedule (study sessions when he could)\n- Provided interview prep once core concepts mastered\n- Identified which jobs matched his new skills\n\n**Result**: Landed junior developer role in 5 months.\n\n---\n\n### Case 3: Elena, Retired Learner\n\n**Challenge**: Never learned math well in school, wanted to understand finances as spouse aged.\n\n**AI Agent Impact**:\n- Started from absolute basics (her confidence was low)\n- Used real-world examples from her life\n- Never made her feel rushed or judged\n- Built understanding incrementally\n- Connected concepts to her immediate needs (pension, investments)\n\n**Result**: Now confidently manages family finances and enjoys the mathematics of it.\n\n---\n\n## Effective Learning with AI Agents\n\n### Best Practices\n\n**1. Be Specific with Questions**\n- **Instead of**: "I don\'t get this"\n- **Try**: "I understand X and Y, but I\'m unclear about how Z connects"\n\n**2. Practice Active Recall**\n- Use AI to generate questions, not just answers\n- Test yourself before looking at explanations\n- Spaced repetition beats cramming\n\n**3. Mix Learning Methods**\n- Combine AI explanations with traditional resources\n- Take breaks and reflect on what you\'ve learned\n- Apply concepts immediately through practice\n\n**4. Build on Success**\n- Start with topics you already understand\n- Use successes as confidence boosters\n- Gradually expand into more challenging territory\n\n**5. Use the AI\'s Feedback**\n- Don\'t ignore when the AI says you\'re confused\n- Ask for alternative explanations when something doesn\'t stick\n- Request more practice when the AI detects a pattern\n\n---\n\n## Overcoming Learning Challenges\n\n### "I\'m Too Old to Learn"\n\n**Truth**: Neuroplasticity exists throughout life. AI agents just make it easier.\n\n**AI helps by**:\n- Starting where you are without condescension\n- Using your existing knowledge as foundation\n- Providing patience and repetition until concepts click\n- Building confidence through achievable milestones\n\n---\n\n### "I Don\'t Have Time to Study"\n\n**Truth**: AI agents optimize learning efficiency.\n\n**AI helps by**:\n- Focusing only on what you don\'t know yet\n- Learning in micro-sessions (10-20 minutes)\n- Suggesting optimal study times for your brain\n- Eliminating wasted practice on mastered concepts\n- Providing on-demand learning anywhere\n\n---\n\n### "This Is Too Hard"\n\n**Truth**: Learning difficulty is often about sequencing, not ability.\n\n**AI helps by**:\n- Breaking complex topics into digestible chunks\n- Providing multiple perspectives on hard concepts\n- Finding analogies from your life/experience\n- Slowing down and building foundation when you need it\n- Never making you feel stupid for struggling\n\n---\n\n## Getting Started Today\n\n### Simple First Steps\n\n1. **Identify one learning goal**: What do you want to understand better?\n2. **Pick an AI learning tool**: Chat with AI, or use dedicated apps above\n3. **Ask your first question**: "I want to learn [topic]. Where should I start?"\n4. **Be honest**: Share what you already know and what confuses you\n5. **Try for one week**: Give it consistent daily practice\n6. **Evaluate**: Is this helping? Is it better than your current approach?\n7. **Expand**: Add more topics or increase depth\n\n---\n\n### Privacy and Data\n\n**What to know**:\n- Your learning progress is sensitive data\n- Read privacy policies before sharing\n- Prefer tools that process data locally when possible\n- Ask how your data is used and who can see it\n- You can usually delete your data and start fresh\n\n**Bottom line**: You control your learning data.\n\n---\n\n**Related Posts**:\n- [Day 36: Agent Collaboration Patterns](/posts/day-36-agent-collaboration-patterns)\n- [Day 35: AI Agents for Daily Life](/posts/day-35-daily-agent-tools)\n- [Day 27: AI Agents for Personal Productivity](/posts/day-27-ai-agents-practical-usecases)\n- [Day 10: Getting Started with AI Agents](/posts/day-10-getting-started-ai-agents)\n',
+  },
 };
 
-export default post;
+export default function PostsPage() {
+  const slug: PostSlug = 'day-36-ai-agents-learning-education';
+  const postContent = posts[slug];
+
+  const { prev, next } = getAdjacentPostSlugs(slug);
+
+  const resolvedPostContent = postContent ?? {
+    title: 'Post not published',
+    date: 'Unpublished',
+    readTime: '0 min read',
+    content:
+      '# Post not published\n\nThis route exists, but no grounded post content is available for this slug.',
+  };
+
+  return (
+    <main className="flex justify-center w-full max-w-3xl p-4 pt-8">
+      <div className="w-full bg-white rounded shadow px-6 pb-8">
+        <header className="mb-4 flex justify-between items-center">
+          <h1 className="text-2xl font-bold">{resolvedPostContent.title}</h1>
+          <div className="text-sm text-gray-600">{resolvedPostContent.date}</div>
+        </header>
+        <PostBody content={resolvedPostContent.content} />
+        <div className="mt-12 flex justify-center gap-4">
+          {prev && (
+            <Link
+              href={`/posts/${prev}`}
+              className="text-blue-600 hover:underline"
+            >
+              ← Previous Post
+            </Link>
+          )}
+          {next && (
+            <Link
+              href={`/posts/${next}`}
+              className="text-blue-600 hover:underline"
+            >
+              Next Post →
+            </Link>
+          )}
+        </div>
+      </div>
+    </main>
+  );
+}

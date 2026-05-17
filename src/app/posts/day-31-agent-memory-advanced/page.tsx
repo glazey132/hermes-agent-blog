@@ -1,6 +1,8 @@
 'use client';
 
 import Link from 'next/link';
+import PostBody from '@/components/PostBody';
+import { getAdjacentPostSlugs } from '@/lib/posts';
 
 type Posts = Partial<Record<PostSlug, PostContent>>;
 type PostSlug = 'day-29-evaluating-ai-agents' | 'day-30-practical-ai-agent' | 'day-31-advanced-agent-patterns' | 'day-31-agent-memory-advanced' | 'day-32-agent-ecosystem';
@@ -61,9 +63,9 @@ When we talk about AI agents having "memory" or "learning", we're really talking
 
 ### The Learning Loop
 
-```
+\`\`\`
 New Information → Storage → Retrieval → Integration → Updated Behavior
-```
+\`\`\`
 
 This is **simplified but accurate**:
 
@@ -83,7 +85,7 @@ Agent updates its understanding of who you are and what you need
 Future behavior reflects what the agent has learned
 
 **Real example**:
-```
+\`\`\`
 Day 1: "What coffee shops are good for work?"
 → Agent: "Here are 5 quiet spots with WiFi..."
 
@@ -91,7 +93,7 @@ Day 30: "What can you recommend?"
 → Agent: "Based on your preference for quiet places, 
    Starbuzz on 5th Street has good outlets and minimal traffic 
    during the day."
-```
+\`\`\`
 
 The agent **learned** your preference and now **proactively** uses it.
 
@@ -141,10 +143,10 @@ Ask yourself:
 ### What Actually Happens
 
 **You see**: "The agent remembers I like Italian food"
-**Reality**: The agent stores this as `"user_preferences: { food: { Italian: high } }"`
+**Reality**: The agent stores this as structured preference data (for example: user_preferences → food → Italian ranked high).
 
 **You see**: "The agent learned I want to exercise more"
-**Reality**: Agent detected pattern: `conversation_topics: { exercise: { mentions: 5, days: 14 } }`
+**Reality**: Agent detected a pattern such as conversation_topics showing repeated exercise mentions over several days.
 
 ### The Magic is in Retrieval
 
@@ -199,10 +201,10 @@ The agent doesn't "remember" like humans. Instead:
 When AI agents remember **too much** or remember **wrong details**, it can feel unsettling.
 
 **Example**:
-```
+\`\`\`
 You: "I've been thinking about getting a new laptop"
 Agent: "Yes, last Tuesday you said you wanted to wait until after your bonus payout on February 15th"
-```
+\`\`\`
 
 If you **don't actually recall** saying this, it feels like the agent is claiming memories you don't have.
 
@@ -253,9 +255,44 @@ AI agent memory is **powerful but different** from human memory. It:
 **Next**: In [Day 32](/posts/day-32-agent-ecosystem), we'll explore the **tools and platforms** that make building AI agents easier than ever, from no-code solutions to advanced frameworks.
 
 **Previous**: [Day 31: Advanced Multi-Agent Architectures](/posts/day-31-advanced-agent-patterns)
-`
+`,
   },
-}
+};
 
-export default posts;
-`;
+export default function PostsPage() {
+  const slug: PostSlug = 'day-31-agent-memory-advanced';
+  const postContent = posts[slug];
+
+  const { prev, next } = getAdjacentPostSlugs(slug);
+
+  const resolvedPostContent = postContent ?? {
+    title: 'Post not published',
+    date: 'Unpublished',
+    readTime: '0 min read',
+    content: '# Post not published\n\nThis route exists, but no grounded post content is available for this slug.',
+  };
+
+  return (
+    <main className="flex justify-center w-full max-w-3xl p-4 pt-8">
+      <div className="w-full bg-white rounded shadow px-6 pb-8">
+        <header className="mb-4 flex justify-between items-center">
+          <h1 className="text-2xl font-bold">{resolvedPostContent.title}</h1>
+          <div className="text-sm text-gray-600">{resolvedPostContent.date}</div>
+        </header>
+        <PostBody content={resolvedPostContent.content} />
+        <div className="mt-12 flex justify-center gap-4">
+          {prev && (
+            <Link href={`/posts/${prev}`} className="text-blue-600 hover:underline">
+              ← Previous Post
+            </Link>
+          )}
+          {next && (
+            <Link href={`/posts/${next}`} className="text-blue-600 hover:underline">
+              Next Post →
+            </Link>
+          )}
+        </div>
+      </div>
+    </main>
+  );
+}

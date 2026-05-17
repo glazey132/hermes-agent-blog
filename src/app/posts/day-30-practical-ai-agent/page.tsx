@@ -105,7 +105,7 @@ We're at an inflection point where AI agents are finally **practical for everyda
 - Delivers actionable recommendations
 
 **Example workflow**:
-```
+\`\`\`
 You: "Research laptops under $1000 for video editing"
 
 Agent:
@@ -117,7 +117,7 @@ Agent:
    - Best performance: Dell XPS 13 - $999
 4. Summarizes: "For video editing, focus on GPU and RAM. All 3 options work, but MacBook has best battery life."
 5. Provides: Direct purchase links
-```
+\`\`\`
 
 **Time saved**: 3-4 hours research → 15 minutes review
 
@@ -183,7 +183,7 @@ Define what your agent **can** and **cannot** do:
 - ⏰ What time window (e.g., "only schedule during business hours")
 
 **Example boundaries**:
-```
+\`\`\`
 ✅ Agent can:
 - Draft emails for my review
 - Schedule meetings in my calendar
@@ -197,7 +197,7 @@ Define what your agent **can** and **cannot** do:
 - Delete any files
 - Share my data
 - Make purchases over $50 without approval
-```
+\`\`\`
 
 **Why**: Clear boundaries prevent mistakes and build trust.
 
@@ -283,9 +283,44 @@ You now have a **practical framework** for getting started with AI agents withou
 **Next**: In [Day 31](/posts/day-31-advanced-agent-patterns), we'll explore **advanced multi-agent architectures** and how teams of AI agents can collaborate to solve complex problems.
 
 **Previous**: [Day 29: Evaluating AI Agents](/posts/day-29-evaluating-ai-agents)
-`
+`,
   },
-}
+};
 
-export default posts;
-`;
+export default function PostsPage() {
+  const slug: PostSlug = 'day-30-practical-ai-agent';
+  const postContent = posts[slug];
+
+  const { prev, next } = getAdjacentPostSlugs(slug);
+
+  const resolvedPostContent = postContent ?? {
+    title: 'Post not published',
+    date: 'Unpublished',
+    readTime: '0 min read',
+    content: '# Post not published\n\nThis route exists, but no grounded post content is available for this slug.',
+  };
+
+  return (
+    <main className="flex justify-center w-full max-w-3xl p-4 pt-8">
+      <div className="w-full bg-white rounded shadow px-6 pb-8">
+        <header className="mb-4 flex justify-between items-center">
+          <h1 className="text-2xl font-bold">{resolvedPostContent.title}</h1>
+          <div className="text-sm text-gray-600">{resolvedPostContent.date}</div>
+        </header>
+        <PostBody content={resolvedPostContent.content} />
+        <div className="mt-12 flex justify-center gap-4">
+          {prev && (
+            <Link href={`/posts/${prev}`} className="text-blue-600 hover:underline">
+              ← Previous Post
+            </Link>
+          )}
+          {next && (
+            <Link href={`/posts/${next}`} className="text-blue-600 hover:underline">
+              Next Post →
+            </Link>
+          )}
+        </div>
+      </div>
+    </main>
+  );
+}

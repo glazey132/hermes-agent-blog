@@ -419,6 +419,13 @@ export const publishedPosts = postRegistry.filter((post) => post.published);
 
 export const chronologicalPublishedSlugs = publishedPosts.map((p) => p.slug);
 
+/** Slug string for post routes; registry is the source of truth. */
+export type PostSlug = string;
+
+export function getAllPostSlugs(): string[] {
+  return [...chronologicalPublishedSlugs];
+}
+
 const DEFAULT_HOME_PAGE_SIZE = 6;
 
 export type HomePostCard = {

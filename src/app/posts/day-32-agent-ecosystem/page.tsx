@@ -49,7 +49,7 @@ Single agents are powerful, but complex real-world problems often require **mult
 
 A **manager agent** delegates tasks to specialized worker agents:
 
-```typescript
+\`\`\`typescript
 interface ManagerAgent {
   role: 'orchestrator';
   capabilities: ['task-decomposition', 'state-tracking', 'conflict-resolution'];
@@ -79,10 +79,10 @@ interface WorkerAgent {
     // Execute specialized task within agent's domain
   }
 }
-```
+\`\`\`
 
 **Example Architecture**:
-```typescript
+\`\`\`typescript
 const researchTeam = {
   manager: ResearchManagerAgent,
   workers: [
@@ -92,7 +92,7 @@ const researchTeam = {
     new SynthesisAgent({ style: 'executive' }),
   ]
 };
-```
+\`\`\`
 
 **When to use**: Complex research tasks, multi-step workflows, projects requiring diverse expertise.
 
@@ -102,7 +102,7 @@ const researchTeam = {
 
 Agents communicate directly as **equals**, negotiating roles and collaborating on shared goals:
 
-```typescript
+\`\`\`typescript
 interface PeerAgent {
   role: 'peer';
   capabilities: string[];
@@ -122,10 +122,10 @@ interface PeerAgent {
     await this.shareInsights(results);
   }
 }
-```
+\`\`\`
 
 **Communication protocol**:
-```typescript
+\`\`\`typescript
 interface AgentCommunication {
   messageType: 'offer' | 'bid' | 'acknowledge' | 'feedback' | 'status';
   
@@ -141,7 +141,7 @@ interface AgentCommunication {
   fromAgent: string;
   timestamp: string;
 }
-```
+\`\`\`
 
 **Real-world example**: **Autonomous research project** where agents discover, verify, synthesize, and write collaboratively:
 - Agent A: Information gathering (web search, API calls)
@@ -157,7 +157,7 @@ interface AgentCommunication {
 
 All agents have access to a **shared workspace** where they deposit and retrieve information:
 
-```typescript
+\`\`\`typescript
 class Blackboard {
   private entries: Entry[] = [];
   private listeners: Set<AgentCallback> = new Set();
@@ -217,7 +217,7 @@ class BlackboardAgent {
     return blackboard.getFinalOutput();
   }
 }
-```
+\`\`\`
 
 **Benefits**:
 - Loose coupling between agents
@@ -235,7 +235,7 @@ class BlackboardAgent {
 
 Pre-defined mapping of task types to specific agents:
 
-```typescript
+\`\`\`typescript
 const TASK_ROUTING = {
   'research': 'research-agent',
   'calculation': 'math-agent',
@@ -248,12 +248,12 @@ class StaticRouter {
   routeTask(task: Task): Agent {
     const agentId = TASK_ROUTING[task.type];
     if (!agentId) {
-      throw new Error(`Unknown task type: ${task.type}`);
+      throw new Error(\`Unknown task type: \${task.type}\`);
     }
     return this.agentRegistry[agentId];
   }
 }
-```
+\`\`\`
 
 **Pros**: Simple, predictable, easy to debug
 **Cons**: Inflexible, may not scale to new task types
@@ -264,7 +264,7 @@ class StaticRouter {
 
 Dynamic routing based on agent capabilities and current load:
 
-```typescript
+\`\`\`typescript
 interface AgentProfile {
   agentId: string;
   capabilities: string[];
@@ -310,7 +310,7 @@ class DynamicRouter {
     return baseScore + loadPenalty + costBonus + speedBonus;
   }
 }
-```
+\`\`\`
 
 **Pros**: Flexible, optimizes for current conditions
 **Cons**: More complex, requires accurate profile information
@@ -321,7 +321,7 @@ class DynamicRouter {
 
 Distributed negotiation where agents bid on tasks:
 
-```typescript
+\`\`\`typescript
 interface ContractNet {
   manager: Agent;
   potentialContracts: Agent[];
@@ -373,7 +373,7 @@ class ContractNetSystem {
     return valueScore + costScore + timeScore;
   }
 }
-```
+\`\`\`
 
 **Pros**: Decentralized, flexible, adaptive
 **Cons**: Communication overhead, requires trust infrastructure
@@ -386,7 +386,7 @@ class ContractNetSystem {
 
 Multiple agents working on the same problem creates **state consistency challenges**:
 
-```typescript
+\`\`\`typescript
 interface SharedState {
   currentPhase: 'planning' | 'execution' | 'synthesis';
   completedTasks: Task[];
@@ -437,11 +437,11 @@ class StateManager {
     }
   }
 }
-```
+\`\`\`
 
 ### Conflict Detection and Resolution
 
-```typescript
+\`\`\`typescript
 interface Conflict {
   type: 'resource' | 'data' | 'state' | 'timing';
   agents: string[];
@@ -473,7 +473,7 @@ class ConflictResolver {
     return resolution;
   }
 }
-```
+\`\`\`
 
 ---
 
@@ -481,7 +481,7 @@ class ConflictResolver {
 
 ### Complete System Design
 
-```typescript
+\`\`\`typescript
 interface MultiAgentSystemConfig {
   orchestrationStrategy: 'hierarchical' | 'peer-to-peer' | 'blackboard';
   agentRegistry: Map<string, Agent>;
@@ -519,11 +519,11 @@ class MultiAgentSystem {
     return output;
   }
 }
-```
+\`\`\`
 
 ### Containerization Pattern
 
-```typescript
+\`\`\`typescript
 // docker-compose.yaml for multi-agent deployment
 services:
   orchestrator:
@@ -567,7 +567,7 @@ services:
       - "9090:9090"
     volumes:
       - ./prometheus.yml:/etc/prometheus/prometheus.yml
-```
+\`\`\`
 
 ---
 
@@ -575,7 +575,7 @@ services:
 
 ### Caching Strategies
 
-```typescript
+\`\`\`typescript
 class AgentCache {
   private cache: Map<string, CacheEntry> = new Map();
   
@@ -603,11 +603,11 @@ class AgentCache {
     return (Date.now() - entry.timestamp) > entry.ttl;
   }
 }
-```
+\`\`\`
 
 ### Parallel Execution Optimization
 
-```typescript
+\`\`\`typescript
 class ParallelExecutor {
   async executeWithDependencies(
     tasks: Task[],
@@ -643,7 +643,7 @@ class ParallelExecutor {
     return results;
   }
 }
-```
+\`\`\`
 
 ---
 
@@ -651,7 +651,7 @@ class ParallelExecutor {
 
 ### Integration Test Patterns
 
-```typescript
+\`\`\`typescript
 describe('MultiAgentSystem', () => {
   let system: MultiAgentSystem;
   let mockAgents: MockAgent[];
@@ -695,11 +695,11 @@ describe('MultiAgentSystem', () => {
     });
   });
 });
-```
+\`\`\`
 
 ### Simulation-Based Testing
 
-```typescript
+\`\`\`typescript
 class AgentSimulation {
   private state: SimulationState = {
     agents: [],
@@ -719,7 +719,7 @@ class AgentSimulation {
     return this.generateReport();
   }
 }
-```
+\`\`\`
 
 ---
 
@@ -746,7 +746,7 @@ Multi-agent systems are harder to debug. Implement:
 
 ### 4. Handle Failures Gracefully
 
-```typescript
+\`\`\`typescript
 interface FallbackStrategy {
   primary: Agent;
   fallbacks: Agent[];
@@ -768,7 +768,7 @@ interface FallbackStrategy {
     }
   }
 }
-```
+\`\`\`
 
 ### 5. Monitor Communication Patterns
 
@@ -865,9 +865,9 @@ When we talk about AI agents having "memory" or "learning", we're really talking
 
 ### The Learning Loop
 
-```
+\`\`\`
 New Information → Storage → Retrieval → Integration → Updated Behavior
-```
+\`\`\`
 
 This is **simplified but accurate**:
 
@@ -887,7 +887,7 @@ Agent updates its understanding of who you are and what you need
 Future behavior reflects what the agent has learned
 
 **Real example**:
-```
+\`\`\`
 Day 1: "What coffee shops are good for work?"
 → Agent: "Here are 5 quiet spots with WiFi..."
 
@@ -895,7 +895,7 @@ Day 30: "What can you recommend?"
 → Agent: "Based on your preference for quiet places, 
    Starbuzz on 5th Street has good outlets and minimal traffic 
    during the day."
-```
+\`\`\`
 
 The agent **learned** your preference and now **proactively** uses it.
 
@@ -933,10 +933,10 @@ Think of a **journal**:
 ### What Actually Happens
 
 **You see**: "The agent remembers I like Italian food"
-**Reality**: The agent stores this as `"user_preferences: { food: { Italian: high } }"`
+**Reality**: The agent stores this as structured preference data (for example: user_preferences → food → Italian ranked high).
 
 **You see**: "The agent learned I want to exercise more"
-**Reality**: Agent detected pattern: `conversation_topics: { exercise: { mentions: 5, days: 14 } }`
+**Reality**: Agent detected a pattern such as conversation_topics showing repeated exercise mentions over several days.
 
 ### The Magic is in Retrieval
 
@@ -1064,10 +1064,10 @@ Ask yourself:
 When AI agents remember **too much** or remember **wrong details**, it can feel unsettling.
 
 **Example**:
-```
+\`\`\`
 You: "I've been thinking about getting a new laptop"
 Agent: "Yes, last Tuesday you said you wanted to wait until after your bonus payout on February 15th"
-```
+\`\`\`
 
 If you **don't actually recall** saying this, it feels like the agent is claiming memories you don't have.
 
@@ -1216,12 +1216,12 @@ The AI agent ecosystem has exploded in 2026. Here's a **simple framework** to na
 - **Skill required**: Minimal (5 minutes to understand)
 
 **Example Agent**:
-```
+\`\`\`
 Trigger: New email from "boss" arrives
 Action 1: Summarize email using AI
 Action 2: Add to Google Calendar as "Review email"
 Action 3: Slack notification to team channel
-```
+\`\`\`
 
 ### **Make (formerly Integromat)**
 - **What**: Visual automation platform, more complex than Zapier
@@ -1293,7 +1293,7 @@ Action 3: Slack notification to team channel
 - **Best for**: Software engineers
 
 **Basic Setup**:
-```python
+\`\`\`python
 from langchain.agents import initialize_agent, Tool
 from langchain.llms import OpenAI
 
@@ -1311,7 +1311,7 @@ tools = [
 ]
 
 agent = initialize_agent(tools, llm, agent="zero-shot-react-description")
-```
+\`\`\`
 
 ### **LlamaIndex**
 - **What**: Data framework for LLMs, RAG-focused
@@ -1419,7 +1419,7 @@ agent = initialize_agent(tools, llm, agent="zero-shot-react-description")
 
 ### Decision Flowchart
 
-```
+\`\`\`
 Start → Do you know how to code?
 ├─ NO: No-code/low-code platforms
 │  ├─ Need very simple automation → Zapier or IFTTT
@@ -1432,7 +1432,7 @@ Start → Do you know how to code?
    ├─ Multi-agent system → AutoGen
    ├─ Team-based workflows → CrewAI
    └─ Search/retrieval → Haystack
-```
+\`\`\`
 
 ---
 
@@ -1482,12 +1482,12 @@ When you've outgrown no/low-code tools
 ### Development Environment
 
 **Local Setup**:
-```bash
+\`\`\`bash
 # For framework-based development
 nvm install lts/*
 pip install langchain llama-index crewai auto-gen
 docker pull n8n/n8n
-```
+\`\`\`
 
 **Cloud Options**:
 - **Render** or **Railway**: Easy container deployments
@@ -1534,7 +1534,7 @@ docker pull n8n/n8n
 
 Best for: Event-driven agents, scheduled tasks
 
-```yaml
+\`\`\`yaml
 # Vercel Deployment
 vercel.json: {
   "functions": {
@@ -1543,7 +1543,7 @@ vercel.json: {
     }
   }
 }
-```
+\`\`\`
 
 **Pros**: Auto-scaling, pay-per-use
 **Cons**: Cold starts, limited execution time
@@ -1552,11 +1552,11 @@ vercel.json: {
 
 Best for: Always-on agents, heavy computation
 
-```bash
+\`\`\`bash
 # Docker deployment
 docker build -t hermes-agent .
 docker run -p 8080:8080 hermes-agent
-```
+\`\`\`
 
 **Pros**: Full control, consistent behavior
 **Cons**: Manual scaling, resource management
@@ -1565,12 +1565,12 @@ docker run -p 8080:8080 hermes-agent
 
 Best for: High-traffic, complex systems
 
-```bash
+\`\`\`bash
 # Kubernetes setup
 kubectl apply -f agent-deployment.yaml
 kubectl apply -f agent-service.yaml
 kubectl autoscale deployment agent --min=3 --max=10
-```
+\`\`\`
 
 **Pros**: Auto-scaling, high availability
 **Cons**: High complexity
@@ -1711,8 +1711,44 @@ The key insight: **Start where you are and grow from there**. You don't need to 
 **Previous**: [Day 31: The Psychology and Memory of AI Agents](/posts/day-31-agent-memory-advanced)
 
 **Continue to**: [Day 33: Agent State Management - Building Robust Systems](/posts/day-33-agent-state-management)
+`,
   },
-}
+};
 
-export default posts;
-`;
+export default function PostsPage() {
+  const slug: PostSlug = 'day-32-agent-ecosystem';
+  const postContent = posts[slug];
+
+  const { prev, next } = getAdjacentPostSlugs(slug);
+
+  const resolvedPostContent = postContent ?? {
+    title: 'Post not published',
+    date: 'Unpublished',
+    readTime: '0 min read',
+    content: '# Post not published\n\nThis route exists, but no grounded post content is available for this slug.',
+  };
+
+  return (
+    <main className="flex justify-center w-full max-w-3xl p-4 pt-8">
+      <div className="w-full bg-white rounded shadow px-6 pb-8">
+        <header className="mb-4 flex justify-between items-center">
+          <h1 className="text-2xl font-bold">{resolvedPostContent.title}</h1>
+          <div className="text-sm text-gray-600">{resolvedPostContent.date}</div>
+        </header>
+        <PostBody content={resolvedPostContent.content} />
+        <div className="mt-12 flex justify-center gap-4">
+          {prev && (
+            <Link href={`/posts/${prev}`} className="text-blue-600 hover:underline">
+              ← Previous Post
+            </Link>
+          )}
+          {next && (
+            <Link href={`/posts/${next}`} className="text-blue-600 hover:underline">
+              Next Post →
+            </Link>
+          )}
+        </div>
+      </div>
+    </main>
+  );
+}

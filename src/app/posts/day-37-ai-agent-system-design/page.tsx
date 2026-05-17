@@ -47,18 +47,16 @@ const posts: Posts = {
 };
 
 export default function PostsPage() {
-  const slug: PostSlug = \'day-37-ai-agent-system-design\';
+  const slug: PostSlug = 'day-37-ai-agent-system-design';
   const postContent = posts[slug];
 
   const { prev, next } = getAdjacentPostSlugs(slug);
 
   const resolvedPostContent = postContent ?? {
-    title: \'Post not published\',
-    date: \'Unpublished\',
-    readTime: \'0 min read\',
-    content: \'# Post not published
-
-This route exists, but no grounded post content is available for this slug.\',
+    title: 'Post not published',
+    date: 'Unpublished',
+    readTime: '0 min read',
+    content: '# Post not published\n\nThis route exists, but no grounded post content is available for this slug.',
   };
 
   return (

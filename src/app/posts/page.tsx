@@ -1,74 +1,49 @@
-import { getAllPostSlugs, getAdjacentPostSlugs, getPostBySlug, buildTitle, buildDescription } from '@/lib/posts';
+import Link from "next/link";
 
-export { PostSlug } from '@/lib/posts';
+import { formatCardMeta, publishedPosts } from "@/lib/posts";
 
-interface PostMetadata {
-  title: string;
-  date: string;
-  readTime: string;
-  description: string;
-}
+export default function PostsIndexPage() {
+  const newestFirst = [...publishedPosts].reverse();
 
-export async function getPosts(): Promise<PostMetadata[]> {
-  const slugs = getAllPostSlugs();
-  const posts: PostMetadata[] = [];
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100">
+      <header className="bg-primary-700 text-white py-10">
+        <div className="container mx-auto px-4">
+          <Link
+            href="/"
+            className="text-primary-100 hover:text-white mb-4 inline-block"
+          >
+            ← Back to Home
+          </Link>
+          <h1 className="text-3xl md:text-5xl font-bold">All posts</h1>
+          <p className="text-primary-100 mt-2">
+            {newestFirst.length} published articles
+          </p>
+        </div>
+      </header>
 
-  for (const slug of slugs) {
-    const post = getPostBySlug(slug);
-    if (post) {
-      posts.push({
-        title: post.title,
-        date: post.date,
-        readTime: post.readTime,
-        description: post.excerpt,
-      });
-    }
-  }
-
-  return posts;
-}
-
-export async function getPost(slug: string): Promise<PostMetadata | null> {
-  const postSlug = slug as PostSlug;
-  const post = getPostBySlug(postSlug);
-  
-  if (!post) {
-    return null;
-  }
-
-  return {
-    title: post.title,
-    date: post.date,
-    readTime: post.readTime,
-    description: post.excerpt,
-  };
-}
-
-export async function getAdjacentPost(slug: string): Promise<{
-  previous: PostMetadata | null;
-  next: PostMetadata | null;
-}> {
-  const postSlug = slug as PostSlug;
-  const { previous, next } = getAdjacentPostSlugs(postSlug);
-  
-  return {
-    previous: previous ? await getPost(previous) : null,
-    next: next ? await getPost(next) : null,
-  };
-}
-
-export function generateStaticParams(): { slug: string }[] {
-  return getAllPostSlugs().map((slug) => ({
-    slug,
-  }));
-}
-
-export function generateMetadata({ params }: { params: { slug: string } }) {
-  const title = buildTitle(params.slug as PostSlug);
-  const description = buildDescription(params.slug as PostSlug);
-
-  return {
-    title,
-    description,
-  };
+      <main className="container mx-auto px-4 py-8 max-w-3xl">
+        <ul className="space-y-4">
+          {newestFirst.map((post) => (
+            <li key={post.slug}>
+              <Link
+                href={`/posts/${post.slug}`}
+                className="block bg-white rounded-lg shadow p-5 hover:shadow-md transition-shadow"
+              >
+                <h2 className="text-xl font-semibold text-primary-700">
+                  {post.title}
+                </h2>
+                <p className="text-sm text-gray-500 mt-1">
+                  {formatCardMeta(post)}
+                </p>
+                <p className="text-gray-600 mt-2 text-sm line-clamp-3">
+                  {post.excerpt}
+                </p>
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </main>
+    </div>
+  );
 }

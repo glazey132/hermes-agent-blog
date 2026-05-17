@@ -1,3 +1,4 @@
+
 'use client';
 
 import Link from 'next/link';
@@ -53,6 +54,8 @@ AI agents differ from traditional software in fundamental ways:
     53|### Prompt Injection Prevention
     54|
     55|Agent inputs (user prompts) come from untrusted sources. Always sanitize:
+
+\`\`\`typescript
 import { z } from 'zod';
 
 interface SanitizedInput {
@@ -101,7 +104,7 @@ class InputSanitizer {
     };
   }
 }
-```
+\`\`\`
 
 **Core principle**: Never assume user input is safe. Always sanitize, validate, and limit.
 
@@ -113,7 +116,7 @@ class InputSanitizer {
 
 Not all agents should have all capabilities. Define clear boundaries:
 
-```typescript
+\`\`\`typescript
 interface AgentCapabilities {
   canReadDocuments: boolean;
   canWriteDocuments: boolean;
@@ -162,7 +165,7 @@ function checkAccess(agentId: string, action: string): boolean {
   const capabilities = CAPABILITY_LEVELS[getAgentLevel(agentId)];
   return capabilities[getPermissionType(action)] ?? false;
 }
-```
+\`\`\`
 
 **Rule**: Grant minimum necessary access. Start with READER level.
 
@@ -174,7 +177,7 @@ function checkAccess(agentId: string, action: string): boolean {
 
 When agents execute tools, they run arbitrary code. Use sandboxing:
 
-```typescript
+\`\`\`typescript
 interface SafeToolCall {
   toolName: string;
   args: Record<string, unknown>;
@@ -241,7 +244,7 @@ class ExecutionSandbox {
     return tool.call(args as any);
   }
 }
-```
+\`\`\`
 
 **Production tip**: Run tool execution in separate containers with limited network, file, and system access.
 
@@ -253,7 +256,7 @@ class ExecutionSandbox {
 
 Agents can get stuck in infinite reasoning cycles. Add circuit breakers:
 
-```typescript
+\`\`\`typescript
 interface CircuitState {
   failures: number;
   lastFailureTime: number;
@@ -331,7 +334,7 @@ class CircuitBreaker {
     this.circuitStates.set(agentId, state);
   }
 }
-```
+\`\`\`
 
 **Key insight**: Circuit breakers prevent cascading failures when agents get stuck.
 
@@ -343,7 +346,7 @@ class CircuitBreaker {
 
 If an agent crashes or gets stuck in error state, checkpoints enable recovery:
 
-```typescript
+\`\`\`typescript
 interface AgentCheckpoint {
   timestamp: string;
   sessionId: string;
@@ -422,7 +425,7 @@ class AgentStateManager {
     return null;
   }
 }
-```
+\`\`\`
 
 **Best practice**: Checkpoint after every complex action sequence. Store in durable storage.
 
@@ -434,7 +437,7 @@ class AgentStateManager {
 
 Every agent action must be logged for security audit:
 
-```typescript
+\`\`\`typescript
 interface SecurityLog {
   eventType: 'TOOL_CALL' | 'USER_INPUT' | 'ERROR' | 'SECURITY_VIOLATION';
   agentId: string;
@@ -496,7 +499,7 @@ class AuditLogRetriever {
     return await this.anomalyDetector.analyze();
   }
 }
-```
+\`\`\`
 
 **Compliance requirement**: All agent actions must be logged and retained per security policy.
 
@@ -543,7 +546,7 @@ class AuditLogRetriever {
 Next: Consumer-facing post on practical AI agent use cases for everyday productivity.
 
 **Tomorrow**: We'll explore how non-technical users can leverage agents for personal productivity.
-`;
+`,
   },
 };
 

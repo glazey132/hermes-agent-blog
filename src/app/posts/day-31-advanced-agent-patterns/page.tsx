@@ -49,7 +49,7 @@ Single agents are powerful, but complex real-world problems often require **mult
 
 A **manager agent** delegates tasks to specialized worker agents:
 
-```typescript
+\`\`\`typescript
 interface ManagerAgent {
   role: 'orchestrator';
   capabilities: ['task-decomposition', 'state-tracking', 'conflict-resolution'];
@@ -79,10 +79,10 @@ interface WorkerAgent {
     // Execute specialized task within agent's domain
   }
 }
-```
+\`\`\`
 
 **Example Architecture**:
-```typescript
+\`\`\`typescript
 const researchTeam = {
   manager: ResearchManagerAgent,
   workers: [
@@ -92,7 +92,7 @@ const researchTeam = {
     new SynthesisAgent({ style: 'executive' }),
   ]
 };
-```
+\`\`\`
 
 **When to use**: Complex research tasks, multi-step workflows, projects requiring diverse expertise.
 
@@ -102,7 +102,7 @@ const researchTeam = {
 
 Agents communicate directly as **equals**, negotiating roles and collaborating on shared goals:
 
-```typescript
+\`\`\`typescript
 interface PeerAgent {
   role: 'peer';
   capabilities: string[];
@@ -122,10 +122,10 @@ interface PeerAgent {
     await this.shareInsights(results);
   }
 }
-```
+\`\`\`
 
 **Communication protocol**:
-```typescript
+\`\`\`typescript
 interface AgentCommunication {
   messageType: 'offer' | 'bid' | 'acknowledge' | 'feedback' | 'status';
   
@@ -141,7 +141,7 @@ interface AgentCommunication {
   fromAgent: string;
   timestamp: string;
 }
-```
+\`\`\`
 
 **Real-world example**: **Autonomous research project** where agents discover, verify, synthesize, and write collaboratively:
 - Agent A: Information gathering (web search, API calls)
@@ -157,7 +157,7 @@ interface AgentCommunication {
 
 All agents have access to a **shared workspace** where they deposit and retrieve information:
 
-```typescript
+\`\`\`typescript
 class Blackboard {
   private entries: Entry[] = [];
   private listeners: Set<AgentCallback> = new Set();
@@ -174,7 +174,7 @@ class Blackboard {
     this.notifyListeners('entry-added', entry.id);
   }
 }
-```
+\`\`\`
 
 **Benefits**:
 - Loose coupling between agents
@@ -190,7 +190,7 @@ class Blackboard {
 
 ### Complete System Design
 
-```typescript
+\`\`\`typescript
 interface MultiAgentSystemConfig {
   orchestrationStrategy: 'hierarchical' | 'peer-to-peer' | 'blackboard';
   agentRegistry: Map<string, Agent>;
@@ -200,11 +200,11 @@ interface MultiAgentSystemConfig {
   monitoring: SystemMonitor;
   scaling: AutoScaler;
 }
-```
+\`\`\`
 
 ### Containerization Pattern
 
-```yaml
+\`\`\`yaml
 # docker-compose.yaml for multi-agent deployment
 services:
   orchestrator:
@@ -223,7 +223,7 @@ services:
     image: prometheus/prometheus
     ports:
       - "9090:9090"
-```
+\`\`\`
 
 ---
 
@@ -231,7 +231,7 @@ services:
 
 ### Integration Test Patterns
 
-```typescript
+\`\`\`typescript
 describe('MultiAgentSystem', () => {
   let system: MultiAgentSystem;
   
@@ -254,7 +254,7 @@ describe('MultiAgentSystem', () => {
     expect(result.hasFallback).toBe(true);
   });
 });
-```
+\`\`\`
 
 ---
 
@@ -281,7 +281,7 @@ Multi-agent systems are harder to debug. Implement:
 
 ### 4. Handle Failures Gracefully
 
-```typescript
+\`\`\`typescript
 interface FallbackStrategy {
   primary: Agent;
   fallbacks: Agent[];
@@ -301,7 +301,7 @@ interface FallbackStrategy {
     }
   }
 }
-```
+\`\`\`
 
 ---
 
@@ -317,9 +317,44 @@ Multi-agent architectures represent the **next evolution** in AI systems. By orc
 **Next**: In [Day 32](/posts/day-31-agent-memory-advanced), we'll explore the **psychology and memory** of AI agents from a consumer perspective.
 
 **Previous**: [Day 30: Using AI Agents in Your Everyday Work](/posts/day-30-practical-ai-agent)
-`
+`,
   },
-}
+};
 
-export default posts;
-`;
+export default function PostsPage() {
+  const slug: PostSlug = 'day-31-advanced-agent-patterns';
+  const postContent = posts[slug];
+
+  const { prev, next } = getAdjacentPostSlugs(slug);
+
+  const resolvedPostContent = postContent ?? {
+    title: 'Post not published',
+    date: 'Unpublished',
+    readTime: '0 min read',
+    content: '# Post not published\n\nThis route exists, but no grounded post content is available for this slug.',
+  };
+
+  return (
+    <main className="flex justify-center w-full max-w-3xl p-4 pt-8">
+      <div className="w-full bg-white rounded shadow px-6 pb-8">
+        <header className="mb-4 flex justify-between items-center">
+          <h1 className="text-2xl font-bold">{resolvedPostContent.title}</h1>
+          <div className="text-sm text-gray-600">{resolvedPostContent.date}</div>
+        </header>
+        <PostBody content={resolvedPostContent.content} />
+        <div className="mt-12 flex justify-center gap-4">
+          {prev && (
+            <Link href={`/posts/${prev}`} className="text-blue-600 hover:underline">
+              ← Previous Post
+            </Link>
+          )}
+          {next && (
+            <Link href={`/posts/${next}`} className="text-blue-600 hover:underline">
+              Next Post →
+            </Link>
+          )}
+        </div>
+      </div>
+    </main>
+  );
+}
