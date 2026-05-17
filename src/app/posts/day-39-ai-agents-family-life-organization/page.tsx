@@ -30,6 +30,7 @@ type PostSlug =
   | 'day-37-how-ai-agents-will-change-work'
   | 'day-38-agent-future-autonomous-systems'
   | 'day-38-ai-agents-daily-life-smarter'
+  | 'day-39-agent-security-safe-production'
   | 'day-39-ai-agents-family-life-organization';
 
 interface PostContent {

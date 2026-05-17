@@ -51,6 +51,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "day-38-ai-agents-daily-life-smarter",
     "day-39-agent-security-safe-production",
     "day-39-ai-agents-family-life-organization",
+    "day-40-agent-hierarchy-patterns",
+    "day-40-ai-agents-work-smarter-not-harder",
   ]
 
   // Helper to get last updated dates

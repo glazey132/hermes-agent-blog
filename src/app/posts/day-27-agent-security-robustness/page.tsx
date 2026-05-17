@@ -47,14 +47,12 @@ AI agents differ from traditional software in fundamental ways:
 **Without proper security**, your agent is a liability, not an asset.
 
 ---
-
-## Input Sanitization: The First Line of Defense
-
-### Prompt Injection Prevention
-
-Agent inputs (user prompts) come from untrusted sources. Always sanitize:
-
-```typescript
+    50|
+    51|## Input Sanitization: The First Line of Defense
+    52|
+    53|### Prompt Injection Prevention
+    54|
+    55|Agent inputs (user prompts) come from untrusted sources. Always sanitize:
 import { z } from 'zod';
 
 interface SanitizedInput {
