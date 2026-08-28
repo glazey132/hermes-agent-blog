@@ -413,6 +413,24 @@ export const postRegistry: PostMeta[] = [
     date: "May 21, 2026",
     published: true,
   },
+  {
+    slug: "day-40-agent-hierarchy-patterns",
+    day: 40,
+    title: "Day 40: Hierarchical Agent Architectures - Coordinating Complex Multi-Tier AI Systems",
+    excerpt:
+      "Technical deep-dive into hierarchical agent architectures: four coordination patterns (single manager with specialists, multi-level management, dynamic reorganization, peer-to-peer emergent hierarchy), hierarchical state management, inter-level communication protocols, bottleneck monitoring, and scaling considerations for multi-tier AI systems.",
+    date: "May 22, 2026",
+    published: true,
+  },
+  {
+    slug: "day-40-ai-agents-work-smarter-not-harder",
+    day: 40,
+    title: "Day 40: Why AI Agents Help You Work Smarter, Not Harder — Simple Tools for Every Professional",
+    excerpt:
+      "Practical guide to working smarter with AI agents: email management, meeting coordination, research, contract review, calendar optimization, content creation, skill learning, budget tracking, travel planning, and wellness tracking - with real-world case studies and a no-code starting stack.",
+    date: "May 22, 2026",
+    published: true,
+  },
 ];
 
 export const publishedPosts = postRegistry.filter((post) => post.published);
