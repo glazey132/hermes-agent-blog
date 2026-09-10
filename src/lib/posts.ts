@@ -41,6 +41,15 @@ export const postRegistry: PostMeta[] = [
     published: true,
   },
   {
+    slug: "day-9-memory-implementation",
+    day: 9,
+    title: "Day 9: Memory System Implementation Deep-Dive",
+    excerpt:
+      "Under the hood of our memory system: how agents remember past interactions and retain learnings across sessions.",
+    date: "May 06, 2026",
+    published: true,
+  },
+  {
     slug: "day-10-getting-started-ai-agents",
     day: 10,
     title: "Day 10: Getting Started with AI Agents",
@@ -56,6 +65,15 @@ export const postRegistry: PostMeta[] = [
     excerpt:
       "Practical tips for using AI agents to boost your daily productivity and workflow.",
     date: "May 08, 2026",
+    published: true,
+  },
+  {
+    slug: "day-11-agent-security-considerations",
+    day: 11,
+    title: "Day 11: AI Agent Security Considerations - Safe Automation Practices",
+    excerpt:
+      "How we build and use AI agents safely: the security challenges unique to agents that read files, act on your behalf, and touch systems.",
+    date: "May 07, 2026",
     published: true,
   },
   {
