@@ -29,7 +29,11 @@ export const postRegistry: PostMeta[] = [
     excerpt:
       "Building a recommendation system using AI agents that suggest relevant projects and resources.",
     date: "May 06, 2026",
-    published: true,
+    // Unpublished: registered in the source of truth but no post body exists
+    // anywhere (no route folder, not in the [slug] map, not in generateStaticParams).
+    // It rendered "Post Not Found" as the 2nd front-page card, inflating the
+    // "Posts Published" count by one. Restored to draft pending real content.
+    published: false,
   },
   {
     slug: "day-9-self-reflection",

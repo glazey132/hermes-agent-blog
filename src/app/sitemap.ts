@@ -7,7 +7,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // Published blog post slugs from src/lib/posts.ts
   const publishedPosts = [
     "day-7-styling-improvements",
-    "day-8-ai-agent-recommendation-engine",
     "day-9-self-reflection",
     "day-10-getting-started-ai-agents",
     "day-10-productivity-harness",
